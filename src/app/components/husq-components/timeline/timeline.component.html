@@ -1,0 +1,13 @@
+<div class="leader">
+  </div>
+  
+  <!-- This will add a husk to the timeline -->
+  <!-- <button class="husq-card-action button" (click)="addHusq()" >Add Husk</button> -->
+
+  <div class="timeline">
+    <app-husq *ngFor="let husq of husqs; trackBy: trackById"
+              name={{husq.name}}
+              message={{husq.message}}>
+    </app-husq>
+  </div>
+  
