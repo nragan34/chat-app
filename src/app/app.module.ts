@@ -3,19 +3,27 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContentComponent } from './components/main-components/content/content.component';
-import { HeaderComponent } from './components/main-components/header/header.component';
-import { HusqComponent } from './components/husq-components/husq/husq.component';
-import { FooterComponent } from './components/main-components/footer/footer.component';
-import { NewsComponent } from './components/news-components/news/news.component';
-import { FriendsComponent } from './components/friends-components/friends/friends.component';
+import { ContentComponent } from './components/content/content.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HusqComponent } from './components/husq/husq.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { NewsComponent } from './components/news/news.component';
+import { FriendsListComponent } from './components/friends-list/friends-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { PagenotfoundComponent } from './components/error-components/pagenotfound/pagenotfound.component';
-import { TimelineComponent } from './components/husq-components/timeline/timeline.component';
-import { FriendComponent } from './components/friends-components/friend/friend.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { HusqListComponent } from './components/husq-list/husq-list.component';
+import { FriendComponent } from './components/friend/friend.component';
 import { FormsModule } from '@angular/forms';
-import { TimelineService } from './services/timeline.service';
-import { NewsTimelineComponent } from './components/news-components/news-timeline/news-timeline.component';
+import { HusqTimelineService } from './services/husq-timeline.service';
+import { NewsTimelineComponent } from './components/news-list/news-timeline.component';
+import { ComposeComponent } from './components/compose/compose.component';
+import { NewsTimelineService } from './services/news-timeline.service';
+import { UsersService } from './services/users.service';
+import { FriendFinderComponent } from './components/friend-finder/friend-finder.component';
+import { UserAddComponent } from './components/user-add/user-add.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserComponent } from './components/user/user.component';
+import { UserActiveComponent } from './components/user-active/user-active.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +33,18 @@ import { NewsTimelineComponent } from './components/news-components/news-timelin
     HusqComponent,
     FooterComponent,
     NewsComponent,
-    FriendsComponent,
+    FriendsListComponent,
     ProfileComponent,
     PagenotfoundComponent,
-    TimelineComponent,
+    HusqListComponent,
     FriendComponent,
-    NewsTimelineComponent
+    NewsTimelineComponent,
+    ComposeComponent,
+    FriendFinderComponent,
+    UserAddComponent,
+    UserListComponent,
+    UserComponent,
+    UserActiveComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +52,9 @@ import { NewsTimelineComponent } from './components/news-components/news-timelin
     FormsModule
   ],
   providers: [
-    TimelineService
+    NewsTimelineService,
+    HusqTimelineService,
+    UsersService
   ],
   bootstrap: [AppComponent]
 })

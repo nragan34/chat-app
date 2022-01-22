@@ -1,5 +1,6 @@
 export interface Husq {
-    id: number
+    id: string
     name: string
+    time: Date
     message: string
 }

@@ -6,6 +6,7 @@ import { initialNews } from '../seeds/news'
 @Injectable({
   providedIn: 'root'
 })
+
 export class NewsTimelineService {
 
   private readonly _newsSource = new BehaviorSubject<News[]>(initialNews);
@@ -26,6 +27,11 @@ export class NewsTimelineService {
   addNews(news: News) {
     const myNews = [...this.getNews(), news]
     this._setNews(myNews)
-    console.log("Logging ID: ....> ",news.id);
+  }
+
+  removeNews(newsId: string): void {
+    const myNews = [
+      ...this.getNews().filter(myNews => myNews.id !== newsId)
+    ]
   }
 }

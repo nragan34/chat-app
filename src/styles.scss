@@ -263,7 +263,7 @@ textarea[type="textarea"]:focus {
     color: #dfdfdf;
 }
 textarea::placeholder {
-    padding: 5%;
+    padding: 2%;
 }
 
 .husq-card-action button {
@@ -289,9 +289,55 @@ textarea::placeholder {
     background-color: #448d4b;
     border: none;
     border-radius: 20px;
+    &:hover,
+    &:disabled {
+        background: darken(rgb(68, 141, 75), 10%);
+    }
+    &:disabled {
+        cursor: not-allowed;
+    }
 }
+
 .husq-card-action-no-flex button:hover {
     background-color: #36693b;
+}
+
+.husq-btn-delete {
+    background: none;
+    border-radius: 50%;
+    padding: 0.75em;
+    width: 46px;
+    height: 45px;
+    border: 2px solid #448d4b;
+    position: relative;
+    &:hover {
+        border:2px solid darken(rgb(68, 141, 75), 20%);
+        box-shadow:  0px 0px 20px rgba(48, 124, 30, 0.6);
+        background-color: none;
+        color: none;
+    }
+    &:before {
+        content: " ";
+        position: absolute;
+        display: block;
+        background-color: #448d4b;
+        width: 2px;
+        left: 19px;
+        top: 7px;
+        bottom: 7px;
+        transform: rotate(45deg);
+    }
+    &:after {
+        content: " ";
+        position: absolute;
+        display: block;
+        background-color: #448d4b;
+        height: 2px;
+        top: 19px;
+        left: 7px;
+        right: 7px;
+        transform: rotate(45deg);
+    }
 }
 
 .husq-card-content h2 {
@@ -315,6 +361,7 @@ textarea::placeholder {
     background-color: #010804;
     color: #868f94;
     padding: 2% 0 2% 0;
+    z-index: 100;
 }
 .nav-links a {
     font-size: 20px;
@@ -359,7 +406,6 @@ news {
 }
 .news-card-content {
     border: #3ac248 0.1px solid;
-    
 }
 
 .news-card-content h3 {
@@ -469,10 +515,6 @@ footer {
     font-size: 2em;
 }
 /* page not found */
-
-
-
-
 
 /* MOBILE START */
 @media (orientation: portrait) {

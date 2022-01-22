@@ -1,0 +1,26 @@
+<div class="main-page-container">
+  <div class="content-class">
+    <div class="husq-card-container">
+      <div class="husq-card-content">
+        <div class="husq-card-profile">
+          <div class="husq-card-profile-container">
+            <div class="husq-card-profile-content">
+              <div class="husq-card-action-no-flex">
+                <label for="title">
+                  Compose Your Chat
+                </label>
+                <textarea [(ngModel)]="message" placeholder="What's on your mind?"></textarea>
+              </div>
+              <div class="husq-card-action-no-flex">
+                <button (click)="addHusq()" [disabled]="!message || message.length > 240">
+                  Add Chat
+                </button>
+                <span>{{ message.length }} / 240</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

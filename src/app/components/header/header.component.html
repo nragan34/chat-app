@@ -1,0 +1,14 @@
+<nav class="navbar">
+    <!-- NAVIGATION MENU -->
+    <ul class="nav-links">
+        <!-- NAVIGATION MENUS -->
+        <div class="menu">
+            <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+            <li><a routerLink="/add-user" routerLinkActive="active">Add User</a></li>
+            <li><a routerLink="/compose" routerLinkActive="active">Compose</a></li>
+            <li><a routerLink="/friends" routerLinkActive="active">Friends</a></li>
+            <li><a routerLink="/user-list" routerLinkActive="active">Users</a></li>
+            <li><a [routerLink]="['/profile', activeUserId]" routerLinkActive="active">Profile</a></li>
+        </div>
+    </ul>
+</nav>

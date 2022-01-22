@@ -1,0 +1,14 @@
+<div class="main-page-container">
+    <div class="left-content-container">
+        <i id="custom-fa" class="fa fa-comments"></i>
+        <app-footer></app-footer>
+    </div>
+    <div class="content-class">
+        <h1>Your Friends</h1>
+        <app-friend *ngFor="let friend of friends trackBy: trackById" [friendObj]="friend"></app-friend>
+    </div>
+    <div class="right-content-container">
+        <h1>Suggested Friends</h1>
+        <app-friend-finder *ngFor="let user of users; trackBy: trackById" [userObj]="user"></app-friend-finder>
+    </div>
+</div>

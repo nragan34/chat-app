@@ -1,0 +1,14 @@
+<div class="main-page-container">
+    <div class="left-content-container">
+        <i id="custom-fa" class="fa fa-comments"></i>
+        <app-footer></app-footer>
+    </div>
+    <div class="content-class">
+        <h1>Search Users</h1>
+
+        <app-user *ngFor="let user of users; trackBy: trackById" [userObj]="user"></app-user>
+    </div>
+    <div class="right-content-container">
+
+    </div>
+</div>

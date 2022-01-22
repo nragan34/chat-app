@@ -4,25 +4,25 @@
         <app-footer></app-footer>
     </div>
 
-    <div class="content-class">
-        <h1>{{name}}'s Profile</h1>
+    <div *ngIf="profile" class="content-class">
+        <h1>{{profile.name}}'s Profile</h1>
         <div class="husq-profile-container">
             <div class="husq-card-content">
                 <div class="husq-card-profile">
                     <div class="husq-card-profile-container">
                         <div class="husq-card-img husq-profile-image">
-                            <img class="profile-avatar" src="https://avatars.dicebear.com/api/gridy/{{ name }}.svg"
+                            <img class="profile-avatar" src="https://avatars.dicebear.com/api/gridy/{{ profile.name }}.svg"
                                 alt="Avatar" />
                         </div>
                         <div class="husq-card-profile-content">
-                            <h3>{{ name }}</h3>
-                            <p class="date-active">Profile Activated: {{ time.toLocaleDateString() }}</p>
+                            <h3>{{ profile.name }}</h3>
+                            <p class="date-active">About: <span class="white-text">{{ profile.message }}</span></p>
                         </div>
                     </div>
                 </div>
-                <div class="profile-description">
+                <div class="profile-location">
                     <hr>
-                    <p class="husq-card-content-info-profile"><span>Description:</span> {{ description }} </p>
+                    <p class="husq-card-content-info-profile"><span>Location:</span> {{ profile.location }} </p>
                 </div>
 
                 <div class="husq-card-action">
@@ -34,12 +34,6 @@
     <div class="right-content-container">
         <h1>Add News Articles</h1>
         <app-news-timeline></app-news-timeline>
-        <!-- <app-news></app-news>
-        <app-news></app-news>
-        <app-news></app-news>
-        <app-news></app-news>
-        <app-news></app-news>
-        <app-news></app-news> -->
     </div>
 
 </div>

@@ -1,0 +1,28 @@
+
+<div *ngIf="userObj" class="husq-card-container">
+    <div class="husq-card-content">
+        <div class="husq-card-profile">
+            <div class="husq-card-profile-container">
+                <div class="husq-card-img">
+                    <img class="profile-avatar" src="https://avatars.dicebear.com/api/gridy/{{ userObj.name }}.svg"
+                        alt="Avatar" />
+                </div>
+
+                <div class="husq-card-profile-content">
+                    <h3>{{ userObj.name }} | id: {{userObj.id}}</h3>
+                    <p>Profile Activated:
+                        <span style="color: white;">{{ time.toLocaleDateString() }}</span>
+                    </p>
+                </div>
+            </div>
+            <button (click)="removeUser()"  class="husq-btn-delete">&times;</button>
+        </div>
+        <hr>
+        <div class="husq-card-content-info">
+            <p>{{ userObj.message }}</p>
+            <p class="padding-top-medium">
+                <span>Location: </span>{{ userObj.location }}
+            </p>
+        </div>
+    </div>
+</div>

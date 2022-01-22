@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { ContentComponent } from './components/main-components/content/content.component';
-import { FriendsComponent } from './components/friends-components/friends/friends.component';
-import { PagenotfoundComponent } from './components/error-components/pagenotfound/pagenotfound.component';
+import { FriendsListComponent } from './components/friends-list/friends-list.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ComposeComponent } from './components/compose/compose.component';
+import { HusqListComponent } from './components/husq-list/husq-list.component';
+import { UserAddComponent } from './components/user-add/user-add.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 const routes: Routes = [
-  {path: '', component: ContentComponent, pathMatch: 'full', }, 
-  {path: 'friends', component: FriendsComponent, pathMatch: 'full'}, 
-  {path: 'profile', component: ProfileComponent, pathMatch: 'full'},
+  {path: '', component: HusqListComponent, pathMatch: 'full', }, 
+  {path: 'timeline', component: HusqListComponent, pathMatch: 'full'},
+  {path: 'friends', component: FriendsListComponent, pathMatch: 'full'}, 
+  {path: 'profile/:userId', component: ProfileComponent},
+  {path: 'compose', component: ComposeComponent, pathMatch: 'full'},
+  {path: 'add-user', component: UserAddComponent, pathMatch: 'full'},
+  {path: 'user-list', component: UserListComponent, pathMatch: 'full'},
   {path: '**', component: PagenotfoundComponent}
 ];
 
