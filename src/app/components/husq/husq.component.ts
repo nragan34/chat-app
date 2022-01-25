@@ -13,7 +13,7 @@ export class HusqComponent implements OnInit {
   time: Date = new Date()
 
   tempReply: string | undefined
-  reply: string | undefined
+  reply: Array<string | undefined> = [];
 
   constructor(private husqTimelineService: HusqTimelineService) { }
 
@@ -22,8 +22,12 @@ export class HusqComponent implements OnInit {
   }
 
   saveReply(): void {
-    this.reply = this.tempReply;
-    this.tempReply = undefined;
+    console.log('logging tempReply... ', this.tempReply)
+    if (this.tempReply) {
+      this.reply.push(this.tempReply);
+      this.reply.push('----------')
+      this.tempReply = undefined;
+    }
   }
 
   removeHusq(): void {

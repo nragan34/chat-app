@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserActiveService } from 'src/app/services/user-active.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 
 // tells js we are allowed to use this header externally
 export class HeaderComponent implements OnInit {
-  activeUserId: string = '1'
+  userActiveId: string = '1'
 
-  constructor() { }
+  constructor(private userActive: UserActiveService) {
+    this.userActive.activeUser$.subscribe(userId => this.userActiveId = userId)
+   }
 
   ngOnInit(): void {
   }

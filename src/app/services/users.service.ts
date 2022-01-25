@@ -1,23 +1,21 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
+import { UserFriends } from '../interfaces/userFriends';
 import { Users } from '../interfaces/users';
+import { userFriends } from '../seeds/userFriends';
 import { users } from '../seeds/users';
-import { Friends } from '../interfaces/friends';
-import { friends } from '../seeds/friends'
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  private readonly _userSource = new 
-  BehaviorSubject<Users[]>(users)
+  private readonly _userSource = new BehaviorSubject<Users[]>(users)
   readonly users$ = this._userSource.asObservable();
 
-  private readonly _friendSource = new BehaviorSubject<Friends[]>(friends)
-  readonly friends$ = this._friendSource.asObservable();
-
+  private readonly _userFriendsSource = new BehaviorSubject<UserFriends[]>(userFriends)
+  readonly userFriends$ = this._userFriendsSource.asObservable();
+  
   constructor() { }
-
 
   ///////////////////////////
   // Adding Users
@@ -28,7 +26,7 @@ export class UsersService {
   }
 
   getUsers(): Users[] {
-      return this._userSource.getValue()
+    return this._userSource.getValue()
   }
 
   addUser(user: Users): void {
@@ -43,47 +41,28 @@ export class UsersService {
     this._setUser(users)
   }
 
-
+  getUserById(id: string): Users | undefined {
+    return this.getUsers().find(user => user.id === id)
+  }
 
   ///////////////////////////
   // Adding friends
   ///////////////////////////
 
-  private _setFriend(friend: Friends[]) {
-    this._friendSource.next(friend)
+  private _setFriend(friend: Users[]) {
+    this._userSource.next(friend)
   }
 
-  getFriends(): Friends[] {
-      return this._friendSource.getValue()
-  }
-  
-  addFriend(friend: Friends): void {
-    const friends = [...this.getFriends()]
-    if (friends.find(x => x.id === friend.id)) {
-      // filter out added friend
-      console.log('same id')
-    } else {
-      const friends = [
-        ...this.getFriends(), friend
-      ]
-      this._setFriend(friends)
-    }
-  }
-  
-  removeFriend(friendId: string): void {
-    console.log('removing friend', friendId);
-    const friends = [
-      ...this.getFriends().filter(friends => friends.id !== friendId)
-    ]
-    this._setFriend(friends)
+  // getFriends(): Users[] {
+  //   return this._userSource.getValue()
+  // }
+
+  // addFriend(): void {
+
+  // }
+
+  getFriendById(id: string): Users | undefined {
+    return this.getUsers().find(friend => friend.id === id)
   }
 
-  getUserById(id: string): Users | undefined {
-    return this.getUsers().find(user => user.id === id)
-  }
-
-  getFriendById(id: string): Friends | undefined {
-    console.log('logging id.... \n\n\n', id)
-    return this.getFriends().find(friend => friend.id === id)
-  }
 }

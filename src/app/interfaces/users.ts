@@ -1,8 +1,8 @@
 export interface Users {
     id: string
-    name: string
-    message: string
-    location: string
+    name?: string
+    message?: string
+    location?: string
     age?: number 
     aboutMe?: string 
     like?: string 

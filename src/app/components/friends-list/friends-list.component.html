@@ -1,14 +1,32 @@
 <div class="main-page-container">
+
+
     <div class="left-content-container">
         <i id="custom-fa" class="fa fa-comments"></i>
         <app-footer></app-footer>
     </div>
+
+
     <div class="content-class">
-        <h1>Your Friends</h1>
-        <app-friend *ngFor="let friend of friends trackBy: trackById" [friendObj]="friend"></app-friend>
+        <div *ngIf="!userFriends?.length">
+            <h1>You Have No Friends :(</h1>
+        </div>
+        <div *ngIf="userFriends?.length">
+            <h1>Your Friends</h1>
+            <app-friend *ngFor="let userFriend of userFriends trackBy: trackById" [userFriendsObj]="userFriend">
+            </app-friend>
+        </div>
     </div>
+
+
     <div class="right-content-container">
-        <h1>Suggested Friends</h1>
-        <app-friend-finder *ngFor="let user of users; trackBy: trackById" [userObj]="user"></app-friend-finder>
+        <div *ngIf="users.length === 1">
+            <h1>We Ran Out Of Users...</h1>
+        </div>
+        <div *ngIf="users.length > 1">
+            <h1>Suggested Friends</h1>
+            <app-user *ngFor="let user of users; trackBy: trackByUserId" [userObj]="user"></app-user>
+        </div>
     </div>
+
 </div>

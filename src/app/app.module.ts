@@ -19,11 +19,9 @@ import { NewsTimelineComponent } from './components/news-list/news-timeline.comp
 import { ComposeComponent } from './components/compose/compose.component';
 import { NewsTimelineService } from './services/news-timeline.service';
 import { UsersService } from './services/users.service';
-import { FriendFinderComponent } from './components/friend-finder/friend-finder.component';
 import { UserAddComponent } from './components/user-add/user-add.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserComponent } from './components/user/user.component';
-import { UserActiveComponent } from './components/user-active/user-active.component';
 
 @NgModule({
   declarations: [
@@ -40,11 +38,9 @@ import { UserActiveComponent } from './components/user-active/user-active.compon
     FriendComponent,
     NewsTimelineComponent,
     ComposeComponent,
-    FriendFinderComponent,
     UserAddComponent,
     UserListComponent,
-    UserComponent,
-    UserActiveComponent
+    UserComponent
   ],
   imports: [
     BrowserModule,

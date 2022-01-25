@@ -14,8 +14,8 @@
         </div>
 
         <p class="husq-card-content-info">{{ husqObj.message }}</p>
-        <p *ngFor="let reply of tempReply">
-            {{ reply }}
+        <p *ngFor="let r of reply">
+            {{ r }}
         </p>
         <div class="husq-card-action">
             <input [(ngModel)]="tempReply" type="text" placeholder="Reply to {{ husqObj.name }}" class="husq-input">

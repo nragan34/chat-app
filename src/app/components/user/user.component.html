@@ -1,7 +1,7 @@
+<div *ngIf="userObj && userObj !== profile && userObj.id !== friends?.friend?.id" class="husq-card-container">
+    <div  class="husq-card-content">
 
-<div *ngIf="userObj" class="husq-card-container">
-    <div class="husq-card-content">
-        <div class="husq-card-profile">
+        <div  class="husq-card-profile">
             <div class="husq-card-profile-container">
                 <div class="husq-card-img">
                     <img class="profile-avatar" src="https://avatars.dicebear.com/api/gridy/{{ userObj.name }}.svg"
@@ -9,20 +9,27 @@
                 </div>
 
                 <div class="husq-card-profile-content">
-                    <h3>{{ userObj.name }} | id: {{userObj.id}}</h3>
-                    <p>Profile Activated:
-                        <span style="color: white;">{{ time.toLocaleDateString() }}</span>
-                    </p>
+                    <h3>{{ userObj.name }}</h3>
                 </div>
             </div>
-            <button (click)="removeUser()"  class="husq-btn-delete">&times;</button>
+            <button (click)="removeUser()" class="husq-btn-delete">&times;</button>
         </div>
+
         <hr>
+
         <div class="husq-card-content-info">
             <p>{{ userObj.message }}</p>
             <p class="padding-top-medium">
                 <span>Location: </span>{{ userObj.location }}
             </p>
+            <p><span>Profile Activated: </span>
+                <span style="color: white;">{{ time.toLocaleDateString() }}</span>
+            </p>
+            <div style="float: right;" class="husq-card-action-no-flex">
+                <button (click)="addUsersFriend()">Add Friend</button>
+            </div>
         </div>
+
+
     </div>
 </div>

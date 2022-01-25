@@ -11,11 +11,11 @@ import { UserListComponent } from './components/user-list/user-list.component';
 const routes: Routes = [
   {path: '', component: HusqListComponent, pathMatch: 'full', }, 
   {path: 'timeline', component: HusqListComponent, pathMatch: 'full'},
-  {path: 'friends', component: FriendsListComponent, pathMatch: 'full'}, 
+  {path: 'friends/:userId', component: FriendsListComponent}, 
   {path: 'profile/:userId', component: ProfileComponent},
   {path: 'compose', component: ComposeComponent, pathMatch: 'full'},
-  {path: 'add-user', component: UserAddComponent, pathMatch: 'full'},
-  {path: 'user-list', component: UserListComponent, pathMatch: 'full'},
+  {path: 'add-user/:userId', component: UserAddComponent},
+  {path: 'user-list/:userId', component: UserListComponent},
   {path: '**', component: PagenotfoundComponent}
 ];
 

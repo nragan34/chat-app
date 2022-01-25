@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { v4 as uuidv4 } from "uuid";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Users } from 'src/app/interfaces/users';
+import { users } from 'src/app/seeds/users';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -9,12 +11,28 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./user-add.component.scss']
 })
 export class UserAddComponent implements OnInit {
+  users$: Subscription
+  users: Users[] = users
+  
   message: string = ''
   name: string = ''
   location: string = ''
   id: string = ''
 
-  constructor(private usersService: UsersService, private router: Router) { }
+  profile: Users | undefined
+  
+  constructor(private usersService: UsersService, private activeRouter: ActivatedRoute, private router: Router) { 
+    this.users$ = this.usersService.users$.subscribe
+    (users => {
+      this.users = users
+    }),
+    this.activeRouter.paramMap.subscribe((params) => {
+      const id = params.get('userId')
+      if (id) {
+        this.profile = this.usersService.getUserById(id)
+      }
+    })
+  }
 
   ngOnInit(): void {
   }
@@ -22,12 +40,13 @@ export class UserAddComponent implements OnInit {
   addUser(): void {
     if (this.message) {
       this.usersService.addUser({
-        id: uuidv4(),
+        id: this.id,
         name: this.name,
         message: this.message,
         location: this.location
       })
-      this.router.navigate(['/friends'])
+      console.log('logging profile.id', this.profile)
+      this.router.navigate(['/friends', this.profile?.id])
     }
   }
 
