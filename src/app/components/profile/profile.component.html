@@ -14,15 +14,33 @@
                             <img class="profile-avatar" src="https://avatars.dicebear.com/api/gridy/{{ profile.name }}.svg"
                                 alt="Avatar" />
                         </div>
-                        <div class="husq-card-profile-content">
+                        <div class="husq-card-profile">
                             <h3>{{ profile.name }}</h3>
-                            <p class="date-active">About: <span class="white-text">{{ profile.message }}</span></p>
                         </div>
                     </div>
                 </div>
-                <div class="profile-location">
+
+                <hr>
+
+                <!-- <div class="profile-location">
                     <hr>
-                    <p class="husq-card-content-info-profile"><span>Location:</span> {{ profile.location }} </p>
+                    <p class="husq-card-content-info"><span>Location:</span> {{ profile.location }} </p>
+                    <div style="float: right;" class="husq-card-action-no-flex">
+                        <button >Add Friend</button>
+                    </div>
+                </div> -->
+
+                <div class="husq-card-content-info">
+                    <p class="date-active"><span class="white-text">{{ profile.message }}</span></p>
+                    <p class="padding-top-medium">
+                        <span>Location: </span>{{ profile.location }}
+                    </p>
+                    <p><span>Profile Activated: </span>
+                        <span style="color: white;">{{ time.toLocaleDateString() }}</span>
+                    </p>
+                    <div style="float: right;" class="husq-card-action-no-flex">
+                        <button (click)="editProfile()">Edit Profile</button>
+                    </div>
                 </div>
 
                 <div class="husq-card-action">

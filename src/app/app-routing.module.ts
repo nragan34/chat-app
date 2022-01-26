@@ -7,9 +7,11 @@ import { ComposeComponent } from './components/compose/compose.component';
 import { HusqListComponent } from './components/husq-list/husq-list.component';
 import { UserAddComponent } from './components/user-add/user-add.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { HuskEditComponent } from './components/husk-edit/husk-edit.component';
 
 const routes: Routes = [
   {path: '', component: HusqListComponent, pathMatch: 'full', }, 
+  {path: 'edit/:userId', component: HuskEditComponent, pathMatch: 'full', }, 
   {path: 'timeline', component: HusqListComponent, pathMatch: 'full'},
   {path: 'friends/:userId', component: FriendsListComponent}, 
   {path: 'profile/:userId', component: ProfileComponent},

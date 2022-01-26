@@ -13,7 +13,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { HusqListComponent } from './components/husq-list/husq-list.component';
 import { FriendComponent } from './components/friend/friend.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HusqTimelineService } from './services/husq-timeline.service';
 import { NewsTimelineComponent } from './components/news-list/news-timeline.component';
 import { ComposeComponent } from './components/compose/compose.component';
@@ -22,6 +22,7 @@ import { UsersService } from './services/users.service';
 import { UserAddComponent } from './components/user-add/user-add.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserComponent } from './components/user/user.component';
+import { HuskEditComponent } from './components/husk-edit/husk-edit.component';
 
 @NgModule({
   declarations: [
@@ -40,12 +41,14 @@ import { UserComponent } from './components/user/user.component';
     ComposeComponent,
     UserAddComponent,
     UserListComponent,
-    UserComponent
+    UserComponent,
+    HuskEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     NewsTimelineService,

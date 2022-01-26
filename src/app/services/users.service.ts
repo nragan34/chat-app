@@ -45,6 +45,12 @@ export class UsersService {
     return this.getUsers().find(user => user.id === id)
   }
 
+
+  editUser(updatedUser: Users): void {
+    const users = [...this.getUsers().filter(user => user.id !== updatedUser.id), updatedUser]
+    this._setUser(users)
+  }
+
   ///////////////////////////
   // Adding friends
   ///////////////////////////

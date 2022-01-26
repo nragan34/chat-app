@@ -45,7 +45,6 @@ export class UserAddComponent implements OnInit {
         message: this.message,
         location: this.location
       })
-      console.log('logging profile.id', this.profile)
       this.router.navigate(['/friends', this.profile?.id])
     }
   }

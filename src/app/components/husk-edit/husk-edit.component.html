@@ -1,0 +1,96 @@
+<div class="main-page-container">
+    <div class="content-class">
+        <div class="husq-card-container">
+            <div class="husq-card-content">
+                <div class="husq-card-profile">
+                    <div class="husq-card-profile-container">
+                        <div class="husq-card-profile-content">
+                            <div class="husq-card-action-no-flex">
+
+                                <label for="title">
+                                    <h1>Edit Profile</h1>
+                                </label>
+
+                                <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                                    <div >
+                                        <label for="name">Name:</label>
+                                        <br>
+                                        <input type="text" id="name" formControlName="name" >
+                                        <br>
+                                        <div *ngIf="editForm.invalid  && (name?.dirty || name?.touched)">
+                                            <span *ngIf="name?.errors?.['required']">Name is required</span>
+                                            <span *ngIf="name?.errors?.['maxlength']">Name must be less than 20
+                                                characters
+                                            </span>
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <div>
+                                        <label for="age">Age:</label>
+                                        <br>
+                                        <input type="text" id="age" formControlName="age">
+                                        <br>
+                                        <div  *ngIf="editForm.invalid  && (age?.dirty || age?.touched)">
+                                            <span *ngIf="age?.errors?.['required']"> Age is required</span>
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <div>
+                                        <label for="location">Location:</label>
+                                        <br>
+                                        <input type="text" id="location" formControlName="location">
+                                        <br>
+                                        <div *ngIf="editForm.invalid  && (location?.dirty || location?.touched)">
+                                            <span *ngIf="location?.errors?.['required']"> Location is required</span>
+                                        </div>
+                                        <br>
+                                    </div>
+
+
+
+                                    <div>
+                                        <label for="message">About:</label>
+                                        <br>
+                                        <textarea name="message" id="message" cols="30" rows="10"
+                                            formControlName="message">
+                                            </textarea>
+                                        <br>
+                                        <div *ngIf="editForm.invalid  && (message?.dirty || message?.touched)">
+                                            <span *ngIf="message?.errors?.['required']"> Name is required</span>
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <div>
+                                        <label for="likes">Likes:</label>
+                                        <br>
+                                        <input type="text" id="likes" formControlName="likes">
+                                    </div>
+
+                                    <div>
+                                        <label for="dislikes">Dislikes:</label>
+                                        <br>
+                                        <input type="text" id="dislikes" formControlName="dislikes">
+                                    </div>
+
+                                    <div>
+                                        <button type="submit" [disabled]="editForm.invalid">Submit</button>
+                                    </div>
+                                </form>
+
+                            </div>
+
+
+                            <div class="husq-card-action-no-flex">
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
