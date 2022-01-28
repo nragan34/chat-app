@@ -38,6 +38,12 @@
                     <p><span>Profile Activated: </span>
                         <span style="color: white;">{{ time.toLocaleDateString() }}</span>
                     </p>
+                    <p><span>Likes: </span>
+                        <span style="color: white;">{{ profile.likes }}</span>
+                    </p>
+                    <p><span>Dislikes: </span>
+                        <span style="color: white;">{{ profile.dislikes }}</span>
+                    </p>
                     <div style="float: right;" class="husq-card-action-no-flex">
                         <button (click)="editProfile()">Edit Profile</button>
                     </div>

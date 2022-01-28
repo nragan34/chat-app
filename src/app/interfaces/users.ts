@@ -5,6 +5,6 @@ export interface Users {
     location?: string
     age?: number 
     aboutMe?: string 
-    like?: string 
+    likes?: string 
     dislikes?: string 
 }

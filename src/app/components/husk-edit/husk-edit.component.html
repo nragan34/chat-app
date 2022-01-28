@@ -12,10 +12,10 @@
                                 </label>
 
                                 <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="onSubmit()">
-                                    <div >
+                                    <div>
                                         <label for="name">Name:</label>
                                         <br>
-                                        <input type="text" id="name" formControlName="name" >
+                                        <input type="text" id="name" formControlName="name">
                                         <br>
                                         <div *ngIf="editForm.invalid  && (name?.dirty || name?.touched)">
                                             <span *ngIf="name?.errors?.['required']">Name is required</span>
@@ -31,7 +31,7 @@
                                         <br>
                                         <input type="text" id="age" formControlName="age">
                                         <br>
-                                        <div  *ngIf="editForm.invalid  && (age?.dirty || age?.touched)">
+                                        <div *ngIf="editForm.invalid  && (age?.dirty || age?.touched)">
                                             <span *ngIf="age?.errors?.['required']"> Age is required</span>
                                         </div>
                                         <br>
@@ -63,16 +63,44 @@
                                         <br>
                                     </div>
 
-                                    <div>
+                                    <div class="margin-top-medium  ">
                                         <label for="likes">Likes:</label>
-                                        <br>
-                                        <input type="text" id="likes" formControlName="likes">
+                                        <ng-container *ngFor="let like of likes.controls; index as i; last as isLast"
+                                            [formArrayName]="'likes'">
+                                            <div class="flex-row">
+                                                <input formControlName="likes" type="text" id="likes-{{ i }}"
+                                                    [formControlName]="i" class="form-array">
+                                                <button class="warning-delete" (click)="deleteLike(i)"
+                                                    [ngClass]="{'' : isLast}"
+                                                    [disabled]="!i || likes?.controls?.length === 1">&times;</button>
+                                                <button *ngIf="isLast" (click)="addLike()" class="">&plus;</button>
+                                                <div *ngIf="editForm.invalid  && (like?.dirty || like?.touched)">
+                                                    <span *ngIf="like?.errors?.['required']"> Location is required</span>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+
                                     </div>
 
-                                    <div>
+                                    <div class="margin-top-large">
                                         <label for="dislikes">Dislikes:</label>
                                         <br>
-                                        <input type="text" id="dislikes" formControlName="dislikes">
+                                        <ng-container
+                                            *ngFor="let dislike of dislikes.controls; index as i; last as isLast"
+                                            [formArrayName]="'dislikes'">
+                                            <div class="flex-row">
+                                                <input formControlName="dislikes" type="text" id="likes-{{ i }}"
+                                                    [formControlName]="i" class="form-array">
+                                                <button class="warning-delete" (click)="deleteDislike(i)" [ngClass]="{'middle-btn' : isLast}"
+                                                    [disabled]="!i || dislikes?.controls?.length === 1">&times;</button>
+                                                <button *ngIf="isLast" (click)="addDislike()"
+                                                    class="add-btn">&plus;</button>
+                                                    <div *ngIf="editForm.invalid  && (dislike?.dirty || dislike?.touched)">
+                                                        <span *ngIf="dislike?.errors?.['required']"> Location is required</span>
+                                                    </div>
+                                            </div>
+                                        </ng-container>
+
                                     </div>
 
                                     <div>

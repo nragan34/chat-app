@@ -23,6 +23,7 @@ import { UserAddComponent } from './components/user-add/user-add.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserComponent } from './components/user/user.component';
 import { HuskEditComponent } from './components/husk-edit/husk-edit.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { HuskEditComponent } from './components/husk-edit/husk-edit.component';
     UserAddComponent,
     UserListComponent,
     UserComponent,
-    HuskEditComponent
+    HuskEditComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

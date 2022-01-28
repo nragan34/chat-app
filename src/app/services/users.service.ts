@@ -71,4 +71,8 @@ export class UsersService {
     return this.getUsers().find(friend => friend.id === id)
   }
 
+  formSanitize() {
+    
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Users } from 'src/app/interfaces/users';
 import { UserActiveService } from 'src/app/services/user-active.service';
@@ -30,30 +30,30 @@ export class HuskEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.editForm = this.fb.group( {
-      name: ['', [Validators.required, Validators.maxLength(20)]], 
-      location: ['', [Validators.required, Validators.maxLength(20)]],
-      age: ['', [Validators.required, Validators.maxLength(3)]],
-      message: ['', [Validators.required, Validators.maxLength(100)]],
-      likes: [''],
-      dislikes: ['']
-    }),
-    this.editForm.setValue({
-      name: this.profile?.name, 
-      location: this.profile?.location,
-      age: this.profile?.age,
-      message: this.profile?.message,
-      likes: [''],
-      dislikes: ['']
+    this.editForm = new FormGroup( {
+      name: new FormControl(this.profile?.name, [Validators.required, Validators.maxLength(20)]), 
+      location: new FormControl(this.profile?.location, [Validators.required, Validators.maxLength(20)]),
+      age: new FormControl(this.profile?.age, [Validators.required, Validators.maxLength(3)]),
+      message: new FormControl(this.profile?.message, [Validators.required, Validators.maxLength(100)]),
+      likes: new FormArray(
+        this.profile?.likes?.split(', ').map(like => new FormControl(like)) || [new FormControl('')]
+      ),
+      dislikes: new FormArray(
+        this.profile?.dislikes?.split(', ').map(dislike => new FormControl(dislike)) || [new FormControl('')]
+      )
     })
-    
   }
 
 
   onSubmit(): void {
+    if (this.likes.value === '' ) {
+
+    }
     const user: Users = {
       ...this.editForm?.value, 
-      id: this.profile?.id
+      id: this.profile?.id,
+      likes: this.likes.value.filter(e =>  e?.trim()).join(", "),
+      dislikes: this.dislikes.value.filter(e =>  e?.trim()).join(", ")
     }
       this.usersService.editUser(user)
       this.router.navigate(['/profile', this.profile?.id])
@@ -79,5 +79,32 @@ export class HuskEditComponent implements OnInit {
     // this.editForm?.controls['name'].setValue(this.profile?.message)
     return this.editForm?.get("message")
   }
+
+  get likes() {
+    return this.editForm?.get("likes") as FormArray
+  }
+
+  get dislikes() {
+    return this.editForm?.get("dislikes") as FormArray
+  }
+
+  addLike() {
+    const like = new FormControl()
+    this.likes.push(like)
+  }
+
+  addDislike() {
+    const dislike = new FormControl()
+    this.dislikes.push(dislike)
+  }
+
+  deleteLike(i: number) {
+    this.likes.removeAt(i)
+  }
+
+  deleteDislike(i: number) {
+    this.dislikes.removeAt(i)
+  }
+
   
 }

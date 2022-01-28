@@ -166,7 +166,6 @@ label {
 
 .husq-card-container {
     display: flex;
-
     margin: 1em 0 1em 0;
 }
 
@@ -215,6 +214,10 @@ label {
     padding: 2%;
 }
 
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
 .husq-card-action input {
     margin: 3% 0 1% 0;
     width: 85%;
@@ -326,11 +329,11 @@ textarea::placeholder {
     padding: 0.75em;
     width: 46px;
     height: 45px;
-    border: 2px solid #448d4b;
+    border: 2px solid #ca0f0f;
     position: relative;
     &:hover {
-        border:2px solid darken(rgb(68, 141, 75), 20%);
-        box-shadow:  0px 0px 20px rgba(48, 124, 30, 0.6);
+        border:2px solid darken(rgb(255, 0, 0), 20%);
+        box-shadow:  0px 0px 20px rgba(255, 0, 0, 0.8);
         background-color: none;
         color: none;
     }
@@ -338,7 +341,7 @@ textarea::placeholder {
         content: " ";
         position: absolute;
         display: block;
-        background-color: #448d4b;
+        background-color: #ca0f0f;
         width: 2px;
         left: 19px;
         top: 7px;
@@ -349,12 +352,26 @@ textarea::placeholder {
         content: " ";
         position: absolute;
         display: block;
-        background-color: #448d4b;
+        background-color: #ff0000;
         height: 2px;
         top: 19px;
         left: 7px;
         right: 7px;
         transform: rotate(45deg);
+    }
+}
+
+.warning-delete {
+    background: none;
+    border-radius: 50%;
+    padding: 0.75em;
+    width: 46px;
+    height: 45px;
+    background: #a80e0e !important;
+    position: relative;
+    &:hover {
+        background-color: #720808 !important;
+        color: none;
     }
 }
 
