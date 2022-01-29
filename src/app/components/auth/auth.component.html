@@ -1,35 +1,54 @@
 <div class="main-page-container">
-    <div class="content-class">
-      <div class="husq-card-container">
-        <div class="husq-card-content">
-          <div class="husq-card-profile">
-            <div class="husq-card-profile-container">
-              <div class="husq-card-profile-content">
-                <div class="husq-card-action-no-flex">
-                  <h2>Login</h2>
-                  <br><br>
-  
+  <div class="content-class">
+    <div class="husq-card-container">
+      <div class="husq-card-content">
+        <div class="husq-card-profile">
+          <div class="husq-card-profile-container">
+            <div class="husq-card-profile-content">
+              <div class="husq-card-action-no-flex">
+                <h2>Login</h2>
+                <br><br>
+
+                <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
+
                   <br><br>
                   <label for="title">
-                    Username:
+                    Email:
                   </label>
-                  <input  type="text" placeholder="username" class="husq-input">
-  
+
+                  <input type="text" id="email" formControlName="email">
+                  <br>
+                  <div *ngIf="loginForm.invalid  && (email?.dirty || email?.touched)">
+                    <span *ngIf="email?.errors?.['required']">Email is required</span>
+                  </div>
+
+                  <!-- <input  type="text" placeholder="email" class="husq-input"> -->
+
                   <br><br>
                   <label for="title">
                     Password:
                   </label>
-                  <input type="text" placeholder="password" class="husq-input">
-                </div>
-  
-                <div class="husq-card-action-no-flex">
-                  <button >Login</button>
-                </div>
-  
+
+                  <input type="text" id="password" formControlName="password">
+                  <br>
+                  <div *ngIf="loginForm.invalid  && (password?.dirty || password?.touched)">
+                    <span *ngIf="password?.errors?.['required']">Password is required</span>
+                  </div>
+
+                  <!-- <input type="text" placeholder="password" class="husq-input"> -->
+
+
+                  <div class="husq-card-action-no-flex">
+                    <button type="submit" [disabled]="!loginForm.valid" >Login</button>
+                  </div>
+
+                </form>
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

@@ -18,11 +18,9 @@ export class HusqComponent implements OnInit {
   constructor(private husqTimelineService: HusqTimelineService) { }
 
   ngOnInit(): void {
-    console.log('Logging husq user 1: \n\n\n',this.husqTimelineService.getHusqById('1'))
   }
 
   saveReply(): void {
-    console.log('logging tempReply... ', this.tempReply)
     if (this.tempReply) {
       this.reply.push(this.tempReply);
       this.reply.push('----------')

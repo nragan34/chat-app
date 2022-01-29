@@ -9,6 +9,9 @@ import { users } from '../seeds/users';
   providedIn: 'root'
 })
 export class UsersService {
+
+  AUTH_DATA = "AUTH_DATA"
+
   private readonly _userSource = new BehaviorSubject<Users[]>(users)
   readonly users$ = this._userSource.asObservable();
 
@@ -30,6 +33,7 @@ export class UsersService {
   }
 
   addUser(user: Users): void {
+    console.log(user, 'loggin user in addUser')
     const users = [...this.getUsers(), user]
     this._setUser(users)
   }
@@ -39,6 +43,10 @@ export class UsersService {
       ...this.getUsers().filter(users => users.id !== userId)
     ]
     this._setUser(users)
+  }
+
+  getUserByEmail(email: string): Users | undefined {
+    return this.getUsers().find(user => user.email === email)
   }
 
   getUserById(id: string): Users | undefined {

@@ -48,9 +48,6 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log('---------> \n', this.friends)
-    console.log('---------> \n', this.userFriends)
-    console.log('---------> \n', this.users)
     
   }
 

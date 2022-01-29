@@ -9,7 +9,9 @@ export const users: Users[] = [
         location: 'Elkhorn, NE ...',
         age: 22,
         likes: 'Stuff, things',
-        dislikes: 'More stuff'
+        dislikes: 'More stuff',
+        email: 't',
+        password: 'b',
       },
       {
         id: '2',
@@ -18,8 +20,9 @@ export const users: Users[] = [
         location: 'Chicago, Illinois ...',
         age: 42,
         likes: 'Stuff, things',
-        dislikes: 'More stuff'
-
+        dislikes: 'More stuff',
+        email: 'e',
+        password: 'b',
       },
       {
         id: '3',
@@ -28,8 +31,9 @@ export const users: Users[] = [
         location: 'Cheyenne, Wyoming ...',
         age: 52,
         likes: 'Stuff, things',
-        dislikes: 'More stuff'
-
+        dislikes: 'More stuff',
+        email: 'f',
+        password: 'b',
       },
       {
         id: '4',
@@ -38,6 +42,8 @@ export const users: Users[] = [
         location: 'Omaha, NE ...',
         age: 29,
         likes: 'Stuff, things',
-        dislikes: 'More stuff'
+        dislikes: 'More stuff',
+        email: 'g',
+        password: 'b',
       }
 ]

@@ -7,4 +7,6 @@ export interface Users {
     aboutMe?: string 
     likes?: string 
     dislikes?: string 
+    email?: string
+    password?: string
 }

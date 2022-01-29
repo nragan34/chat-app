@@ -6,29 +6,80 @@
             <div class="husq-card-profile-container">
               <div class="husq-card-profile-content">
                 <div class="husq-card-action-no-flex">
-                  <h2>Add a New User</h2>
+                  <h2>Sign Up</h2>
+                  <br><br>
+
+                  <form *ngIf="registerForm" [formGroup]="registerForm" (ngSubmit)="addUser()">
+                  
                   <br><br>
                   <label for="title">
-                    First Name | Last Name
+                    Email:
                   </label>
-                  <input [(ngModel)]="name" type="text" placeholder="First Name  Last Name" class="husq-input">
-  
+
+                  <input type="text" id="email" formControlName="email">
+                  <br>
+                  <div *ngIf="registerForm.invalid  && (email?.dirty || email?.touched)">
+                    <span *ngIf="email?.errors?.['required']">Email is required</span>
+                  </div>
+
+
                   <br><br>
                   <label for="title">
-                    Your Description
+                    Password:
                   </label>
-                  <input [(ngModel)]="message" type="text" placeholder="Tell us about yourself... " class="husq-input">
-  
+
+                  <input type="text" id="password" formControlName="password">
+                  <br>
+                  <div *ngIf="registerForm.invalid  && (password?.dirty || password?.touched)">
+                    <span *ngIf="password?.errors?.['required']">Email is required</span>
+                  </div>
+
+
+
                   <br><br>
                   <label for="title">
-                    City, State
+                    Username:
                   </label>
-                  <input [(ngModel)]="location" type="text" placeholder="City, State" class="husq-input">
+
+                  <input type="text" id="name" formControlName="name">
+                  <br>
+                  <div *ngIf="registerForm.invalid  && (name?.dirty || name?.touched)">
+                    <span *ngIf="name?.errors?.['required']">name is required</span>
+                  </div>
+
+
+                  <br><br>
+                  <label for="title">
+                    Message:
+                  </label>
+
+                  <input type="text" id="message" formControlName="message">
+                  <br>
+                  <div *ngIf="registerForm.invalid  && (message?.dirty || message?.touched)">
+                    <span *ngIf="message?.errors?.['required']">Message is required</span>
+                  </div>
+
+
+                  <br><br>
+                  <label for="title">
+                    Location:
+                  </label>
+
+                  <input type="text" id="location" formControlName="location">
+                  <br>
+                  <div *ngIf="registerForm.invalid  && (location?.dirty || location?.touched)">
+                    <span *ngIf="location?.errors?.['required']">location is required</span>
+                  </div>
+
+         
+                  <div class="husq-card-action-no-flex">
+                    <button>Add User</button>
+                  </div>
+
+                </form>
                 </div>
   
-                <div class="husq-card-action-no-flex">
-                  <button (click)="addUser()">Add User</button>
-                </div>
+
   
               </div>
             </div>

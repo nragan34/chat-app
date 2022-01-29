@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserComponent } from './components/user/user.component';
 import { HuskEditComponent } from './components/husk-edit/husk-edit.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -50,12 +52,11 @@ import { AuthComponent } from './components/auth/auth.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
-    NewsTimelineService,
-    HusqTimelineService,
-    UsersService
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

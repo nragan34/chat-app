@@ -9,11 +9,11 @@ import { UserActiveService } from 'src/app/services/user-active.service';
 
 // tells js we are allowed to use this header externally
 export class HeaderComponent implements OnInit {
-  userActiveId: string = '1'
+  userActiveId: string | undefined
 
   constructor(private userActive: UserActiveService) {
-    this.userActive.activeUser$.subscribe(userId => this.userActiveId = userId)
-   }
+      this.userActive.activeUser$.subscribe(userId => this.userActiveId = userId)
+  }
 
   ngOnInit(): void {
   }

@@ -27,6 +27,10 @@ export class HusqListComponent implements OnInit, OnDestroy {
     this.husqs$.unsubscribe()
   }
 
+  confirmExit() {
+    return confirm(`Are you sure you want to exit ?`)
+  }
+
   // colon what you are returning for typescript
   trackById(index: number, husq: Husq): string {
     return husq.id;

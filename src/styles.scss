@@ -45,6 +45,47 @@ label {
     font-size: 1.3em;
     margin-right: 2em;
 }
+input {
+    margin: 3% 0 3% 0;
+    height: 2em;
+    width: 85%;
+    background-color: #1d1c21;
+    color: #fff;
+    border: none;
+    border-bottom: 0.1px solid #448d4b;
+    font-size: 20px;
+    box-shadow: inset 0px 0px 20px rgba(48, 124, 30, 0.6);
+}
+
+input[type="text"]:focus {
+    border: 2px solid #448d4b;
+    outline: none;
+    color: #dfdfdf;
+}
+input::placeholder {
+    padding: 5%;
+}
+
+textarea {
+    margin: 3% 0% 3% 0%;
+    width: 85%;
+    height: 8em;
+    background-color: #1d1c21;
+    color: #fff;
+    border: none;
+    border-bottom: 0.1px solid #448d4b;
+    font-size: 20px;
+    box-shadow: inset 0px 0px 20px rgba(48, 124, 30, 0.6);
+}
+
+textarea[type="textarea"]:focus {
+    border: 2px solid #448d4b;
+    outline: none;
+    color: #dfdfdf;
+}
+textarea::placeholder {
+    padding: 2%;
+}
 .white-text {
     color: white;
 }
@@ -218,56 +259,7 @@ label {
     display: flex;
     flex-direction: row;
 }
-.husq-card-action input {
-    margin: 3% 0 1% 0;
-    width: 85%;
-    background-color: #1d1c21;
-    color: #fff;
-    border: none;
-    border-bottom: 0.1px solid #448d4b;
-    font-size: 20px;
-    box-shadow: inset 0px 0px 20px rgba(48, 124, 30, 0.6);
-}
 
-input[type="text"]:focus {
-    border: 2px solid #448d4b;
-    outline: none;
-    color: #dfdfdf;
-}
-input::placeholder {
-    padding: 5%;
-}
-
-.husq-card-action-no-flex input {
-    margin: 3% 0 1% 0;
-    width: 85%;
-    background-color: #1d1c21;
-    color: #fff;
-    border: none;
-    border-bottom: 0.1px solid #448d4b;
-    font-size: 20px;
-    box-shadow: inset 0px 0px 20px rgba(48, 124, 30, 0.6);
-}
-
-.husq-card-action-no-flex textarea {
-    margin: 3% 0% 1% 0%;
-    width: 85%;
-    background-color: #1d1c21;
-    color: #fff;
-    border: none;
-    border-bottom: 0.1px solid #448d4b;
-    font-size: 20px;
-    box-shadow: inset 0px 0px 20px rgba(48, 124, 30, 0.6);
-}
-
-textarea[type="textarea"]:focus {
-    border: 2px solid #448d4b;
-    outline: none;
-    color: #dfdfdf;
-}
-textarea::placeholder {
-    padding: 2%;
-}
 
 .husq-card-action button {
     margin: 3% 3% 1% 3%;
@@ -326,22 +318,27 @@ textarea::placeholder {
 .husq-btn-delete {
     background: none;
     border-radius: 50%;
-    padding: 0.75em;
     width: 46px;
     height: 45px;
-    border: 2px solid #ca0f0f;
+    border: 2px solid #448d4b;
     position: relative;
     &:hover {
-        border:2px solid darken(rgb(255, 0, 0), 20%);
-        box-shadow:  0px 0px 20px rgba(255, 0, 0, 0.8);
+        border:2px solid darken(rgb(182, 17, 17), 20%);
+        box-shadow:  0px 0px 20px rgba(139, 9, 9, 0.8);
         background-color: none;
         color: none;
+        &:before {
+            background-color: #8d4444;
+        }
+        &:after {
+            background-color: #8d4444;
+        }
     }
     &:before {
         content: " ";
         position: absolute;
         display: block;
-        background-color: #ca0f0f;
+        background-color: #448d4b;
         width: 2px;
         left: 19px;
         top: 7px;
@@ -352,7 +349,7 @@ textarea::placeholder {
         content: " ";
         position: absolute;
         display: block;
-        background-color: #ff0000;
+        background-color: #448d4b;
         height: 2px;
         top: 19px;
         left: 7px;
@@ -364,14 +361,12 @@ textarea::placeholder {
 .warning-delete {
     background: none;
     border-radius: 50%;
-    padding: 0.75em;
-    width: 46px;
-    height: 45px;
-    background: #a80e0e !important;
+    padding: 2px;
+    background: none !important;
+    border: 1px solid rgb(165, 6, 6) !important;
     position: relative;
     &:hover {
-        background-color: #720808 !important;
-        color: none;
+        box-shadow:  0px 0px 20px rgba(139, 9, 9, 0.8) !important;
     }
 }
 
@@ -606,10 +601,7 @@ footer {
     .husq-card-action {
         flex-direction: column;
     }
-    .husq-card-action input {
-        width: 100%;
-        padding: 2%;
-    }
+
     .husq-card-action button {
         width: 50%;
         margin-left: auto;

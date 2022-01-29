@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { UserFriends } from 'src/app/interfaces/userFriends';
 import { Users } from 'src/app/interfaces/users';
-import { users } from 'src/app/seeds/users';
-import { UserFriendsService } from 'src/app/services/user-friends.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserActiveService } from 'src/app/services/user-active.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -14,38 +13,61 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class AuthComponent implements OnInit {
 
-  users$: Subscription
-  userFriends$: Subscription
-  
-  users: Users[] = users
-  userFriends: UserFriends[] | undefined
-  friends: UserFriends | undefined
+  loginForm: FormGroup | undefined
 
   profile: Users | undefined
+  activeUser: Users | undefined
 
-  username: string = ''
-  password: string = ''
-  
-  constructor(private activeRouter: ActivatedRoute,  private userFriendsService: UserFriendsService, private usersService: UsersService, private router: Router) {
-    this.users$ = this.usersService.users$.subscribe
-    (users => {
-      this.users = users
-    }),
+  logoutUrl = '';
+
+  constructor(private activeRouter: ActivatedRoute, private usersService: UsersService, private router: Router, private authService: AuthService, private activeUserService: UserActiveService) {
     this.activeRouter.paramMap.subscribe((params) => {
       const id = params.get('userId')
       if (id) {
         this.profile = this.usersService.getUserById(id)
       }
-    }),
-    this.userFriends$ = this.userFriendsService.userFriends$.subscribe
-    (userFriends => {
-      this.userFriends = userFriends;
     })
   }
 
   ngOnInit(): void {
+    this.urlChecker()
+    this.loginForm = new FormGroup({
+      email: new FormControl(this.profile?.email, [Validators.required]),
+      password: new FormControl(this.profile?.password, [Validators.required])
+    })
   }
 
-  
+  get email() {
+    return this.loginForm?.get("email");
+  }
+
+  get password() {
+    return this.loginForm?.get("password");
+  }
+
+  login() {
+    const val = this.loginForm?.value;
+    this.activeUser = this.authService.login(val.email, val.password)
+    if (this.activeUser) {
+      this.router.navigate(['/'])
+    }
+  }
+
+  logout() {
+    console.log('Removing user with id of, ', localStorage.getItem('AUTH_DATA'), ', from local storage ')
+    this.activeUserService._setActiveUser(undefined);
+    localStorage.removeItem('AUTH_DATA')
+  }
+
+  urlChecker() {
+    this.logoutUrl = this.router.url;
+    if (this.logoutUrl === '/auth/logout') {
+      console.log('... logging out...')
+      this.logout();
+    }
+  }
+
+  mgOnDestroy() {
+  }
 
 }

@@ -20,11 +20,9 @@ export class HuskEditComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private userActiveService: UserActiveService, private usersService: UsersService, private router: Router, private activeRouter: ActivatedRoute) { 
     this.activeRouter.paramMap.subscribe((params) => {
-      console.log(this.activeRouter.paramMap)
       const id = params.get('userId')
       if (id) {
         this.profile = this.usersService.getUserById(id)
-        console.log(this.profile, 'logging profile')
       }
     })
   }
