@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { UserFriends } from 'src/app/interfaces/userFriends';
 import { Users } from 'src/app/interfaces/users';
 import { users } from 'src/app/seeds/users';
+import { UserActiveService } from 'src/app/services/user-active.service';
 import { UserFriendsService } from 'src/app/services/user-friends.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -13,24 +14,24 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+  
   @Input() userObj: Users | undefined
-
   users$: Subscription
   userFriends$: Subscription
-
   users: Users[] = users
-  userFriends: UserFriends[] | undefined
-  friends: UserFriends | undefined
-  
+  userActiveId: string | undefined
   profile: Users | undefined
   
+  userFriends: UserFriends[] | undefined
+  friends: UserFriends | undefined
+
   message: string = ''
   time: Date = new Date()
   name: string = ''
   location: string = ''
   id: string = ''
 
-  constructor(private activeRouter: ActivatedRoute,  private userFriendsService: UserFriendsService, private usersService: UsersService, private router: Router) {
+  constructor(private activeRouter: ActivatedRoute,  private userFriendsService: UserFriendsService, private usersService: UsersService, private router: Router, private userActive: UserActiveService) {
     this.users$ = this.usersService.users$.subscribe
     (users => {
       this.users = users
@@ -44,7 +45,8 @@ export class UserComponent implements OnInit {
     this.userFriends$ = this.userFriendsService.userFriends$.subscribe
     (userFriends => {
       this.userFriends = userFriends;
-    })
+    }),
+    this.userActive.activeUser$.subscribe(userId => this.userActiveId = userId)
   }
 
   ngOnInit(): void {

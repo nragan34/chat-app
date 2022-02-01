@@ -25,7 +25,7 @@ export class ComposeComponent implements OnInit {
         time: new Date(),
         message: this.message
       })
-      this.router.navigate(['/timeline'])
+      this.router.navigate(['/'])
     }
   }
 }

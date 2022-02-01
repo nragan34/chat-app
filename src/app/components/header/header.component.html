@@ -3,13 +3,34 @@
     <ul class="nav-links">
         <!-- NAVIGATION MENUS -->
         <div class="menu">
-            <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
-            <li><a [routerLink]="['/sign-up']" routerLinkActive="active">Sign Up</a></li>
+
+            <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Chat</a></li>
+
+            <!-- <div *ngIf="userActiveId">
             <li><a routerLink="/compose" routerLinkActive="active">Compose</a></li>
+            </div> -->
+
+            <div *ngIf="userActiveId">
             <li><a [routerLink]="['/friends', userActiveId]" routerLinkActive="active">Friends</a></li>
+            </div>
+
             <li><a [routerLink]="['/user-list', userActiveId]" routerLinkActive="active">Users</a></li>
+
+            <div *ngIf="userActiveId">
             <li><a [routerLink]="['/profile', userActiveId]" routerLinkActive="active">Profile</a></li>
-            <li><a [routerLink]="['/auth/logout']" routerLinkActive="active">Logout</a></li>
+            </div>
+
+            <div *ngIf="userActiveId">
+                <li><a [routerLink]="['/auth/logout']" routerLinkActive="active">Logout</a></li>
+            </div>
+
+            <div *ngIf="!userActiveId">
+                <li><a [routerLink]="['/sign-up']" routerLinkActive="active">Sign Up</a></li>
+            </div>
+
+            <div *ngIf="!userActiveId">
+                <li><a [routerLink]="['/auth/login']" routerLinkActive="active">Login</a></li>
+            </div>
         </div>
     </ul>
 </nav>

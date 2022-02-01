@@ -15,7 +15,6 @@ export class HuskEditComponent implements OnInit {
   editForm: FormGroup | undefined
 
   myUser: Users[] | undefined
-  
   profile: Users | undefined
 
   constructor(private fb: FormBuilder, private userActiveService: UserActiveService, private usersService: UsersService, private router: Router, private activeRouter: ActivatedRoute) { 

@@ -13,7 +13,7 @@
             <h1>We Ran Out Of Users...</h1>
         </div>
         <div *ngIf="users.length > 1">
-            <h1>Suggested Friends</h1>
+            <h1>All Users</h1>
             <app-user *ngFor="let user of users; trackBy: trackById" [userObj]="user"></app-user>
         </div>
         
