@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Husq } from 'src/app/interfaces/husq';
+import { UserActiveService } from 'src/app/services/user-active.service';
 import {HusqTimelineService} from "../../services/husq-timeline.service";
 
 @Component({
@@ -10,12 +11,14 @@ import {HusqTimelineService} from "../../services/husq-timeline.service";
 export class HusqComponent implements OnInit {
   @Input() husqObj: Husq | undefined
 
+  userActiveId: string | undefined
   time: Date = new Date()
-
   tempReply: string | undefined
   reply: Array<string | undefined> = [];
 
-  constructor(private husqTimelineService: HusqTimelineService) { }
+  constructor(private husqTimelineService: HusqTimelineService, private userActive: UserActiveService) { 
+    this.userActive.activeUser$.subscribe(userId => this.userActiveId = userId)
+  }
 
   ngOnInit(): void {
   }

@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'profile/:userId', component: ProfileComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   // { path: 'compose', component: ComposeComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'sign-up', component: UserAddComponent, pathMatch: 'full'},
-  { path: 'user-list/:userId', component: UserListComponent, pathMatch: 'full'},
+  { path: 'users', component: UserListComponent, pathMatch: 'full'},
+  { path: 'user-list/:userId', component: UserListComponent, pathMatch: 'full',  canActivate: [AuthGuard]},
   { path: 'auth/logout', component: AuthComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'auth/login', component: AuthComponent, pathMatch: 'full' },
   

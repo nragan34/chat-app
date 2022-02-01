@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Husq } from 'src/app/interfaces/husq';
 import { HusqTimelineService } from 'src/app/services/husq-timeline.service';
+import { UserActiveService } from 'src/app/services/user-active.service';
 
 @Component({
   selector: 'app-timeline',
@@ -11,12 +12,14 @@ import { HusqTimelineService } from 'src/app/services/husq-timeline.service';
 export class HusqListComponent implements OnInit, OnDestroy {
   husqs$: Subscription
   husqs: Husq[] | undefined
+  userActiveId: string | undefined
 
   // initialize values 
-  constructor(private husqTimelineService: HusqTimelineService) {
+  constructor(private husqTimelineService: HusqTimelineService, private userActive: UserActiveService) {
     this.husqs$ = this.husqTimelineService.husqs$.subscribe(husqs => {
       this.husqs = husqs
-    })
+    }),
+    this.userActive.activeUser$.subscribe(userId => this.userActiveId = userId)
   }
 
   // lifecycle: component goes through different lifecycles

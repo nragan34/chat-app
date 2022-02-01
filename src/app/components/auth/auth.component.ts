@@ -17,7 +17,6 @@ export class AuthComponent implements OnInit {
 
   profile: Users | undefined
   activeUser: Users | undefined
-
   logoutUrl = '';
 
   constructor(private activeRouter: ActivatedRoute, private usersService: UsersService, private router: Router, private authService: AuthService, private activeUserService: UserActiveService) {

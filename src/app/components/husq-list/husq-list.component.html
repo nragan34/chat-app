@@ -9,7 +9,9 @@
     </app-husq>
   </div>
   <div class="right-content-container">
-    <h1>Compose Your Chat</h1>
-    <app-compose></app-compose>
+    <div *ngIf="userActiveId">
+      <h1>Compose Your Chat</h1>
+      <app-compose></app-compose>
+    </div>
   </div>
 </div>

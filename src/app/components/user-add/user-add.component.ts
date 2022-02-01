@@ -27,12 +27,6 @@ export class UserAddComponent implements OnInit {
     (users => {
       this.users = users
     })
-    // this.activeRouter.paramMap.subscribe((params) => {
-    //   const id = params.get('userId')
-    //   if (id) {
-    //     this.profile = this.usersService.getUserById(id)
-    //   }
-    // })
   }
 
   ngOnInit(): void {
@@ -67,7 +61,6 @@ export class UserAddComponent implements OnInit {
   addUser(): void {
     const val = this.registerForm?.value;
     const generateId = uuid.v4();
-
     if (val) {
       this.usersService.addUser({
         id: generateId,

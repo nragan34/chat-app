@@ -75,7 +75,8 @@
                                                     [disabled]="!i || likes?.controls?.length === 1">&times;</button>
                                                 <button *ngIf="isLast" (click)="addLike()" class="">&plus;</button>
                                                 <div *ngIf="editForm.invalid  && (like?.dirty || like?.touched)">
-                                                    <span *ngIf="like?.errors?.['required']"> Location is required</span>
+                                                    <span *ngIf="like?.errors?.['required']"> Location is
+                                                        required</span>
                                                 </div>
                                             </div>
                                         </ng-container>
@@ -91,13 +92,15 @@
                                             <div class="flex-row">
                                                 <input formControlName="dislikes" type="text" id="likes-{{ i }}"
                                                     [formControlName]="i" class="form-array">
-                                                <button class="warning-delete" (click)="deleteDislike(i)" [ngClass]="{'middle-btn' : isLast}"
+                                                <button class="warning-delete" (click)="deleteDislike(i)"
+                                                    [ngClass]="{'middle-btn' : isLast}"
                                                     [disabled]="!i || dislikes?.controls?.length === 1">&times;</button>
                                                 <button *ngIf="isLast" (click)="addDislike()"
                                                     class="add-btn">&plus;</button>
-                                                    <div *ngIf="editForm.invalid  && (dislike?.dirty || dislike?.touched)">
-                                                        <span *ngIf="dislike?.errors?.['required']"> Location is required</span>
-                                                    </div>
+                                                <div *ngIf="editForm.invalid  && (dislike?.dirty || dislike?.touched)">
+                                                    <span *ngIf="dislike?.errors?.['required']"> Location is
+                                                        required</span>
+                                                </div>
                                             </div>
                                         </ng-container>
 
