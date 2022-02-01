@@ -54,9 +54,15 @@ export class AuthComponent implements OnInit {
   }
 
   logout() {
-    console.log('Removing user with id of, ', localStorage.getItem('AUTH_DATA'), ', from local storage ')
-    this.activeUserService._setActiveUser(undefined);
-    localStorage.removeItem('AUTH_DATA')
+    const loggingOutUser = localStorage.getItem('AUTH_DATA');
+    if (loggingOutUser) {
+      console.log('logging out user: \n', this.usersService.getUserById(loggingOutUser), '\n\n ...removing from local storage')
+      localStorage.removeItem('AUTH_DATA')
+      this.activeUserService._setActiveUser(undefined);
+      console.log('done')
+    } else {
+      console.log('ERROR removing logging out user: \n', loggingOutUser);
+    }
   }
 
   urlChecker() {

@@ -22,7 +22,7 @@ export class UserAddComponent implements OnInit {
 
   profile: Users | undefined
   
-  constructor(private usersService: UsersService, private activeRouter: ActivatedRoute, private router: Router, private authService: AuthService, private activeUser: UserActiveService) { 
+  constructor(private usersService: UsersService, private activeRouter: ActivatedRoute, private router: Router, private authService: AuthService) { 
     this.users$ = this.usersService.users$.subscribe
     (users => {
       this.users = users
@@ -78,8 +78,6 @@ export class UserAddComponent implements OnInit {
         password: val.password
       })
       this.authService.login(val.email, val.password)
-      const activeUser = this.usersService.getUserById(generateId)
-      this.activeUser._setActiveUser(activeUser)
       this.router.navigate(['/user-list/', generateId])
     }
   }
