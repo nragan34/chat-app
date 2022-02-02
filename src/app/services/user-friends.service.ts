@@ -22,29 +22,28 @@ export class UserFriendsService {
     this._userFriendsSource.next(setFriend)
   }
 
-
-  addUsersFriend(userFriend: Users, activeUser: Users): void {
+  addUsersFriend(userFriend: Users, activeUser: string): void {
     const addedFriend = {
-      id: activeUser.id,
+      id: activeUser,
       friend: userFriend
     }
     const addingFriend = [...this.getUserFriends(), addedFriend]
+    console.log('logging addedFriend... ', addedFriend);
     this._setUserFriends(addingFriend)
   }
-
 
   getUserFriends(): UserFriends[] {
     return this._userFriendsSource.getValue()
   }
 
   // find all friends from user
-  getUserFriendById(): UserFriends[] {
-    return this._userFriendsSource.getValue();
+  getUserFriendById(id: string): UserFriends | undefined {
+    console.log('logging friend.... ', this.getUserFriends().find(friend => friend.friend.id === id))
+    return this.getUserFriends().find(friend => friend.friend.id === id);
   }
 
-
   // need to search for Friends (friends.id)
-  removeFriend(removedUserFriend: UserFriends, activeUser: Users): void {
+  removeFriend(removedUserFriend: UserFriends, activeUserId: string): void {
     const removedFriend = [
       ...this.getUserFriends().filter(userFriend => 
         userFriend.friend.id !== removedUserFriend.friend.id

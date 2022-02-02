@@ -58,7 +58,6 @@ export class AuthComponent implements OnInit {
     const loggingOutUser = this.localStorageService.getItem(this.AUTH_DATA);
     if (loggingOutUser) {
       this.localStorageService.removeItem(this.AUTH_DATA);
-      this.activeUserService.setActiveUser(undefined);
     } else {
       console.log('ERROR removing logging out user: \n', loggingOutUser);
     }

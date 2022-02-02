@@ -14,7 +14,7 @@ export class ComposeComponent implements OnInit {
   message: string = ''
   activeUserId: string | undefined
 
-  constructor(private husqTimelineService: HusqTimelineService, private usersService: UsersService, private router: Router, private activeUserService: UserActiveService) {
+  constructor(private husqTimelineService: HusqTimelineService, private router: Router, private activeUserService: UserActiveService) {
     this.activeUserId = this.activeUserService.getActiveUser();
    }
 

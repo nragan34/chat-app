@@ -13,6 +13,7 @@ import { UserFriendsService } from 'src/app/services/user-friends.service';
   styleUrls: ['./friends-list.component.scss']
 })
 export class FriendsListComponent implements OnInit {
+
   users$: Subscription
   userFriends$: Subscription
   
@@ -38,7 +39,7 @@ export class FriendsListComponent implements OnInit {
       (userFriends => {
         this.userFriends = userFriends;
       })
-  }
+   }
 
 
   ngOnInit(): void {

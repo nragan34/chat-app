@@ -27,7 +27,6 @@ export class HusqListComponent implements OnInit, OnDestroy {
           })
         })
       ).subscribe(husq => this.husqs = husq),
-
       this.userActive.activeUser$.subscribe(userId => this.userActiveId = userId)
   }
 
@@ -47,4 +46,5 @@ export class HusqListComponent implements OnInit, OnDestroy {
   trackById(index: number, husq: Husq & Users): string {
     return husq.id;
   }
+
 }

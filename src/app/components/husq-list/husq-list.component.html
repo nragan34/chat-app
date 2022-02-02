@@ -1,17 +1,21 @@
 <div class="main-page-container">
+
   <div class="left-content-container">
     <i id="custom-fa" class="fa fa-comments"></i>
     <app-footer></app-footer>
   </div>
+
   <div class="content-class">
     <h1>Chat Feed</h1>
     <app-husq *ngFor="let husq of husqs; trackBy: trackById" [husqObj]="husq">
     </app-husq>
   </div>
+
   <div class="right-content-container">
     <div *ngIf="userActiveId">
       <h1>Compose Your Chat</h1>
       <app-compose></app-compose>
     </div>
   </div>
+  
 </div>

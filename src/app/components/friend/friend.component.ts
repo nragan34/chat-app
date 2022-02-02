@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserFriends } from 'src/app/interfaces/userFriends';
 import { Users } from 'src/app/interfaces/users';
+import { UserActiveService } from 'src/app/services/user-active.service';
 import { UserFriendsService } from 'src/app/services/user-friends.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -15,38 +16,43 @@ import { UsersService } from 'src/app/services/users.service';
 // need list of user Ids the user is friends with
 //
 export class FriendComponent implements OnInit {
+
   @Input() userFriendsObj: UserFriends | undefined;
 
-  profile: Users | undefined
-  
+  userActiveId: string | undefined
+
   time: Date = new Date()
 
-  constructor(private usersService: UsersService, private userFriendsService: UserFriendsService, private router: Router, private activeRouter: ActivatedRoute) { 
-    this.activeRouter.paramMap.subscribe((params) => {
-      const id = params.get('userId')
-      if(id) {
-        this.profile = this.usersService.getUserById(id)
-      }
-    })
+  constructor(private usersService: UsersService, private userFriendsService: UserFriendsService, private router: Router, private userActive: UserActiveService) {
+    this.userActive.activeUser$.subscribe(userId => this.userActiveId = userId)
   }
 
   ngOnInit(): void {
   }
 
+  // currently removing the user from the user list completely
+  // neeed to keep all users in the userlist 
+  // need to create friends list {userId, friend}
+  // if users are in friends list don't display in user list
+
+
+
+  // need to get friends that match the active users id
+
+
   // remove friend from friends list and add back to users list
   removeFriend(): void {
-    if (this.userFriendsObj && this.profile) {
-      this.usersService.addUser(this.userFriendsObj.friend)
-      this.userFriendsService.removeFriend(this.userFriendsObj, this.profile)
+    if (this.userFriendsObj && this.userActiveId) {
+      // this.usersService.addUser(this.userFriendsObj.friend)
+      this.userFriendsService.removeFriend(this.userFriendsObj, this.userActiveId)
     }
   }
 
   routeToUsersProfile(): void {
     if (this.userFriendsObj) {
-      const id = this.usersService.getFriendById(this.userFriendsObj.id)?.id
-      this.router.navigate(['/profile',id])
+      this.router.navigate(['/profile', this.userFriendsObj.friend.id])
     }
   }
 
-  
+
 }

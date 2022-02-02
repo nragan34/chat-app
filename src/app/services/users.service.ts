@@ -26,7 +26,6 @@ export class UsersService {
     } else {
       this._setUser(users);
     }
-
    }
 
   ///////////////////////////
@@ -76,17 +75,13 @@ export class UsersService {
     this._userSource.next(friend)
   }
 
-  // getFriends(): Users[] {
-  //   return this._userSource.getValue()
-  // }
 
-  // addFriend(): void {
 
-  // }
+    // need to get friends that match the active users id
 
-  getFriendById(id: string): Users | undefined {
+    getFriendById(id: string): Users | undefined {
     return this.getUsers().find(friend => friend.id === id)
-  }
+    }
 
   formSanitize() {
     

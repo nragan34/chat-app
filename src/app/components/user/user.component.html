@@ -1,4 +1,4 @@
-<div *ngIf="userObj && userObj !== profile && userObj.id !== friends?.friend?.id" class="husq-card-container">
+<div *ngIf="userObj && userObj.id !== userActiveId" class="husq-card-container">
     <div class="husq-card-content">
 
         <div class="husq-card-profile">
@@ -26,10 +26,6 @@
 
             <p class="padding-top-medium">
                 <span>Location: </span>{{ userObj.location }}
-            </p>
-
-            <p><span>Profile Activated: </span>
-                <span style="color: white;">{{ time.toLocaleDateString() }}</span>
             </p>
 
             <div *ngIf="userActiveId">

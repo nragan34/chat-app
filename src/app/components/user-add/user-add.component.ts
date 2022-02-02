@@ -15,6 +15,7 @@ import * as uuid from 'uuid';
   styleUrls: ['./user-add.component.scss']
 })
 export class UserAddComponent implements OnInit {
+
   users$: Subscription
   users: Users[] = users
   
@@ -54,9 +55,6 @@ export class UserAddComponent implements OnInit {
   get location() {
     return this.registerForm?.get("location");
   }
-
-
-
 
   addUser(): void {
     const val = this.registerForm?.value;

@@ -17,7 +17,7 @@ const routes: Routes = [
 
   { path: 'edit/:userId', component: HuskEditComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'friends/:userId', component: FriendsListComponent, pathMatch: 'full', canActivate: [AuthGuard]},
-  { path: 'profile/:userId', component: ProfileComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+  { path: 'profile/:userId', component: ProfileComponent, pathMatch: 'full'},
   // { path: 'compose', component: ComposeComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'sign-up', component: UserAddComponent, pathMatch: 'full'},
   { path: 'users', component: UserListComponent, pathMatch: 'full'},
