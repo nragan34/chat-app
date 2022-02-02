@@ -45,7 +45,6 @@ export class FriendsListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   ngOnDestroy() {
     if (this.users$) {
       this.users$.unsubscribe()
@@ -55,7 +54,6 @@ export class FriendsListComponent implements OnInit {
     }
   }
 
-  
   // track by id
   trackById(index: number, friend: UserFriends): string {
     return friend.id;
@@ -63,4 +61,5 @@ export class FriendsListComponent implements OnInit {
   trackByUserId(index: number, users: Users): string {
     return users.id;
   }
+  
 }

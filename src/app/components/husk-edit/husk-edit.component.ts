@@ -17,7 +17,7 @@ export class HuskEditComponent implements OnInit {
   myUser: Users[] | undefined
   profile: Users | undefined
 
-  constructor(private fb: FormBuilder, private userActiveService: UserActiveService, private usersService: UsersService, private router: Router, private activeRouter: ActivatedRoute) { 
+  constructor(private fb: FormBuilder, private usersService: UsersService, private router: Router, private activeRouter: ActivatedRoute) { 
     this.activeRouter.paramMap.subscribe((params) => {
       const id = params.get('userId')
       if (id) {

@@ -13,9 +13,9 @@ const AUTH_DATA = 'AUTH_DATA'
 export class UserActiveService {
 
 
-  activeUser: string | undefined
+  activeUser: Users | undefined
 
-  private readonly _activeUserSource = new BehaviorSubject<string | undefined>(undefined);
+  private readonly _activeUserSource = new BehaviorSubject<Users | undefined>(undefined);
   readonly activeUser$ = this._activeUserSource.asObservable()
 
   constructor(private localStorageService: LocalStorageService) {
@@ -25,16 +25,16 @@ export class UserActiveService {
     }
   }
 
-  private _setActiveUser(userId: string | undefined): void {
+  private _setActiveUser(userId: Users | undefined): void {
     this._activeUserSource.next(userId);
     this.localStorageService.setItem(AUTH_DATA, userId);
   }
 
-  setActiveUser(userId: string | undefined): void {
+  setActiveUser(userId: Users | undefined): void {
     this._setActiveUser(userId);
   }
 
-  getActiveUser(): string | undefined {
+  getActiveUser(): Users | undefined {
     return this._activeUserSource.getValue();
   }
 

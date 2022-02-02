@@ -21,9 +21,9 @@ export class UserComponent implements OnInit {
 
   users: Users[] = users
   friends: UserFriends[] | undefined
-  userActiveId: string | undefined
+  userActive: Users | undefined
 
-  constructor(private userFriendsService: UserFriendsService, private usersService: UsersService, private userActive: UserActiveService, private userFriendService: UserFriendsService) {
+  constructor(private userFriendsService: UserFriendsService, private usersService: UsersService, private userActiveService: UserActiveService, private userFriendService: UserFriendsService) {
     this.users$ = this.usersService.users$.subscribe
     (users => {
       this.users = users
@@ -32,7 +32,7 @@ export class UserComponent implements OnInit {
     (friends => {
       this.friends = friends;
     })
-    this.userActive.activeUser$.subscribe(userId => this.userActiveId = userId)
+    this.userActiveService.activeUser$.subscribe(userId => this.userActive = userId)
   }
 
   ngOnInit(): void {
@@ -54,11 +54,11 @@ export class UserComponent implements OnInit {
 
   // check to see if user friend exists
   addUsersFriend(): void {
-    if(this.userObj && this.userActiveId ) 
+    if(this.userObj && this.userActive ) 
     {
       const isFriend = this.userFriendService.getUserFriendById(this.userObj?.id)
       if (!isFriend) {
-        this.userFriendsService.addUsersFriend(this.userObj,this.userActiveId)
+        this.userFriendsService.addUsersFriend(this.userObj,this.userActive.id)
       }else {
         console.log('already friend... ')
       }

@@ -6,35 +6,35 @@
 
             <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Chat</a></li>
 
-            <!-- <div *ngIf="userActiveId">
+            <!-- <div *ngIf="userActive">
             <li><a routerLink="/compose" routerLinkActive="active">Compose</a></li>
             </div> -->
 
-            <div *ngIf="userActiveId">
-                <li><a [routerLink]="['/friends', userActiveId]" routerLinkActive="active">Friends</a></li>
+            <div *ngIf="userActive">
+                <li><a [routerLink]="['/friends', userActive.id]" routerLinkActive="active">Friends</a></li>
             </div>
 
-            <div *ngIf="!userActiveId">
+            <div *ngIf="!userActive">
                 <li><a [routerLink]="['/users']" routerLinkActive="active">Users</a></li>
             </div>
 
-            <div *ngIf="userActiveId">
-                <li><a [routerLink]="['/user-list', userActiveId]" routerLinkActive="active">Users</a></li>
+            <div *ngIf="userActive">
+                <li><a [routerLink]="['/user-list', userActive.id]" routerLinkActive="active">Users</a></li>
             </div>
 
-            <div *ngIf="userActiveId">
-                <li><a [routerLink]="['/profile', userActiveId]" routerLinkActive="active">Profile</a></li>
+            <div *ngIf="userActive">
+                <li><a [routerLink]="['/profile', userActive.id]" routerLinkActive="active">Profile</a></li>
             </div>
 
-            <div *ngIf="userActiveId">
+            <div *ngIf="userActive">
                 <li><a [routerLink]="['/auth/logout']" routerLinkActive="active">Logout</a></li>
             </div>
 
-            <div *ngIf="!userActiveId">
+            <div *ngIf="!userActive">
                 <li><a [routerLink]="['/sign-up']" routerLinkActive="active">Sign Up</a></li>
             </div>
 
-            <div *ngIf="!userActiveId">
+            <div *ngIf="!userActive">
                 <li><a [routerLink]="['/auth/login']" routerLinkActive="active">Login</a></li>
             </div>
         </div>

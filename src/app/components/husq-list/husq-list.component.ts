@@ -14,10 +14,10 @@ import { UsersService } from 'src/app/services/users.service';
 export class HusqListComponent implements OnInit, OnDestroy {
   husqs$: Subscription
   husqs: any[] | undefined
-  userActiveId: string | undefined
+  userActive: Users | undefined
 
   // initialize values 
-  constructor(private husqTimelineService: HusqTimelineService, private userActive: UserActiveService, private userService: UsersService) {
+  constructor(private husqTimelineService: HusqTimelineService, private userActiveService: UserActiveService, private userService: UsersService) {
     this.husqs$ = this.husqTimelineService.husqs$
       .pipe(
         map(husqs => {
@@ -27,7 +27,7 @@ export class HusqListComponent implements OnInit, OnDestroy {
           })
         })
       ).subscribe(husq => this.husqs = husq),
-      this.userActive.activeUser$.subscribe(userId => this.userActiveId = userId)
+      this.userActiveService.activeUser$.subscribe(userId => this.userActive = userId)
   }
 
   // lifecycle: component goes through different lifecycles

@@ -17,7 +17,7 @@ export class AuthComponent implements OnInit {
   loginForm: FormGroup | undefined
 
   profile: Users | undefined
-  activeUser: Users | undefined
+  userActive: Users | undefined
   logoutUrl = ''
   AUTH_DATA = 'AUTH_DATA'
 
@@ -48,8 +48,8 @@ export class AuthComponent implements OnInit {
 
   login() {
     const val = this.loginForm?.value;
-    this.activeUser = this.authService.login(val.email, val.password)
-    if (this.activeUser) {
+    this.userActive = this.authService.login(val.email, val.password)
+    if (this.userActive) {
       this.router.navigate(['/']);
     }
   }
@@ -58,6 +58,8 @@ export class AuthComponent implements OnInit {
     const loggingOutUser = this.localStorageService.getItem(this.AUTH_DATA);
     if (loggingOutUser) {
       this.localStorageService.removeItem(this.AUTH_DATA);
+      location.reload();
+      this.router.navigate(['/']);
     } else {
       console.log('ERROR removing logging out user: \n', loggingOutUser);
     }

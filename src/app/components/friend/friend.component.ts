@@ -19,12 +19,12 @@ export class FriendComponent implements OnInit {
 
   @Input() userFriendsObj: UserFriends | undefined;
 
-  userActiveId: string | undefined
+  userActive: Users| undefined
 
   time: Date = new Date()
 
-  constructor(private usersService: UsersService, private userFriendsService: UserFriendsService, private router: Router, private userActive: UserActiveService) {
-    this.userActive.activeUser$.subscribe(userId => this.userActiveId = userId)
+  constructor(private usersService: UsersService, private userFriendsService: UserFriendsService, private router: Router, private userActiveService: UserActiveService) {
+    this.userActiveService.activeUser$.subscribe(userId => this.userActive = userId)
   }
 
   ngOnInit(): void {
@@ -42,9 +42,9 @@ export class FriendComponent implements OnInit {
 
   // remove friend from friends list and add back to users list
   removeFriend(): void {
-    if (this.userFriendsObj && this.userActiveId) {
+    if (this.userFriendsObj && this.userActive) {
       // this.usersService.addUser(this.userFriendsObj.friend)
-      this.userFriendsService.removeFriend(this.userFriendsObj, this.userActiveId)
+      this.userFriendsService.removeFriend(this.userFriendsObj, this.userActive.id)
     }
   }
 

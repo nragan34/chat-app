@@ -1,4 +1,4 @@
-<div *ngIf="userObj && userObj.id !== userActiveId" class="husq-card-container">
+<div *ngIf="userObj && userObj.id !== userActive?.id" class="husq-card-container">
     <div class="husq-card-content">
 
         <div class="husq-card-profile">
@@ -12,7 +12,7 @@
                     <h3>{{ userObj.name }}</h3>
                 </div>
             </div>
-            <div *ngIf="userActiveId">
+            <div *ngIf="userActive">
                 <button (click)="removeUser()" class="husq-btn-delete">&times;</button>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 <span>Location: </span>{{ userObj.location }}
             </p>
 
-            <div *ngIf="userActiveId">
+            <div *ngIf="userActive">
                 <div style="float: right;" class="husq-card-action-no-flex">
                     <button (click)="addUsersFriend()">Add Friend</button>
                 </div>

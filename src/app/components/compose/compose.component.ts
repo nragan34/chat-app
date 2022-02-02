@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import {Router} from "@angular/router";
 import { UsersService } from 'src/app/services/users.service';
 import { UserActiveService } from 'src/app/services/user-active.service';
+import { Users } from 'src/app/interfaces/users';
 
 @Component({
   selector: 'app-compose',
@@ -12,20 +13,20 @@ import { UserActiveService } from 'src/app/services/user-active.service';
 })
 export class ComposeComponent implements OnInit {
   message: string = ''
-  activeUserId: string | undefined
+  userActive: Users | undefined
 
   constructor(private husqTimelineService: HusqTimelineService, private router: Router, private activeUserService: UserActiveService) {
-    this.activeUserId = this.activeUserService.getActiveUser();
+    this.userActive = this.activeUserService.getActiveUser();
    }
 
   ngOnInit(): void {
   }
 
   addHusq(): void {
-    if (this.message && this.activeUserId) {
+    if (this.message && this.userActive) {
       this.husqTimelineService.addHusq({
         id: uuidv4(),
-        userId: this.activeUserId,
+        userId: this.userActive.id,
         time: new Date(),
         message: this.message
       })
