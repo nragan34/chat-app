@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate {
         this.activeUser = this.userService.getUserById(userId);
         return true;
       } else {
-        console.log('Auth Guard activated. You are not authorized.')
+        console.log('You are not authorized.')
         this.router.navigate(['/auth/login'])
         return false;
       }

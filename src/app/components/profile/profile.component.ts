@@ -15,11 +15,9 @@ export class ProfileComponent implements OnInit {
 
   constructor(private activeRouter: ActivatedRoute, private router: Router, private usersService: UsersService) {
     this.activeRouter.paramMap.subscribe((params) => {
-      console.log(this.activeRouter.paramMap)
       const id = params.get('userId')
       if (id) {
         this.profile = this.usersService.getUserById(id)
-        console.log(this.profile)
       }
     })
   }

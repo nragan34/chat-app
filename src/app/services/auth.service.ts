@@ -6,6 +6,7 @@ import { UsersService } from './users.service';
 import { users } from '../seeds/users';
 import { ActivatedRoute } from '@angular/router';
 import { UserActiveService } from './user-active.service';
+import { LocalStorageService } from './local-storage.service';
 
 
 const AUTH_DATA = "auth_data";
@@ -18,7 +19,7 @@ export class AuthService {
     AUTH_DATA = "AUTH_DATA"
     userLoggingIn: Users | undefined
 
-    constructor(private usersService: UsersService, private activeUser: UserActiveService) {
+    constructor(private usersService: UsersService, private activeUser: UserActiveService, private localStorageService: LocalStorageService) {
 
     }
 
@@ -28,11 +29,11 @@ export class AuthService {
         if(this.userLoggingIn && this.userLoggingIn.password === password) {
 
             // set id of user in local storage
-            localStorage.setItem(this.AUTH_DATA, this.userLoggingIn.id)
+            this.localStorageService.setItem(this.AUTH_DATA, this.userLoggingIn.id);
 
             // set active user
             const activeUser = this.usersService.getUserById(this.userLoggingIn.id)
-            this.activeUser._setActiveUser(this.userLoggingIn)
+            this.activeUser.setActiveUser(this.userLoggingIn.id)
             
             return activeUser
         }

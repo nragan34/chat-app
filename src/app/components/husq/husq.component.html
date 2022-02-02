@@ -3,12 +3,12 @@
         <div class="husq-card-profile">
             <div class="husq-card-profile-container">
                 <div class="husq-card-img">
-                    <img class="profile-avatar" src="https://avatars.dicebear.com/api/gridy/{{ husqObj.name }}.svg"
+                    <img class="profile-avatar" src="https://avatars.dicebear.com/api/gridy/{{ husqObj.userId }}.svg"
                         alt="Avatar" />
                 </div>
                 <div class="husq-card-profile-content">
-                    <h3>{{ husqObj.name }}</h3>
-                    <p>Profile Activated: {{ husqObj.time.toLocaleDateString() }}</p>
+                    <h3>{{ husqObj.userId }}</h3>
+                    <p>Profile Activated: {{ husqObj.time }}</p>
                 </div>
             </div>
 
@@ -22,7 +22,7 @@
             {{ r }}
         </p>
         <div class="husq-card-action">
-            <input [(ngModel)]="tempReply" type="text" placeholder="Reply to {{ husqObj.name }}" class="husq-input">
+            <input [(ngModel)]="tempReply" type="text" placeholder="Reply to {{ husqObj.userId }}" class="husq-input">
             <button (click)="saveReply()" class="husq-button">Submit</button>
         </div>
     </div>

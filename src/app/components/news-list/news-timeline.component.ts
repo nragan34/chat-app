@@ -25,7 +25,6 @@ export class NewsTimelineComponent implements OnInit {
 
   constructor(private newsTimelineService: NewsTimelineService, private router: Router) { 
     this.myNews$ = this.newsTimelineService.myNews$.subscribe(myNews => {
-      console.log(myNews);
       this.myNews = myNews
     })
   }

@@ -57,7 +57,6 @@ export class HuskEditComponent implements OnInit {
   }
   
 
-
   get name() {
     return this.editForm?.get("name")
   }

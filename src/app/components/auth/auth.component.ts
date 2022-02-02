@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Users } from 'src/app/interfaces/users';
 import { AuthService } from 'src/app/services/auth.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserActiveService } from 'src/app/services/user-active.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -17,9 +18,10 @@ export class AuthComponent implements OnInit {
 
   profile: Users | undefined
   activeUser: Users | undefined
-  logoutUrl = '';
+  logoutUrl = ''
+  AUTH_DATA = 'AUTH_DATA'
 
-  constructor(private activeRouter: ActivatedRoute, private usersService: UsersService, private router: Router, private authService: AuthService, private activeUserService: UserActiveService) {
+  constructor(private activeRouter: ActivatedRoute, private usersService: UsersService, private router: Router, private authService: AuthService, private activeUserService: UserActiveService, private localStorageService: LocalStorageService) {
     this.activeRouter.paramMap.subscribe((params) => {
       const id = params.get('userId')
       if (id) {
@@ -48,17 +50,15 @@ export class AuthComponent implements OnInit {
     const val = this.loginForm?.value;
     this.activeUser = this.authService.login(val.email, val.password)
     if (this.activeUser) {
-      this.router.navigate(['/'])
+      this.router.navigate(['/']);
     }
   }
 
   logout() {
-    const loggingOutUser = localStorage.getItem('AUTH_DATA');
+    const loggingOutUser = this.localStorageService.getItem(this.AUTH_DATA);
     if (loggingOutUser) {
-      console.log('logging out user: \n', this.usersService.getUserById(loggingOutUser), '\n\n ...removing from local storage')
-      localStorage.removeItem('AUTH_DATA')
-      this.activeUserService._setActiveUser(undefined);
-      console.log('done')
+      this.localStorageService.removeItem(this.AUTH_DATA);
+      this.activeUserService.setActiveUser(undefined);
     } else {
       console.log('ERROR removing logging out user: \n', loggingOutUser);
     }

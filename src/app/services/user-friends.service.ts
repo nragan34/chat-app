@@ -19,7 +19,6 @@ export class UserFriendsService {
   constructor() { }
 
   private _setUserFriends(setFriend: UserFriends[]) {
-    console.log('setting user.... ', setFriend)
     this._userFriendsSource.next(setFriend)
   }
 

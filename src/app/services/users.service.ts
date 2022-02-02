@@ -4,6 +4,7 @@ import { UserFriends } from '../interfaces/userFriends';
 import { Users } from '../interfaces/users';
 import { userFriends } from '../seeds/userFriends';
 import { users } from '../seeds/users';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,21 @@ export class UsersService {
 
   AUTH_DATA = "AUTH_DATA"
 
-  private readonly _userSource = new BehaviorSubject<Users[]>(users)
+  private readonly _userSource = new BehaviorSubject<Users[]>([])
   readonly users$ = this._userSource.asObservable();
 
   private readonly _userFriendsSource = new BehaviorSubject<UserFriends[]>(userFriends)
   readonly userFriends$ = this._userFriendsSource.asObservable();
   
-  constructor() { }
+  constructor(private localStorageService: LocalStorageService) {
+    const user: Users[] = this.localStorageService.getItem('users');
+    if (user?.length) {
+      this._setUser(user);
+    } else {
+      this._setUser(users);
+    }
+
+   }
 
   ///////////////////////////
   // Adding Users
@@ -26,6 +35,7 @@ export class UsersService {
 
   private _setUser(user: Users[]) {
     this._userSource.next(user)
+    this.localStorageService.setItem('users', user);
   }
 
   getUsers(): Users[] {
@@ -33,7 +43,6 @@ export class UsersService {
   }
 
   addUser(user: Users): void {
-    console.log(user, 'loggin user in addUser')
     const users = [...this.getUsers(), user]
     this._setUser(users)
   }
