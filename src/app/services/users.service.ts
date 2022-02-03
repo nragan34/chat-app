@@ -16,7 +16,7 @@ export class UsersService {
   private readonly _userSource = new BehaviorSubject<Users[]>([])
   readonly users$ = this._userSource.asObservable();
 
-  private readonly _userFriendsSource = new BehaviorSubject<UserFriends[]>(userFriends)
+  private readonly _userFriendsSource = new BehaviorSubject<UserFriends[]>([])
   readonly userFriends$ = this._userFriendsSource.asObservable();
 
   constructor(private localStorageService: LocalStorageService) {
@@ -32,6 +32,11 @@ export class UsersService {
   // Adding Users
   ///////////////////////////
   private _setUser(user: Users[]) {
+    this._userSource.next(user)
+    this.localStorageService.setItem('users', user);
+  }
+
+  setUser(user: Users[]) {
     this._userSource.next(user)
     this.localStorageService.setItem('users', user);
   }

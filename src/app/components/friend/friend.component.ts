@@ -33,11 +33,15 @@ export class FriendComponent implements OnInit {
   removeFriend(): void {
     if (this.userFriendsObj && this.userActive) {
       this.userFriendsService.removeFriend(this.userFriendsObj, this.userActive.id)
+
+      // cant user this becuase it messes profile up
+      // this.usersService.addUser(this.userFriendsObj.friend);
     }
   }
 
   routeToUsersProfile(): void {
     if (this.userFriendsObj) {
+      console.log('logging userfriendObj.friend.id....', this.userFriendsObj.friend.id)
       this.router.navigate(['/profile', this.userFriendsObj.friend.id])
     }
   }
