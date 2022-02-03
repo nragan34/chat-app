@@ -19,8 +19,7 @@
                                         <br>
                                         <div *ngIf="editForm.invalid  && (name?.dirty || name?.touched)">
                                             <span *ngIf="name?.errors?.['required']">Name is required</span>
-                                            <span *ngIf="name?.errors?.['maxlength']">Name must be less than 20
-                                                characters
+                                            <span *ngIf="name?.errors?.['maxlength']">Name must be less than 20 characters
                                             </span>
                                         </div>
                                         <br>
@@ -107,16 +106,15 @@
                                     </div>
 
                                     <div>
-                                        <button type="submit" [disabled]="editForm.invalid">Submit</button>
+                                        <!-- [disabled]="editForm.invalid" -->
+                                        <button type="submit" [disabled]="editForm.invalid" >Submit</button>
                                     </div>
                                 </form>
 
                             </div>
 
-
                             <div class="husq-card-action-no-flex">
                             </div>
-
 
                         </div>
                     </div>

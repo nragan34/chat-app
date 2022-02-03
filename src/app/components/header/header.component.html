@@ -4,18 +4,12 @@
         <!-- NAVIGATION MENUS -->
         <div class="menu">
 
-            <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Chat</a></li>
-
-            <!-- <div *ngIf="userActive">
-            <li><a routerLink="/compose" routerLinkActive="active">Compose</a></li>
-            </div> -->
+            <div *ngIf="userActive">
+                <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Chat</a></li>
+            </div>
 
             <div *ngIf="userActive">
                 <li><a [routerLink]="['/friends', userActive.id]" routerLinkActive="active">Friends</a></li>
-            </div>
-
-            <div *ngIf="!userActive">
-                <li><a [routerLink]="['/users']" routerLinkActive="active">Users</a></li>
             </div>
 
             <div *ngIf="userActive">
@@ -29,14 +23,16 @@
             <div *ngIf="userActive">
                 <li><a [routerLink]="['/auth/logout']" routerLinkActive="active">Logout</a></li>
             </div>
+        </div>
 
-            <div *ngIf="!userActive">
-                <li><a [routerLink]="['/sign-up']" routerLinkActive="active">Sign Up</a></li>
-            </div>
 
-            <div *ngIf="!userActive">
-                <li><a [routerLink]="['/auth/login']" routerLinkActive="active">Login</a></li>
-            </div>
+    </ul>
+
+    <!-- NAVIGATION MENU -->
+    <ul  *ngIf="!userActive" class="nav-links">
+        <div style="display: flex; margin-right: 0 !important; " *ngIf="!userActive">
+            <li style="margin-right: 2em;"><a [routerLink]="['/auth/login']" routerLinkActive="active">Login</a></li>
+            <li><a [routerLink]="['/sign-up']" routerLinkActive="active">Sign Up</a></li>
         </div>
     </ul>
 </nav>

@@ -27,20 +27,19 @@ export class HuskEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.editForm = new FormGroup( {
+    this.editForm = new FormGroup({
       name: new FormControl(this.profile?.name, [Validators.required, Validators.maxLength(20)]), 
-      location: new FormControl(this.profile?.location, [Validators.required, Validators.maxLength(20)]),
+      location: new FormControl(this.profile?.location, [Validators.required, Validators.maxLength(50)]),
       age: new FormControl(this.profile?.age, [Validators.required, Validators.maxLength(3)]),
       message: new FormControl(this.profile?.message, [Validators.required, Validators.maxLength(100)]),
       likes: new FormArray(
-        this.profile?.likes?.split(', ').map(like => new FormControl(like)) || [new FormControl('')]
+        this.profile?.likes?.split(', ').map(like => new FormControl(like)) || [new FormControl('')], Validators.required
       ),
       dislikes: new FormArray(
-        this.profile?.dislikes?.split(', ').map(dislike => new FormControl(dislike)) || [new FormControl('')]
+        this.profile?.dislikes?.split(', ').map(dislike => new FormControl(dislike)) || [new FormControl('')], Validators.required
       )
     })
   }
-
 
   onSubmit(): void {
     if (this.likes.value === '' ) {
@@ -55,7 +54,6 @@ export class HuskEditComponent implements OnInit {
       this.usersService.editUser(user)
       this.router.navigate(['/profile', this.profile?.id])
   }
-  
 
   get name() {
     return this.editForm?.get("name")

@@ -1,3 +1,5 @@
+
+
 <div class="main-page-container">
   <div class="content-class">
     <div class="husq-card-container">
@@ -5,41 +7,32 @@
         <div class="husq-card-profile">
           <div class="husq-card-profile-container">
             <div class="husq-card-profile-content">
-              <div class="husq-card-action-no-flex">
-                <h2>Login</h2>
-                <br><br>
+              <!-- <div class="husq-card-action-no-flex"> -->
+               
+                
+                <form style="" *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
+                  <h2 style="text-align: center;">Login</h2>
 
-                <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
-
-                  <br><br>
-                  <label for="title">
-                    Email:
-                  </label>
-
-                  <input type="text" id="email" formControlName="email">
-                  <br>
+                  <div style="text-align: center;">
+                    <input style="font-family: FontAwesome;" type="text" id="email" formControlName="email" placeholder="&#xf007;   Type your email">
+                  </div>
                   <div *ngIf="loginForm.invalid  && (email?.dirty || email?.touched)">
-                    <span *ngIf="email?.errors?.['required']">Email is required</span>
+                    <span style="text-align: left !important; padding-left: 8%;" *ngIf="email?.errors?.['required']">Email is required</span>
                   </div>
 
-                  <!-- <input  type="text" placeholder="email" class="husq-input"> -->
-
-                  <br><br>
-                  <label for="title">
-                    Password:
-                  </label>
-
-                  <input type="text" id="password" formControlName="password">
-                  <br>
+                  <div style="text-align: center;">
+                  <input style="font-family: FontAwesome;" type="text" id="password" formControlName="password" placeholder="&#xf023;   Type your password">
+                </div>
                   <div *ngIf="loginForm.invalid  && (password?.dirty || password?.touched)">
-                    <span *ngIf="password?.errors?.['required']">Password is required</span>
+                    <span style="text-align: left !important; padding-left: 8%;" *ngIf="password?.errors?.['required']">Password is required</span>
                   </div>
 
-                  <!-- <input type="text" placeholder="password" class="husq-input"> -->
+                  <div style="text-align: right !important; padding-right: 10%;" >
+                    <p style="color: white; font-weight: lighter; font-size: 1.2em;">Don't have an accout? <span [routerLink]="['/sign-up']"><u>Sign Up</u></span></p>
+                  </div>
 
-
-                  <div class="husq-card-action-no-flex">
-                    <button type="submit" [disabled]="!loginForm.valid" >Login</button>
+                  <div style="text-align: center;" class="husq-card-action-no-flex">
+                    <button style="width: 90%;" type="submit" [disabled]="!loginForm.valid" >Login</button>
                   </div>
 
                 </form>
@@ -51,4 +44,4 @@
       </div>
     </div>
   </div>
-</div>
+<!-- </div> -->

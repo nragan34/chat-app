@@ -30,20 +30,8 @@ export class FriendComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // currently removing the user from the user list completely
-  // neeed to keep all users in the userlist 
-  // need to create friends list {userId, friend}
-  // if users are in friends list don't display in user list
-
-
-
-  // need to get friends that match the active users id
-
-
-  // remove friend from friends list and add back to users list
   removeFriend(): void {
     if (this.userFriendsObj && this.userActive) {
-      // this.usersService.addUser(this.userFriendsObj.friend)
       this.userFriendsService.removeFriend(this.userFriendsObj, this.userActive.id)
     }
   }

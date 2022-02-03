@@ -18,7 +18,7 @@ export class UsersService {
 
   private readonly _userFriendsSource = new BehaviorSubject<UserFriends[]>(userFriends)
   readonly userFriends$ = this._userFriendsSource.asObservable();
-  
+
   constructor(private localStorageService: LocalStorageService) {
     const user: Users[] = this.localStorageService.getItem('users');
     if (user?.length) {
@@ -26,12 +26,11 @@ export class UsersService {
     } else {
       this._setUser(users);
     }
-   }
+  }
 
   ///////////////////////////
   // Adding Users
   ///////////////////////////
-
   private _setUser(user: Users[]) {
     this._userSource.next(user)
     this.localStorageService.setItem('users', user);
@@ -61,7 +60,6 @@ export class UsersService {
     return this.getUsers().find(user => user.id === id)
   }
 
-
   editUser(updatedUser: Users): void {
     const users = [...this.getUsers().filter(user => user.id !== updatedUser.id), updatedUser]
     this._setUser(users)
@@ -70,21 +68,17 @@ export class UsersService {
   ///////////////////////////
   // Adding friends
   ///////////////////////////
-
   private _setFriend(friend: Users[]) {
     this._userSource.next(friend)
   }
 
-
-
-    // need to get friends that match the active users id
-
-    getFriendById(id: string): Users | undefined {
+  // need to get friends that match the active users id
+  getFriendById(id: string): Users | undefined {
     return this.getUsers().find(friend => friend.id === id)
-    }
+  }
 
   formSanitize() {
-    
+
   }
 
 }
