@@ -30,16 +30,24 @@ hr {
 }
 h1 {
     font-size: 2.5em;
+    color: #4abb55;
+    text-shadow: 0 5px 5px rgba(57, 200, 30, 0.3), 0 15px 20px rgba(57, 200, 30, 0.3);
+
 }
+
 h2 {
     font-size: 2.2em;
     padding-top: 15%;
+    color: #4abb55;
 }
+
 h3 {
     font-size: 1.8em;
+    color: #979797;
 }
 p {
     font-size: 1.3em;
+    color: #c7c7c7;
 }
 label {
     font-size: 1.3em;
@@ -50,7 +58,7 @@ input {
     height: 2em;
     width: 85%;
     background-color: #1d1c21;
-    color: #fff;
+    color: rgb(221, 221, 221);
     border: none;
     border-bottom: 0.1px solid #448d4b;
     font-size: 20px;
@@ -60,7 +68,7 @@ input {
 input[type="text"]:focus {
     border: 2px solid #448d4b;
     outline: none;
-    color: #dfdfdf;
+    color: rgb(221, 221, 221);
 }
 input::placeholder {
     padding: 5%;
@@ -72,7 +80,7 @@ textarea {
     width: 85%;
     height: 8em;
     background-color: #1d1c21;
-    color: #fff;
+    color: rgb(221, 221, 221);
     border: none;
     border-bottom: 0.1px solid #448d4b;
     font-size: 20px;
@@ -82,13 +90,13 @@ textarea {
 textarea[type="textarea"]:focus {
     border: 2px solid #448d4b;
     outline: none;
-    color: #dfdfdf;
+    color: rgb(221, 221, 221);
 }
 textarea::placeholder {
     padding: 2%;
 }
 .white-text {
-    color: white;
+    color: rgb(221, 221, 221);
 }
 .green-text {
     color: #3ac248;
@@ -141,7 +149,7 @@ textarea::placeholder {
 .main-page-container {
     display: flex;
     flex-direction: row;
-    color: white;
+    color: rgb(221, 221, 221);
 }
 
 .content-class {
@@ -215,7 +223,7 @@ textarea::placeholder {
     max-width: 100%;
     width: 900px;
     padding: 1% 5% 3% 5%;
-    color: #fff;
+    color: rgb(221, 221, 221);
     margin: 0.5%;
     border-radius: 20px;
     border: #448d4b 0.1px solid;
@@ -240,9 +248,7 @@ textarea::placeholder {
     padding-left: 3%;
     width: 100%;
 }
-.husq-card-profile-content p {
-    color: #3ac248;
-}
+
 .husq-card-content img {
     width: 46px;
 }
@@ -426,7 +432,7 @@ news {
 }
 .news-card-content {
     width: 450px;
-    color: #e7e7e7;
+    color: rgb(221, 221, 221);
     border-radius: 25px;
     min-height: 250px;
     justify-content: center;
@@ -470,7 +476,7 @@ news {
 }
 
 .husq-card-content-info-profile {
-    color: white;
+    color: rgb(221, 221, 221);
 }
 /* profile */
 
@@ -482,7 +488,7 @@ footer {
     display: flex;
     flex-direction: column;
     width: 100%;
-    color: #e7e7e7;
+    color: rgb(221, 221, 221);
     height: 300px;
     margin-top: 5%;
 }
@@ -518,7 +524,7 @@ footer {
 #custom-fa {
     font-size: 225px;
     margin-left: 20%;
-    margin-bottom: 21%;
+    margin-bottom: 8%;
     width: auto;
     border: #448d4b 1px solid;
     color: #448d4b;
@@ -527,17 +533,17 @@ footer {
 
 .fa-facebook {
     background: #448d4b;
-    color: white;
+    color: rgb(221, 221, 221);
 }
 
 .fa-twitter {
     background: #448d4b;
-    color: white;
+    color: rgb(221, 221, 221);
 }
 
 .fa-linkedin {
     background: #448d4b;
-    color: white;
+    color: rgb(221, 221, 221);
 }
 
 /* page not found */
@@ -560,7 +566,7 @@ footer {
     }
     /* nav */
     .nav-links a {
-        color: #fff;
+        color: rgb(221, 221, 221);
         padding: 0.5em 0.2em 0.5em 0.2em;
         margin: auto;
         max-width: 100%;

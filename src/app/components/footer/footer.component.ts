@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Users } from 'src/app/interfaces/users';
+import { UserActiveService } from 'src/app/services/user-active.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  userActive: Users| undefined
+  
+  constructor(private userActiveService: UserActiveService) {
+    this.userActiveService.activeUser$.subscribe(userId => this.userActive = userId)
+  }
 
   ngOnInit(): void {
   }
