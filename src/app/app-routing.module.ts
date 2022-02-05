@@ -10,6 +10,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { HuskEditComponent } from './components/husk-edit/husk-edit.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { AuthGuard } from './guard/auth.guard';
+import { NewsComponent } from './components/news/news.component';
+import { NewsTimelineComponent } from './components/news-list/news-timeline.component';
 
 
 const routes: Routes = [
@@ -19,8 +21,7 @@ const routes: Routes = [
   { path: 'profile/:userId', component: ProfileComponent, pathMatch: 'full'},
   // { path: 'compose', component: ComposeComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'sign-up', component: UserAddComponent, pathMatch: 'full'},
-  { path: 'users', component: UserListComponent, pathMatch: 'full'},
-  { path: 'user-list/:userId', component: UserListComponent, pathMatch: 'full',  canActivate: [AuthGuard]},
+  { path: 'news', component: NewsTimelineComponent, pathMatch: 'full'},
   { path: 'auth/logout', component: AuthComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'auth/login', component: AuthComponent, pathMatch: 'full' },
   

@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HusqTimelineService } from "../../services/husq-timeline.service";
 import { v4 as uuidv4 } from "uuid";
 import {Router} from "@angular/router";
-import { UsersService } from 'src/app/services/users.service';
 import { UserActiveService } from 'src/app/services/user-active.service';
-import { Users } from 'src/app/interfaces/users';
 
 @Component({
   selector: 'app-compose',

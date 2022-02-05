@@ -1,7 +1,33 @@
-<div class="news-card-container">
-    <div class="news-card-content">
-        <img src="" alt="">
-        <h3 class="news-header">{{title}}</h3>
-        <p>{{article}}</p>
+<div class="husq-card-container">
+    <div class="husq-card-content">
+      <div class="husq-card-profile">
+        <div class="husq-card-profile-container">
+          <div class="husq-card-profile-content">
+  
+            <form (ngSubmit)="onSubmit()">
+              <div class="husq-card-action-no-flex">
+                <div>
+                  <label for="title">
+                    Title:
+                  </label>
+                  <input [(ngModel)]="newTitle" id="title" type="text" name="something">
+                </div>
+              </div>
+              <div class="husq-card-action-no-flex">
+                <div>
+                  <label for="title">
+                    Article:
+                  </label>
+                  <textarea [(ngModel)]="newArticle" id="article" type="textarea" name="something"></textarea>
+                </div>
+              </div>
+              <div class="husq-card-action-no-flex">
+                <button class="button" type="submit">Add News</button>
+              </div>
+            </form>
+            
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>

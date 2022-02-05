@@ -13,8 +13,8 @@ import { Users } from '../../interfaces/users'
 })
 export class UserListComponent implements OnInit {
 
-  users$: Subscription
-  users: Users[] = users
+  // users$: Subscription
+  // users: Users[] = users
 
 
   constructor(private usersService: UsersService, private friendsService: FriendsService) {
@@ -25,24 +25,24 @@ export class UserListComponent implements OnInit {
 
     // Get a list of friends
     
-    this.users$ = this.usersService.users$.subscribe
-    (users => {
-      this.users = users
-    })
+    // this.users$ = this.usersService.users$.subscribe
+    // (users => {
+    //   this.users = users
+    // })
   }
 
   ngOnInit(): void {
   }
 
   ngOnDestroy() {
-    if (this.users$) {
-      this.users$.unsubscribe()
-    }
+    // if (this.users$) {
+    //   this.users$.unsubscribe()
+    // }
   }
   
   // colon what you are returning for typescript
-  trackById(index: number, user: Users): string {
-    return user.id;
-  }
+  // trackById(index: number, user: Users): string {
+  //   return user.id;
+  // }
 
 }

@@ -31,6 +31,7 @@ export class FriendsListComponent implements OnInit {
     this.friends$ = this.friendsService.friends$
       .pipe(
         map((allFriends) => {
+          console.log('logging all friends... ', allFriends)
           const userFriends = this.friendsService.getFriendsIdsByActiveUserId(activeUserId);
           const friends = userFriends.map((friendId) => this.userService.getUserById(friendId));
           const potentialFriends = this.userService.getUsers().filter((user) => activeUserId !== user.id && !userFriends.includes(user.id));

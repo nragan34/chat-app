@@ -1,4 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { News } from 'src/app/interfaces/news';
+import { NewsTimelineService } from 'src/app/services/news-timeline.service';
 
 @Component({
   selector: 'app-news',
@@ -6,27 +10,33 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-  
-  @Input() title: string = ''!
-  @Input() article: string = ''!
+  myNews$: Subscription
+  myNews: News[] | undefined
 
-  constructor() { }
+  @Input() newsObj: News | undefined
 
-  time: Date = new Date()
-  
-  tempReply: string = ''!
-  reply: string = ''!
-  tempReplyList: string[] = [];
+  @Input() title: string = ''
+  @Input() article: string = ''
+
+  newTitle: string = ''
+  newArticle: string = ''
+
+
+  constructor(private newsTimelineService: NewsTimelineService, private router: Router) { 
+    this.myNews$ = this.newsTimelineService.myNews$.subscribe(myNews => {
+      this.myNews = myNews
+    })
+  }
 
   ngOnInit(): void {
   }
 
   saveReply(): void {
-    this.reply = this.tempReply;
-    this.tempReplyList.push(this.reply);
-    this.tempReplyList.push(this.time.toLocaleString());
-    this.tempReplyList.push("-------------");
-    this.tempReply = '';
+
+  }
+
+  onSubmit(): void {
+    
   }
 
 }

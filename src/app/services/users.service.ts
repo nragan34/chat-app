@@ -73,17 +73,11 @@ export class UsersService {
   ///////////////////////////
   // Adding friends
   ///////////////////////////
-  private _setFriend(friend: Users[]) {
-    this._userSource.next(friend)
-  }
 
   // need to get friends that match the active users id
   getFriendById(id: string): Users | undefined {
     return this.getUsers().find(friend => friend.id === id)
   }
 
-  formSanitize() {
-
-  }
 
 }
