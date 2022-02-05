@@ -1,11 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { users } from '../../seeds/users';
 import { Users } from 'src/app/interfaces/users';
 import { UsersService } from 'src/app/services/users.service';
-import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
-import { UserFriends } from 'src/app/interfaces/userFriends';
-import { UserFriendsService } from 'src/app/services/user-friends.service';
+import { map, Subscription } from 'rxjs';
+import { UserActiveService } from 'src/app/services/user-active.service';
+import { FriendsService } from 'src/app/services/friends.service';
 
 @Component({
   selector: 'app-friends',
@@ -14,52 +12,47 @@ import { UserFriendsService } from 'src/app/services/user-friends.service';
 })
 export class FriendsListComponent implements OnInit {
 
-  users$: Subscription
-  userFriends$: Subscription
-  
-  users: Users[] = users
-  userFriends: UserFriends[] | undefined
-  suggestedUsers: Users[] | undefined
+  friends$: Subscription;
+  friends: (Users | undefined)[] | undefined;
 
-  profile: Users | undefined
-  friends: UserFriends | undefined
-  
-  constructor(private userService: UsersService, private activeRouter: ActivatedRoute, private usersService: UsersService, private userFriendsService: UserFriendsService) {
-    this.users$ = this.userService.users$.subscribe
-      (users => {
-        this.users = users
-      }),
-      this.activeRouter.paramMap.subscribe((params) => {
-        const id = params.get('userId')
-        if (id) {
-          this.profile = this.usersService.getUserById(id)
-        }
-      }),
-      this.userFriends$ = this.userFriendsService.userFriends$.subscribe
-      (userFriends => {
-        this.userFriends = userFriends;
-      })
-   }
+  userActive: Users| undefined
 
+  time: Date = new Date()
+  
+  constructor(
+    private userService: UsersService,
+    private activeUserService: UserActiveService,
+    private friendsService: FriendsService,
+  ) {
+    const activeUserId = this.activeUserService.getActiveUser();
+    this.friends$ = this.friendsService.friends$
+      .pipe(
+        map((friends) => {
+          return friends.reduce<Users[]>((acc, cur) => {
+            if (!acc.find((user) => cur.pair.includes(user.id))) {
+              const friendId = cur.pair[0] === activeUserId ? cur.pair[1] : cur.pair[0];
+              const user = this.userService.getUserById(friendId);
+              if (user) {
+                acc.push(user);
+              }
+            }
+            return acc;
+          }, []);
+        })
+      )
+      .subscribe((friends) => (this.friends = friends));
+  }
 
   ngOnInit(): void {
   }
 
   ngOnDestroy() {
-    if (this.users$) {
-      this.users$.unsubscribe()
-    }
-    if (this.userFriends$) {
-      this.userFriends$.unsubscribe()
-    }
+    this.friends$.unsubscribe();
   }
 
   // track by id
-  trackById(index: number, friend: UserFriends): string {
+  trackById(index: number, friend: any): number {
     return friend.id;
-  }
-  trackByUserId(index: number, users: Users): string {
-    return users.id;
   }
   
 }

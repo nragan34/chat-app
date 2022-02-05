@@ -13,7 +13,7 @@ import { Users } from 'src/app/interfaces/users';
 })
 export class ComposeComponent implements OnInit {
   message: string = ''
-  userActive: Users | undefined
+  userActive: string | undefined
 
   constructor(private husqTimelineService: HusqTimelineService, private router: Router, private activeUserService: UserActiveService) {
     this.userActive = this.activeUserService.getActiveUser();
@@ -26,7 +26,7 @@ export class ComposeComponent implements OnInit {
     if (this.message && this.userActive) {
       this.husqTimelineService.addHusq({
         id: uuidv4(),
-        userId: this.userActive.id,
+        userId: this.userActive,
         time: new Date(),
         message: this.message
       })

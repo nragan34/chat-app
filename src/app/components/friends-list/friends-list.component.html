@@ -8,25 +8,11 @@
 
 
     <div class="content-class">
-        <div *ngIf="!userFriends?.length">
-            <h1>You Have No Friends :(</h1>
-        </div>
-        <div *ngIf="userFriends?.length">
             <h1>Your Friends</h1>
-            <app-friend *ngFor="let userFriend of userFriends trackBy: trackById" [userFriendsObj]="userFriend">
-            </app-friend>
-        </div>
+            <app-friend *ngFor="let friend of friends; trackBy: trackById" [friendObj]="friend"></app-friend>
     </div>
 
 
     <div class="right-content-container">
-        <!-- <div *ngIf="users.length === 1">
-            <h1>We Ran Out Of Users...</h1>
-        </div>
-        <div *ngIf="users.length > 1">
-            <h1>Suggested Friends</h1>
-            <app-user *ngFor="let user of users; trackBy: trackByUserId" [userObj]="user"></app-user>
-        </div> -->
-    </div>
 
-</div>
+    </div>

@@ -4,3 +4,6 @@ export interface Husq {
     time: Date
     message: string
 }
+export interface HusqWithName extends Husq {
+    name?: string;
+}

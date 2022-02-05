@@ -12,13 +12,13 @@ import {HusqTimelineService} from "../../services/husq-timeline.service";
 export class HusqComponent implements OnInit {
   @Input() husqObj: Husq & Users | undefined
 
-  userActive: Users | undefined
+  userActive: string | undefined
   time: Date = new Date()
   tempReply: string | undefined
   reply: Array<string | undefined> = [];
 
   constructor(private husqTimelineService: HusqTimelineService, private userActiveService: UserActiveService) { 
-    this.userActiveService.activeUser$.subscribe(userId => this.userActive = userId)
+    this.userActive = this.userActiveService.getActiveUser();
   }
 
   ngOnInit(): void {
@@ -34,6 +34,7 @@ export class HusqComponent implements OnInit {
 
   removeHusq(): void {
     if (this.husqObj) {
+      console.log('removing husq.... ')
       this.husqTimelineService.removeHusq(this.husqObj.id)
     }
   }

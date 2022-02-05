@@ -1,7 +1,6 @@
 <div class="main-page-container">
 
   <div class="left-content-container">
-    <h1 style="text-align: center; padding-bottom: 8%;" *ngIf="userActive"> Hi {{userActive.name}} </h1>
     <i id="custom-fa" class="fa fa-comments"></i>
     <app-footer></app-footer>
   </div>
@@ -13,10 +12,8 @@
   </div>
 
   <div class="right-content-container">
-    <div *ngIf="userActive">
       <h1>Compose Your Chat</h1>
       <app-compose></app-compose>
-    </div>
   </div>
   
 </div>

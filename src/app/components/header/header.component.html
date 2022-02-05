@@ -9,15 +9,15 @@
             </div>
 
             <div *ngIf="userActive">
-                <li><a [routerLink]="['/friends', userActive.id]" routerLinkActive="active">Friends</a></li>
+                <li><a [routerLink]="['/friends', userActive]" routerLinkActive="active">Friends</a></li>
             </div>
 
             <div *ngIf="userActive">
-                <li><a [routerLink]="['/user-list', userActive.id]" routerLinkActive="active">Users</a></li>
+                <li><a [routerLink]="['/user-list', userActive]" routerLinkActive="active">Users</a></li>
             </div>
 
             <div *ngIf="userActive">
-                <li><a [routerLink]="['/profile', userActive.id]" routerLinkActive="active">Profile</a></li>
+                <li><a [routerLink]="['/profile', userActive]" routerLinkActive="active">Profile</a></li>
             </div>
 
             <div *ngIf="userActive">

@@ -1,19 +1,19 @@
 <!-- if not current user -->
-<div *ngIf="userFriendsObj" class="husq-card-container">
+<div *ngIf="friendObj" class="husq-card-container">
 
     <div class="husq-card-content">
 
         <div class="husq-card-profile">
             <div class="husq-card-profile-container">
                 <div class="husq-card-img">
-                    <img class="profile-avatar" src="https://avatars.dicebear.com/api/gridy/{{ userFriendsObj.friend.name }}.svg"
+                    <img class="profile-avatar" src="https://avatars.dicebear.com/api/gridy/{{ friendObj.name }}.svg"
                         alt="Avatar" />
                 </div>
                 <div class="husq-card-profile-content">
-                    <h3>{{ userFriendsObj.friend.name }}</h3>
+                    <h3>{{ friendObj?.name}}</h3>
                 </div>
             </div>
-            <button (click)="removeFriend()" class="husq-btn-delete">&times;</button>
+            <button (click)="removeFriend(friendObj.id)" class="husq-btn-delete">&times;</button>
         </div>
 
 
@@ -21,19 +21,19 @@
 
 
         <div class="husq-card-content-info">
-            <p>{{ userFriendsObj.friend.message }}</p>
+            <p>{{ friendObj.message }}</p>
             <p class="padding-top-medium">
-                <span>Location: </span>{{ userFriendsObj.friend.location }}
+                <span>Location: </span>{{ friendObj.location }}
             </p>
 
-            <p><span>Profile Activated: </span>
+            <!-- <p><span>Profile Activated: </span>
                 {{ time.toLocaleDateString() }}
-            </p>
+            </p> -->
         </div>
 
 
         <div style="float: right;" class="husq-card-action-no-flex">
-            <button (click)="routeToUsersProfile()">View Profile</button>
+            <button (click)="navigateToUser()">View Profile</button>
         </div>
 
 

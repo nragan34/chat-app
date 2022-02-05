@@ -13,8 +13,7 @@ import { AuthGuard } from './guard/auth.guard';
 
 
 const routes: Routes = [
-  { path: '', component: HusqListComponent, pathMatch: 'full', },
-
+  { path: '', component: HusqListComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'edit/:userId', component: HuskEditComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'friends/:userId', component: FriendsListComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'profile/:userId', component: ProfileComponent, pathMatch: 'full'},

@@ -9,7 +9,7 @@ import { UserActiveService } from 'src/app/services/user-active.service';
 })
 export class FooterComponent implements OnInit {
 
-  userActive: Users| undefined
+  userActive: string | undefined
   
   constructor(private userActiveService: UserActiveService) {
     this.userActiveService.activeUser$.subscribe(userId => this.userActive = userId)

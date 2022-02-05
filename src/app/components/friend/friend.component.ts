@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map, Subscription } from 'rxjs';
 import { UserFriends } from 'src/app/interfaces/userFriends';
 import { Users } from 'src/app/interfaces/users';
+import { FriendsService } from 'src/app/services/friends.service';
 import { UserActiveService } from 'src/app/services/user-active.service';
-import { UserFriendsService } from 'src/app/services/user-friends.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -17,32 +18,34 @@ import { UsersService } from 'src/app/services/users.service';
 //
 export class FriendComponent implements OnInit {
 
-  @Input() userFriendsObj: UserFriends | undefined;
+  @Input() friendObj: Users | undefined;
 
   userActive: Users| undefined
 
-  time: Date = new Date()
-
-  constructor(private usersService: UsersService, private userFriendsService: UserFriendsService, private router: Router, private userActiveService: UserActiveService) {
-    this.userActiveService.activeUser$.subscribe(userId => this.userActive = userId)
+  constructor(private friendService: FriendsService, private userActiveService: UserActiveService, private router: Router) {
+    const activeUserId = this.userActiveService.getActiveUser();
   }
 
   ngOnInit(): void {
   }
 
-  removeFriend(): void {
-    if (this.userFriendsObj && this.userActive) {
-      this.userFriendsService.removeFriend(this.userFriendsObj, this.userActive.id)
 
-      // cant user this becuase it messes profile up
-      // this.usersService.addUser(this.userFriendsObj.friend);
+  trackById(index: number, friend: any): number {
+    return friend.id;
+  }
+
+  removeFriend(friendId: string): void {
+    const activeUserId = this.userActiveService.getActiveUser();
+    if (activeUserId) {
+      this.friendService.removeFriend(activeUserId, friendId);
     }
   }
 
-  routeToUsersProfile(): void {
-    if (this.userFriendsObj) {
-      console.log('logging userfriendObj.friend.id....', this.userFriendsObj.friend.id)
-      this.router.navigate(['/profile', this.userFriendsObj.friend.id])
+
+  navigateToUser() {
+    const id = this.friendObj && this.friendObj.id;
+    if (id) {
+      this.router.navigate(['/profile', id]);
     }
   }
 

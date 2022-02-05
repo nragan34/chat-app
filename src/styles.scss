@@ -20,7 +20,7 @@ li {
     list-style: none;
 }
 span {
-    color: #4abb55;
+    color: #5d9163;
 }
 hr {
     height: 1px;
@@ -30,24 +30,22 @@ hr {
 }
 h1 {
     font-size: 2.5em;
-    color: #4abb55;
-    text-shadow: 0 5px 5px rgba(57, 200, 30, 0.3), 0 15px 20px rgba(57, 200, 30, 0.3);
-
+    color: #5d9163;
 }
 
 h2 {
     font-size: 2.2em;
     padding-top: 15%;
-    color: #4abb55;
+    color: #5d9163;
 }
 
 h3 {
     font-size: 1.8em;
-    color: #979797;
+    color: #76a87c;
 }
 p {
     font-size: 1.3em;
-    color: #c7c7c7;
+    color: #b9c2ba;
 }
 label {
     font-size: 1.3em;
@@ -223,7 +221,6 @@ textarea::placeholder {
     max-width: 100%;
     width: 900px;
     padding: 1% 5% 3% 5%;
-    color: rgb(221, 221, 221);
     margin: 0.5%;
     border-radius: 20px;
     border: #448d4b 0.1px solid;

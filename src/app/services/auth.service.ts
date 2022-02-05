@@ -33,7 +33,7 @@ export class AuthService {
 
             // set active user
             const activeUser = this.usersService.getUserById(this.userLoggingIn.id)
-            this.activeUser.setActiveUser(this.userLoggingIn)
+            this.activeUser.setActiveUser(this.userLoggingIn.id)
             
             return activeUser
         }

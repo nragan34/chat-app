@@ -10,7 +10,7 @@ import { UserActiveService } from 'src/app/services/user-active.service';
 
 // tells js we are allowed to use this header externally
 export class HeaderComponent implements OnInit {
-  userActive: Users | undefined
+  userActive: string | undefined
   AUTH_DATA = 'AUTH_DATA'
 
   constructor(private userActiveService: UserActiveService) {
