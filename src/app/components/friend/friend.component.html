@@ -32,7 +32,11 @@
         </div>
 
 
-        <div style="float: right;" class="husq-card-action-no-flex">
+        <div *ngIf='isPotential' style="float: right;" class="husq-card-action-no-flex">
+            <button (click)="addUsersFriend()">Add Friend</button>
+        </div>
+
+        <div *ngIf='!isPotential' style="float: right;" class="husq-card-action-no-flex">
             <button (click)="navigateToUser()">View Profile</button>
         </div>
 

@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { Users } from '../interfaces/users';
 import { AuthService } from '../services/auth.service';
+import { UserActiveService } from '../services/user-active.service';
 import { UsersService } from '../services/users.service';
 
 @Injectable({
@@ -17,24 +18,15 @@ export class AuthGuard implements CanActivate {
 
   activeUser: Users | undefined
 
-  constructor(private authService: AuthService, private router: Router, private userService: UsersService) {
+  constructor(private router: Router, private userActiveService: UserActiveService) {
 
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    const userId = localStorage.getItem('AUTH_DATA');
-    
-    if (userId) {
-        console.log('Getting user from localstorage')
-        this.activeUser = this.userService.getUserById(userId);
-        return true;
-      } else {
-        console.log('You are not authorized.')
-        this.router.navigate(['/auth/login'])
-        return false;
-      }
-    }
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.userActiveService.getActiveUser() ? true : this.router.navigate(['/auth/login']);
   }
+}
+

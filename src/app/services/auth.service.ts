@@ -19,10 +19,23 @@ export class AuthService {
     AUTH_DATA = "AUTH_DATA"
     userLoggingIn: Users | undefined
 
-    constructor(private usersService: UsersService, private activeUser: UserActiveService, private localStorageService: LocalStorageService) {
+    private readonly _activeUserSource = new BehaviorSubject<string | undefined>(undefined);
+  readonly activeUser$ = this._activeUserSource.asObservable();
 
+
+    constructor(private usersService: UsersService, private activeUser: UserActiveService, private localStorageService: LocalStorageService) {
+        const userActive = this.localStorageService.getItem(AUTH_DATA);
+        if(userActive) {
+            this._setActiveUser
+        }
     }
 
+    private _setActiveUser(userId: string | undefined): void {
+        this._activeUserSource.next(userId);
+        this.localStorageService.setItem(AUTH_DATA, userId);
+      }
+
+      
     login(email: string, password: string): Users | undefined {
         this.userLoggingIn = this.usersService.getUserByEmail(email);
 

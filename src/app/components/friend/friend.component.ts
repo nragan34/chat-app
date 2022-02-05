@@ -3,9 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map, Subscription } from 'rxjs';
 import { UserFriends } from 'src/app/interfaces/userFriends';
 import { Users } from 'src/app/interfaces/users';
+import { users } from 'src/app/seeds/users';
 import { FriendsService } from 'src/app/services/friends.service';
 import { UserActiveService } from 'src/app/services/user-active.service';
 import { UsersService } from 'src/app/services/users.service';
+
+
+
 
 @Component({
   selector: 'app-friend',
@@ -13,17 +17,15 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./friend.component.scss'],
 
 })
-
-// need list of user Ids the user is friends with
-//
 export class FriendComponent implements OnInit {
 
   @Input() friendObj: Users | undefined;
+  @Input() isPotential: boolean | undefined;
 
-  userActive: Users| undefined
+  activeUserId: string | undefined
 
-  constructor(private friendService: FriendsService, private userActiveService: UserActiveService, private router: Router) {
-    const activeUserId = this.userActiveService.getActiveUser();
+  constructor(private friendService: FriendsService, private userActiveService: UserActiveService, private router: Router, private usersService: UsersService) {
+    this.activeUserId = this.userActiveService.getActiveUser();
   }
 
   ngOnInit(): void {
@@ -41,7 +43,13 @@ export class FriendComponent implements OnInit {
     }
   }
 
-
+  // check to see if user friend exists
+  addUsersFriend(): void {
+    if (this.friendObj && this.activeUserId) {
+      this.friendService.addUserToFriendList(this.friendObj.id, this.activeUserId)
+    }
+  }
+  
   navigateToUser() {
     const id = this.friendObj && this.friendObj.id;
     if (id) {

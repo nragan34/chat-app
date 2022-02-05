@@ -14,5 +14,6 @@
 
 
     <div class="right-content-container">
-
+        <h1>User List</h1>
+        <app-friend *ngFor="let friend of potentialFriends; trackBy: trackById" [friendObj]="friend" [isPotential]="true"></app-friend>
     </div>

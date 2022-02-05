@@ -86,4 +86,16 @@ export class FriendsService {
     }
   }
 
+  addFriend(userId: string, friendId: string): void {
+    if (!this.getFriendsIdsByActiveUserId(userId).includes(friendId)) {
+      this._setFriends([
+        ...this.getFriends(),
+        {
+          id: uuidv4(),
+          pair: [userId, friendId]
+        }
+      ]);
+    }
+  }
+  
 }

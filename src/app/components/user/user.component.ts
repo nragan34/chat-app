@@ -57,7 +57,6 @@ export class UserComponent implements OnInit {
     if (this.userObj && this.userActive) {
       this.friendService.addUserToFriendList(this.userObj.id, this.userActive)
     }
-    
   }
 
 

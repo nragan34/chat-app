@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Subscription } from 'rxjs';
 import { users } from 'src/app/seeds/users';
+import { FriendsService } from 'src/app/services/friends.service';
 import { UsersService } from 'src/app/services/users.service';
 import { Users } from '../../interfaces/users'
 
@@ -14,10 +15,16 @@ export class UserListComponent implements OnInit {
 
   users$: Subscription
   users: Users[] = users
-  id: string = ''
-  profile: Users | undefined
 
-  constructor(private usersService: UsersService) {
+
+  constructor(private usersService: UsersService, private friendsService: FriendsService) {
+
+    //// GOAL:::::  if user in friendsList remove user from user list ////
+
+    // Get a list of users
+
+    // Get a list of friends
+    
     this.users$ = this.usersService.users$.subscribe
     (users => {
       this.users = users
