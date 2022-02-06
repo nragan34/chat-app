@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { map, Subscription } from 'rxjs';
+import { Config } from 'src/app/interfaces/config';
 import { News } from 'src/app/interfaces/news';
+import { ConfigService } from 'src/app/services/config/config.service';
 import { NewsTimelineService } from 'src/app/services/news-timeline.service';
 
 @Component({
@@ -10,33 +12,19 @@ import { NewsTimelineService } from 'src/app/services/news-timeline.service';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-  myNews$: Subscription
-  myNews: News[] | undefined
+  newsList: Config | undefined
 
-  @Input() newsObj: News | undefined
-
-  @Input() title: string = ''
-  @Input() article: string = ''
-
-  newTitle: string = ''
-  newArticle: string = ''
-
-
-  constructor(private newsTimelineService: NewsTimelineService, private router: Router) { 
-    this.myNews$ = this.newsTimelineService.myNews$.subscribe(myNews => {
-      this.myNews = myNews
-    })
-  }
-
-  ngOnInit(): void {
-  }
-
-  saveReply(): void {
-
-  }
-
-  onSubmit(): void {
+  constructor(private newsConfigService: ConfigService) {
     
+  }
+
+  ngOnInit() {
+    this.getNews();
+  }
+
+  getNews(): void {
+    this.newsConfigService.getConfig()
+      .subscribe(newsList => {this.newsList = newsList})
   }
 
 }

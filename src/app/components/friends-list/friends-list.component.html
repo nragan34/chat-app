@@ -8,12 +8,12 @@
 
 
     <div class="content-class">
-            <h1>Your Friends</h1>
-            <app-friend *ngFor="let friend of friends; trackBy: trackById" [friendObj]="friend"></app-friend>
+        <h1 >Your Friends List</h1>
+        <app-friend *ngFor="let friend of friends; trackBy: trackById" [friendObj]="friend"></app-friend>
     </div>
 
 
     <div class="right-content-container">
-        <h1>User List</h1>
+        <h1 >Users List</h1>
         <app-friend *ngFor="let friend of potentialFriends; trackBy: trackById" [friendObj]="friend" [isPotential]="true"></app-friend>
     </div>

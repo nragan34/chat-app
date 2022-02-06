@@ -15,17 +15,13 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 import { HusqListComponent } from './components/husq-list/husq-list.component';
 import { FriendComponent } from './components/friend/friend.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HusqTimelineService } from './services/husq-timeline.service';
 import { NewsTimelineComponent } from './components/news-list/news-timeline.component';
 import { ComposeComponent } from './components/compose/compose.component';
-import { NewsTimelineService } from './services/news-timeline.service';
-import { UsersService } from './services/users.service';
 import { UserAddComponent } from './components/user-add/user-add.component';
-import { UserListComponent } from './components/user-list/user-list.component';
-import { UserComponent } from './components/user/user.component';
 import { HuskEditComponent } from './components/husk-edit/husk-edit.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { AuthGuard } from './guard/auth.guard';
+import { ConfigComponent } from './components/config/config.component';
 
 @NgModule({
   declarations: [
@@ -43,10 +39,9 @@ import { AuthGuard } from './guard/auth.guard';
     NewsTimelineComponent,
     ComposeComponent,
     UserAddComponent,
-    UserListComponent,
-    UserComponent,
     HuskEditComponent,
-    AuthComponent
+    AuthComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,

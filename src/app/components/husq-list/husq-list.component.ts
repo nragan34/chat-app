@@ -24,7 +24,6 @@ export class HusqListComponent implements OnInit, OnDestroy {
     private friendService: FriendsService
     ) {
     const activeUserId = this.userActiveService.getActiveUser();
-    console.log('logging activeUserId... ', activeUserId);
     this.husqs$ = this.husqTimelineService.husqs$
     .pipe(
       map((husqs) => {

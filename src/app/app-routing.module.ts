@@ -6,7 +6,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ComposeComponent } from './components/compose/compose.component';
 import { HusqListComponent } from './components/husq-list/husq-list.component';
 import { UserAddComponent } from './components/user-add/user-add.component';
-import { UserListComponent } from './components/user-list/user-list.component';
 import { HuskEditComponent } from './components/husk-edit/husk-edit.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { AuthGuard } from './guard/auth.guard';

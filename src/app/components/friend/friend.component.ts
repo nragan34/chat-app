@@ -21,7 +21,7 @@ export class FriendComponent implements OnInit {
 
   activeUserId: string | undefined
 
-  constructor(private friendService: FriendsService, private userActiveService: UserActiveService, private router: Router, private usersService: UsersService) {
+  constructor(private friendService: FriendsService, private userActiveService: UserActiveService, private router: Router) {
     this.activeUserId = this.userActiveService.getActiveUser();
   }
 
