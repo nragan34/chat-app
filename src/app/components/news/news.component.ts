@@ -1,10 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Subscription } from 'rxjs';
-import { Config } from 'src/app/interfaces/config';
-import { News } from 'src/app/interfaces/news';
-import { ConfigService } from 'src/app/services/config/config.service';
-import { NewsTimelineService } from 'src/app/services/news-timeline.service';
+import { NewsConfig } from 'src/app/interfaces/news-config';
+import { NewsConfigService } from 'src/app/services/config/news-config.service';
+import { NewsOutletsComponent } from '../news-outlets/news-outlets.component';
 
 @Component({
   selector: 'app-news',
@@ -12,19 +11,26 @@ import { NewsTimelineService } from 'src/app/services/news-timeline.service';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-  newsList: Config | undefined
 
-  constructor(private newsConfigService: ConfigService) {
-    
+  newsList: NewsConfig | undefined
+  newsSubscription: Subscription | undefined
+
+  constructor(private newsConfigService: NewsConfigService) {
+    console.log('logging newsList', this.newsList)
   }
 
+
+  title = 'Component Interaction';
+  Counter = 5;
+ 
+  countChangedHandler(count: number) {
+    this.Counter = count;
+    console.log(count);
+  }
+
+  
   ngOnInit() {
-    this.getNews();
-  }
-
-  getNews(): void {
-    this.newsConfigService.getConfig()
-      .subscribe(newsList => {this.newsList = newsList})
+    
   }
 
 }

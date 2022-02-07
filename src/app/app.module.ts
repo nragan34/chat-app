@@ -21,7 +21,8 @@ import { UserAddComponent } from './components/user-add/user-add.component';
 import { HuskEditComponent } from './components/husk-edit/husk-edit.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { AuthGuard } from './guard/auth.guard';
-import { ConfigComponent } from './components/config/config.component';
+import { NewsConfigComponent } from './components/config/news-config.component';
+import { NewsOutletsComponent } from './components/news-outlets/news-outlets.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ConfigComponent } from './components/config/config.component';
     UserAddComponent,
     HuskEditComponent,
     AuthComponent,
-    ConfigComponent
+    NewsConfigComponent,
+    NewsOutletsComponent
   ],
   imports: [
     BrowserModule,

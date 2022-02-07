@@ -16,10 +16,10 @@ export class FriendsListComponent implements OnInit {
   friends: (Users | undefined)[] | undefined;
   potentialFriends: (Users | undefined)[] | undefined;
 
-  userActive: Users| undefined
+  userActive: Users | undefined
 
   time: Date = new Date()
-  
+
   constructor(
     private userService: UsersService,
     private activeUserService: UserActiveService,
@@ -30,37 +30,32 @@ export class FriendsListComponent implements OnInit {
     // loop through friends subscription
     this.friends$ = this.friendsService.friends$
       .pipe(
-        map((allFriends) => {
-          console.log('logging all friends... ', allFriends)
-          const userFriends = this.friendsService.getFriendsIdsByActiveUserId(activeUserId);
-          const friends = userFriends.map((friendId) => this.userService.getUserById(friendId));
-          const potentialFriends = this.userService.getUsers().filter((user) => activeUserId !== user.id && !userFriends.includes(user.id));
+        map(() => {
+          // get userFriendId
+          const userFriendsId = this.friendsService.getFriendsIdsByActiveUserId(activeUserId);
+          // getUserById
+          const friends = userFriendsId.map((friendId) => this.userService.getUserById(friendId));
+          // getAllUsers and filter
+          // if activeUserId !== userId and userFriendId is not any
+          // of the usrs id
+          const potentialFriends = this.userService.getUsers().filter((user) => activeUserId !== user.id && !userFriendsId.includes(user.id));
+          // return values of 
+          // friends and potentialFriends
           return {
             friends,
             potentialFriends
           };
         })
       )
+      // subscribe friends and potentialFriends
+      // this passes through all values for both
       .subscribe((users) => {
         this.friends = users.friends;
         this.potentialFriends = users.potentialFriends;
       })
-      // .pipe(
-      //   map((friends) => {
-      //     return friends.reduce<Users[]>((acc, cur) => {
-      //       if (!acc.find((user) => cur.pair.includes(user.id))) {
-      //         const friendId = cur.pair[0] === activeUserId ? cur.pair[1] : cur.pair[0];
-      //         const user = this.userService.getUserById(friendId);
-      //         if (user) {
-      //           acc.push(user);
-      //         }
-      //       }
-      //       return acc;
-      //     }, []);
-      //   })
-      // )
-      // .subscribe((friends) => (this.friends = friends));
   }
+
+
 
   ngOnInit(): void {
   }
@@ -73,5 +68,5 @@ export class FriendsListComponent implements OnInit {
   trackById(index: number, friend: any): number {
     return friend.id;
   }
-  
+
 }
