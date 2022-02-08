@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewsTimelineComponent } from './news-timeline.component';
+import { NewsManagerComponent } from './news-manager.component';
 
-describe('NewsTimelineComponent', () => {
-  let component: NewsTimelineComponent;
-  let fixture: ComponentFixture<NewsTimelineComponent>;
+describe('NewsManagerComponent', () => {
+  let component: NewsManagerComponent;
+  let fixture: ComponentFixture<NewsManagerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewsTimelineComponent ]
+      declarations: [ NewsManagerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewsTimelineComponent);
+    fixture = TestBed.createComponent(NewsManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

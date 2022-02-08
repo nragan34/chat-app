@@ -2,8 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Subscription } from 'rxjs';
 import { NewsConfig } from 'src/app/interfaces/news-config';
-import { NewsConfigService } from 'src/app/services/config/news-config.service';
-import { NewsOutletsComponent } from '../news-outlets/news-outlets.component';
+import { NewsConfigService } from 'src/app/services/news-config/news-config.service';
 
 @Component({
   selector: 'app-news',
@@ -12,25 +11,29 @@ import { NewsOutletsComponent } from '../news-outlets/news-outlets.component';
 })
 export class NewsComponent implements OnInit {
 
-  newsList: NewsConfig | undefined
-  newsSubscription: Subscription | undefined
+  // news$: Subscription
+  @Input() newsList: NewsConfig | undefined
 
+  Object = Object
+  newsOptions: {}
+  url: string | undefined
+  
   constructor(private newsConfigService: NewsConfigService) {
-    console.log('logging newsList', this.newsList)
+    this.newsOptions = newsConfigService.newsOptions;
+
+    // load all news
   }
-
-
-  title = 'Component Interaction';
-  Counter = 5;
- 
-  countChangedHandler(count: number) {
-    this.Counter = count;
-    console.log(count);
-  }
-
   
   ngOnInit() {
-    
+  }
+
+  // load specific news content
+  subscribeToNewsOutlet(url: string, key: string) {
+    console.log('this is the key.... ',key)
+
+    this.newsConfigService.getConfig(url, key)
+      .subscribe(newsList => { this.newsList = newsList })
+
   }
 
 }

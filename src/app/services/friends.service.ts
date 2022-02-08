@@ -31,11 +31,6 @@ export class FriendsService {
     this.localStorageService.setItem(AUTH_DATA, friends);
   }
 
-  _setFriendsPublic(friends: Friend[]): void {
-    this._friendsSource.next(friends);
-    this.localStorageService.setItem(AUTH_DATA, friends);
-  }
-
   getFriends(): Friend[] {
     return this._friendsSource.getValue();
   }

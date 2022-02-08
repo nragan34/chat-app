@@ -1,42 +1,82 @@
 <!--https://newsapi.org/docs/client-libraries/node-js-->
 <!--https://newsapi.org/-->
 <!--https://angular.io/guide/http-->
-<div *ngFor="let item of newsList?.articles" class="husq-card-container news-content">
-  <div class="husq-card-content">
-    <div class="husq-card-profile">
-      <div style="margin: 2% 0% 0% 0%; padding: 0%;" class="husq-card-profile-container">
-        <div class="husq-card-profile-content">
 
-          <div *ngIf="newsList">
-            <div class="news-container">
-              <div class="news-container-img">
-                <img style="width: 250px; height: 200px; filter: brightness(60%); object-fit: cover;"
-                  src="{{item.urlToImage}}">
+<!-- This page is for news you are subscribed to to show-->
+
+<div class="two-column-container">
+
+  <div class="left-content-container auto-container-left">
+    <h1>Your News Subscriptions</h1>
+    <p><a routerLink="/manage-news"> Manage Your News Subscriptions -> </a></p>
+
+    <div class="husq-card-container news-content" *ngFor="let key of Object.keys(newsOptions)">
+      <div class="husq-card-content">
+          <div class="husq-card-profile" >
+              <div style="margin: 2% 0% 0% 0%; padding: 0%;" class="husq-card-profile-container">
+                  <div class="husq-card-profile-content">
+                      <div class="news-headline" >
+                          <p><span class="news-span">{{newsOptions[key][0]}}</span></p>
+                          <p>{{newsOptions[key][2]}}</p>
+                          <div style="float: right;" class="husq-card-action-no-flex">
+                              <a (click)="subscribeToNewsOutlet(newsOptions[key][1], key)" target="_blank"> <button>Read News</button></a>
+                          </div>
+                      </div>
+  
+                  </div>
               </div>
-              <div class="news-headline">
-                <p><span class="news-span">{{item.title}}</span></p>
-                <p>Source: {{item.source.name}}</p>
+          </div>
+      </div>
+  </div>
+
+
+  </div>
+
+  <div class="right-content-container auto-container-right">
+    
+    <div *ngIf="newsList">
+      <h1>News Feed</h1>
+    </div>
+
+    <div *ngIf="!newsList">
+      <h1>Find Something to Read!</h1>
+    </div>
+
+    <div *ngFor="let item of newsList?.articles" class="husq-card-container news-content">
+      <div class="husq-card-content">
+        <div class="husq-card-profile">
+          <div style="margin: 2% 0% 0% 0%; padding: 0%;" class="husq-card-profile-container">
+            <div class="husq-card-profile-content">
+
+              <div *ngIf="newsList">
+                <div class="news-container">
+                  <div class="news-container-img">
+                    <img style="width: 250px; height: 200px; filter: brightness(60%); object-fit: cover;"
+                      src="{{item.urlToImage}}">
+                  </div>
+                  <div class="news-headline">
+                    <p><span class="news-span">{{item.title}}</span></p>
+                    <p>Source: {{item.source.name}}</p>
+                  </div>
+                </div>
+
+                <hr style="margin-top: 3%; margin-bottom: 3%;">
+
+                <p style="margin: 0%;">{{item.description}}</p>
+
+                <div class="husq-card-action-no-flex-full-width">
+                  <a href="{{item.url}}" target="_blank"> <button>Checkout This Article!</button></a>
+
+                  
+                </div>
               </div>
-            </div>
-
-            <hr style="margin-top: 3%; margin-bottom: 3%;">
-
-            <p style="margin: 0%;">{{item.description}}</p>
-
-            <div class="husq-card-action-no-flex-full-width">
-              <a href="{{item.url}}" target="_blank"> <button>Checkout This Article!</button></a>
             </div>
           </div>
-
-          <pre>{{item | json}}</pre>
         </div>
       </div>
     </div>
+
+
   </div>
+
 </div>
-
-
-<div>
-</div>
-
-<app-news-outlets [count]=Counter (countChanged)="countChangedHandler($event)"></app-news-outlets>

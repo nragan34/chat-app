@@ -1,4 +1,5 @@
 export interface NewsConfig {
+    id: string,
     articles: [
         {
             source: {
