@@ -7,6 +7,11 @@ import { LocalStorageService } from '../local-storage.service';
 import { v4 as uuidv4 } from "uuid";
 import { stringify } from 'querystring';
 
+
+/**
+ * This component is to manage api calls for news sources
+ */
+
 const AUTH_DATA = 'newsSubscriptions'
 
 @Injectable({
@@ -24,6 +29,7 @@ export class NewsConfigService {
   newsOptions = {
     everythingApple: ['Apple News', 'everything?q=apple&from=2022-02-05&to=2022-02-05&sortBy=popularity&',
       'All articles mentioning Apple from yesterday, sorted by popular publishers first'],
+    everythingTesla: ['Tesla News', 'everything?q=tesla&from=2022-01-08&sortBy=publishedAt&', 'All articles about Tesla from the last month, sorted by recent first'],
     topBusinessUs: ['U.S. Business News', 'top-headlines?country=us&category=business&', 'Top business headlines in the US right now'],
     techCrunch: ['Tech Crunch News', 'top-headlines?sources=techcrunch&', 'Top headlines from TechCrunch right now'],
     wallStreet: ['Wall Street News', 'everything?domains=wsj.com&', 'All articles published by the Wall Street Journal in the last 6 months, sorted by recent first']

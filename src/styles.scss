@@ -15,6 +15,7 @@ body {
 }
 a {
     text-decoration: none;
+    color: rgb(0, 89, 255);
 }
 li {
     list-style: none;
@@ -244,7 +245,7 @@ textarea::placeholder {
 }
 
 .left-content-container h1 {
-    margin-bottom: 13.4%;
+    margin-bottom: 8%;
 }
 
 .right-content-container {
@@ -261,7 +262,7 @@ textarea::placeholder {
 }
 
 .right-content-container h1 {
-    margin-bottom: 13.4%;
+    margin-bottom: 8%;
 }
 
 .right-content-container::-webkit-scrollbar {
@@ -738,7 +739,7 @@ footer {
         float: left;
     }
     .two-column-container h1 {
-        padding-top: 20%;
+        padding-top: 10%;
     }
     .auto-container-right {
         width: 100% !important;
