@@ -29,7 +29,7 @@ export class NewsComponent implements OnInit {
 
   // load specific news content
   subscribeToNewsOutlet(url: string, key: string) {
-    console.log('this is the key.... ',key)
+    console.log('this is the key.... ', key)
 
     this.newsConfigService.getConfig(url, key)
       .subscribe(newsList => { this.newsList = newsList })

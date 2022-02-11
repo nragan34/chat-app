@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Husq } from 'src/app/interfaces/husq';
 import { Users } from 'src/app/interfaces/users';
+import { LikeService } from 'src/app/services/like.service';
 import { UserActiveService } from 'src/app/services/user-active.service';
 import {HusqTimelineService} from "../../services/husq-timeline.service";
 
@@ -22,7 +23,7 @@ export class HusqComponent implements OnInit {
   replyCount: number | undefined;
 
 
-  constructor(private husqTimelineService: HusqTimelineService, private userActiveService: UserActiveService, private router: Router) { 
+  constructor(private husqTimelineService: HusqTimelineService, private userActiveService: UserActiveService, private router: Router, private likesService: LikeService) { 
     this.userActive = this.userActiveService.getActiveUser();
     this.theRoute = router.url;
     // console.log('router url, ', this.theRoute);
@@ -46,9 +47,9 @@ export class HusqComponent implements OnInit {
   }
 
   viewHusq() {
-    // get husq by id
-    const husqObjId = this.husqTimelineService.getHusqById(this.husqObj?.id);
-    // console.log(husqObjId);
+    if (this.husqObj) {
+      this.router.navigate(['/husq', this.husqObj.id]);
+    }
   }
 
   viewHusqComment() {
@@ -71,5 +72,10 @@ export class HusqComponent implements OnInit {
     }
   }
 
-  
+  addLike(): void {
+    if (this.husqObj && this.userActive) {
+      this.likesService.addLike(this.husqObj.id, this.userActive);
+    }
+  }
+
 }

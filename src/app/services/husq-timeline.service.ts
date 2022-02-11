@@ -41,7 +41,7 @@ export class HusqTimelineService {
     this._setHusqs(husqs);
   }
 
-  getHusqById(id: string | undefined): Husq | undefined {
+  getHusqById(id: string): Husq | undefined {
     return this.getHusq().find((husq) => husq.id === id);
   }
 
@@ -49,7 +49,7 @@ export class HusqTimelineService {
     return this.getHusq().filter((husq) => husq.userId === userId);
   }
 
-  getHusqReplies(id: string | undefined): Husq[] {
+  getHusqReplies(id: string): Husq[] {
     return this.getHusq().filter((husq) => husq.repliesTo === id);
   }
 
