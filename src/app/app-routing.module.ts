@@ -11,10 +11,12 @@ import { AuthComponent } from './components/auth/auth.component';
 import { AuthGuard } from './guard/auth.guard';
 import { NewsComponent } from './components/news/news.component';
 import { NewsManagerComponent } from './components/news-manager/news-manager.component';
+import { HusqViewComponent } from './components/husq-view/husq-view.component';
 
 
 const routes: Routes = [
   { path: '', component: HusqListComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+  { path: 'husq/:husqId', component: HusqViewComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'edit/:userId', component: HuskEditComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'friends/:userId', component: FriendsListComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'profile/:userId', component: ProfileComponent, pathMatch: 'full'},

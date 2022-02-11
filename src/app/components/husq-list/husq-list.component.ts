@@ -28,16 +28,14 @@ export class HusqListComponent implements OnInit, OnDestroy {
     .pipe(
       map((husqs) => {
         const friends = this.friendService.getFriendsIdsByActiveUserId(activeUserId);
-        console.log('loging friends.... ', friends)
-        return husqs.filter((husq) => friends.includes(husq.userId) || husq.userId === activeUserId);
-      }),
-      map((husqs) => {
-        return husqs.map((husq) => {
-          console.log('... husqs => ', husq)
-          const user = this.userService.getUserById(husq.userId);
-          return { ...husq, name: user?.name };
-        });
+        return husqs.filter((husq) => !husq.repliesTo && (friends.includes(husq.userId) || husq.userId === activeUserId))
       })
+      // map((husqs) => {
+      //   return husqs.map((husq) => {
+      //     const user = this.userService.getUserById(husq.userId);
+      //     return { ...husq, name: user?.name };
+      //   });
+      // })
     )
       .subscribe(husq => this.husqs = husq)
   }

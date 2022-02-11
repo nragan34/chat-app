@@ -1,0 +1,27 @@
+<div class="leader">
+  <div class="main-page-container">
+
+    <div class="left-content-container">
+      <i id="custom-fa" class="fa fa-comments"></i>
+      <app-footer></app-footer>
+    </div>
+
+    <div class="content-class">
+
+      <!-- Original Post -->
+      <h1>Original Post</h1>
+      <app-husq [husqObj]="husq"></app-husq>
+
+      <br>
+      <br>
+
+      <!-- Replies to husq -->
+      <h1>Comments</h1>
+      <app-husq *ngFor="let reply of getReplies(husq?.id); trackBy: trackById" [husqObj]="reply"></app-husq>
+    </div>
+
+    <div class="right-content-container">
+
+    </div>
+
+  </div>

@@ -22,6 +22,8 @@ import { AuthComponent } from './components/auth/auth.component';
 import { AuthGuard } from './guard/auth.guard';
 import { NewsConfigComponent } from './components/config/news-config.component';
 import { NewsManagerComponent } from './components/news-manager/news-manager.component';
+import { HusqViewComponent } from './components/husq-view/husq-view.component';
+import { UsernamePipe } from './pipes/username.pipe';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { NewsManagerComponent } from './components/news-manager/news-manager.com
     HuskEditComponent,
     AuthComponent,
     NewsConfigComponent,
-    NewsManagerComponent
+    NewsManagerComponent,
+    HusqViewComponent,
+    UsernamePipe
   ],
   imports: [
     BrowserModule,
