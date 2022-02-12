@@ -1,6 +1,4 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { map, Subscription } from 'rxjs';
 import { NewsConfig } from 'src/app/interfaces/news-config';
 import { NewsConfigService } from 'src/app/services/news-config/news-config.service';
 
@@ -26,7 +24,7 @@ export class NewsComponent implements OnInit {
   }
 
   // load specific news content
-  subscribeToNewsOutlet(url: string, key: string) {
+  readNewsOutlet(url: string, key: string) {
     this.newsConfigService.getConfig(url, key)
       .subscribe(newsList => { this.newsList = newsList })
   }

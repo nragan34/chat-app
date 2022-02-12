@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
 import { NewsConfig } from 'src/app/interfaces/news-config';
 import { LocalStorageService } from '../local-storage.service';
 import { v4 as uuidv4 } from "uuid";
 import { stringify } from 'querystring';
-
 
 /**
  * This component is to manage api calls for news sources
@@ -25,8 +24,16 @@ export class NewsConfigService {
 
   // api stuff
   baseUrl = 'https://newsapi.org/v2/';
-
   apiKey = 'apiKey=b07f2494b86346c6b20a88ebe75babca';
+
+  // news params
+  // see how you can use this to get urls
+  newsParams = new HttpParams()
+    .set('apple', 'everything?q=apple&from=2022-02-05&to=2022-02-05&sortBy=popularity&')
+    .set('tesla', 'everything?q=tesla&from=2022-02-08&sortBy=publishedAt&')
+    .set('business', 'top-headlines?country=us&category=business&')
+    .set('tech', 'top-headlines?sources=techcrunch&')
+    .set('wallstreet', 'everything?domains=wsj.com&')
 
   // news options object
   newsOptions = {
@@ -34,7 +41,7 @@ export class NewsConfigService {
       'All articles mentioning Apple from yesterday, sorted by popular publishers first'],
     everythingTesla: ['Tesla News', 'everything?q=tesla&from=2022-02-08&sortBy=publishedAt&', 'All articles about Tesla from the last month, sorted by recent first'],
     topBusinessUs: ['U.S. Business News', 'top-headlines?country=us&category=business&', 'Top business headlines in the US right now'],
-    techCrunch: ['Tech Crunch News', 'top-headlines?sources=techcrunch&', 'Top headlines from TechCrunch right now'],
+    techCrunch: ['Tech Crunch News', 'top-headlines?sources=techcrunch&','Top headlines from TechCrunch right now'],
     wallStreet: ['Wall Street News', 'everything?domains=wsj.com&', 'All articles published by the Wall Street Journal in the last 6 months, sorted by recent first']
   }
 
@@ -65,32 +72,30 @@ export class NewsConfigService {
     this._setNews(addNews);
   }
 
-
   // When user subscribes
-  // set value into NewsConfig
-  // grab id
+  // set value to NewsConfig
+  // set id
   // use id to call http get
   getConfig(url: string | undefined, key: string) {
     // build url 
-    const getUrl = this.baseUrl + url + this.apiKey
-    console.log('logging the url and key ', url, key)
-    return this.http.get<NewsConfig>(getUrl)
+    const fullUrl = `${this.baseUrl}` + url + `${this.apiKey}`
+    return this.http.get<NewsConfig>(fullUrl)
       .pipe(
+        // retry get request 3 times
         retry(3),
         map(news => {
-          console.log('logging news... ', news)
-          const newsid = uuidv4();
-          const newsArticles = news.articles
           this._setNews([...this.getNews(), {
             id: uuidv4(),
-            articles: newsArticles
+            articles: news.articles
           }])
           return news
         }),
+        // catch error if get request fails
         catchError(this.handleError),
       )
   }
 
+  // get configuration response
   getConfigResponse(): Observable<HttpResponse<NewsConfig>> {
     return this.http.get<NewsConfig>(
       this.configUrl, { observe: 'response' });

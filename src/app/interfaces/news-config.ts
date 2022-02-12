@@ -14,5 +14,6 @@ export interface NewsConfig {
             publishedAt: string,
             content: string
         }
-    ]
+    ],
+    pair: [string, string]
 }
