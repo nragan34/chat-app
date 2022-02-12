@@ -22,11 +22,15 @@ export class HusqViewComponent implements OnInit {
   ) {
 
     this.activeRoute.paramMap.subscribe((params) => {
+      // get url param
       const husqId = params.get('husqId');
       if (husqId) {
+        // get individual husq by id
         const husq = this.timelineService.getHusqById(husqId);
         if (husq) {
+          // get user by husq.userId
           const user = this.userService.getUserById(husq.userId);
+          // create husq object, spreading husq properties, setting husq.name property
           this.husq = {
             ...husq,
             name: user?.name
@@ -40,16 +44,18 @@ export class HusqViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('logging husq', this.husq)
   }
 
   // recursion through replies
   getReplies(id: string | undefined): HusqWithName[] {
 
-    this.recursiveGetReplies();
+    // this.recursiveGetReplies();
     if (!id || !this.husq) return [];
 
     if (this.husq) {
       const rawReplies = this.timelineService.getHusqReplies(id);
+      console.log('this is rawReplies... ', rawReplies)
       return rawReplies.map((reply) => ({
         ...reply,
         name: this.userService.getUserById(reply.userId)?.name
@@ -59,12 +65,12 @@ export class HusqViewComponent implements OnInit {
     return [];
   }
 
-  recursiveGetReplies() {
-    const husq = []
-    const replies = []
+  // recursiveGetReplies() {
+  //   const husq = []
+  //   const replies = []
 
-    console.log('clicked... ')
-  }
+  //   console.log('clicked... ')
+  // }
 
   getRepliesRecurse() {
 

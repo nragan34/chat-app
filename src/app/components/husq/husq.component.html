@@ -8,7 +8,7 @@
                 </div>
                 <div class="husq-card-profile-content">
                     <h3>{{ husqObj.id | username }}</h3>
-                    <p><span >Profile Activated: </span> {{ husqObj.time | date: "MMM dd, YYYY h:mm a" }}</p>
+                    <p><span>Profile Activated: </span> {{ husqObj.time | date: "MMM dd, YYYY h:mm a" }}</p>
                 </div>
             </div>
 
@@ -17,22 +17,29 @@
             </div>
         </div>
 
-        <p class="husq-card-content-info">{{ husqObj.message }}</p>
-        <div style="float: right;" class="husq-card-action husq-card-content-info">
-            <!-- <input [(ngModel)]="tempReply" type="text" placeholder="Reply to {{ husqObj.userId }}" class="husq-input"> -->
+        <p style="padding-left: 12%;" class="husq-card-content-info">{{ husqObj.message }}</p>
+        <!-- <input [(ngModel)]="tempReply" type="text" placeholder="Reply to {{ husqObj.userId }}" class="husq-input"> -->
 
 
-            <div>
-                <span (click)="viewHusqComment()" style="width: 100%;" *ngIf="replyCount" class="husq-comment-count">{{ replyCount }} comment{{replyCount > 1 ? 's' : ''}}</span>
-            </div>
-            
+        <div>
 
-            <app-like-button (likeEvent)="addLike()"></app-like-button>
+            <div style="float: right;" class="husq-card-action">
+                <div>
+                    <app-like-button (likeEvent)="addLike()"></app-like-button>
+                </div>
+                <div>
+                    <span *ngIf="countLikes()" class="husq-count">{{ countLikes() }} shucks</span>
+                </div>
+                <div>
+                    <div>
+                        <button (click)="viewHusqComment()" *ngIf="replyCount"
+                            class="husq-button">{{ replyCount }} comment{{replyCount > 1 ? 's' : ''}}</button>
+                    </div>
+                </div>
 
-            <div>
-                <button (click)="replyToHusq()" class="husq-button">View Comments</button>
             </div>
 
         </div>
+
     </div>
 </div>

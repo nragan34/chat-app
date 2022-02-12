@@ -5,7 +5,7 @@ import { initialLikes } from '../seeds/likes';
 import { LocalStorageService } from './local-storage.service';
 import { v4 as uuidv4 } from 'uuid';
 
-const AUTH_DATA = 'likes'
+const STORAGE_KEY = 'likes'
 
 @Injectable({
   providedIn: 'root'
@@ -15,17 +15,18 @@ export class LikeService {
   readonly likes$ = this._likesSource.asObservable();
 
   constructor(private localStorageService: LocalStorageService) {
-    const likes = this.localStorageService.getItem(AUTH_DATA);
+    const likes = this.localStorageService.getItem(STORAGE_KEY);
     if (likes?.length) {
-      this._setLikes(likes);
+      this._setLikes(likes.map((like) => ({ ...like, likes: new Set(like.likes) })));
     } else {
       this._setLikes(initialLikes);
     }
   }
 
+
   private _setLikes(likes: Likes[]): void {
     this._likesSource.next(likes);
-    this.localStorageService.setItem(AUTH_DATA, likes);
+    this.localStorageService.setItem(STORAGE_KEY, likes);
   }
 
   getLikes(): Likes[] {
@@ -52,5 +53,10 @@ export class LikeService {
       ]);
     }
   }
+
+  getLikeByHusqId(husqId: string): Likes | undefined {
+    return this.getLikes().find((like) => like.husqId === husqId);
+  }
+
 
 }

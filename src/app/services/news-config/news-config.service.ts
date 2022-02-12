@@ -12,7 +12,7 @@ import { stringify } from 'querystring';
  * This component is to manage api calls for news sources
  */
 
-const AUTH_DATA = 'newsSubscriptions'
+const STORAGE_KEY = 'newsSubscriptions'
 
 @Injectable({
   providedIn: 'root'
@@ -23,20 +23,23 @@ export class NewsConfigService {
 
   configUrl = '';
 
-  // configUrl = '';
+  // api stuff
   baseUrl = 'https://newsapi.org/v2/';
+
   apiKey = 'apiKey=b07f2494b86346c6b20a88ebe75babca';
+
+  // news options object
   newsOptions = {
     everythingApple: ['Apple News', 'everything?q=apple&from=2022-02-05&to=2022-02-05&sortBy=popularity&',
       'All articles mentioning Apple from yesterday, sorted by popular publishers first'],
-    everythingTesla: ['Tesla News', 'everything?q=tesla&from=2022-01-08&sortBy=publishedAt&', 'All articles about Tesla from the last month, sorted by recent first'],
+    everythingTesla: ['Tesla News', 'everything?q=tesla&from=2022-02-08&sortBy=publishedAt&', 'All articles about Tesla from the last month, sorted by recent first'],
     topBusinessUs: ['U.S. Business News', 'top-headlines?country=us&category=business&', 'Top business headlines in the US right now'],
     techCrunch: ['Tech Crunch News', 'top-headlines?sources=techcrunch&', 'Top headlines from TechCrunch right now'],
     wallStreet: ['Wall Street News', 'everything?domains=wsj.com&', 'All articles published by the Wall Street Journal in the last 6 months, sorted by recent first']
   }
 
   constructor(private http: HttpClient, private localStorageService: LocalStorageService) {
-    const news = this.localStorageService.getItem(AUTH_DATA);
+    const news = this.localStorageService.getItem(STORAGE_KEY);
     if (news?.length) {
       this._setNews(news)
     } else {
@@ -51,7 +54,7 @@ export class NewsConfigService {
   // set news article
   private _setNews(news: NewsConfig[] | any): void {
     this._newsSource.next(news);
-    this.localStorageService.setItem(AUTH_DATA, news);
+    this.localStorageService.setItem(STORAGE_KEY, news);
   }
 
   // add news article
@@ -63,26 +66,28 @@ export class NewsConfigService {
   }
 
 
-  // When user subscribes trigger half of this to 
+  // When user subscribes
   // set value into NewsConfig
-  // triger the get method by grabbing id
-  // use id to ccall http get
+  // grab id
+  // use id to call http get
   getConfig(url: string | undefined, key: string) {
+    // build url 
     const getUrl = this.baseUrl + url + this.apiKey
-    // const newsOptionValue = Object.keys(this.newsOptions[key]);
+    console.log('logging the url and key ', url, key)
     return this.http.get<NewsConfig>(getUrl)
       .pipe(
+        retry(3),
         map(news => {
-          const newsid = news.id = uuidv4();
-          const newsArticles = news.articles = news.articles
+          console.log('logging news... ', news)
+          const newsid = uuidv4();
+          const newsArticles = news.articles
           this._setNews([...this.getNews(), {
             id: uuidv4(),
             articles: newsArticles
-        }])
+          }])
           return news
-          retry(3),
-          catchError(this.handleError)
-        })
+        }),
+        catchError(this.handleError),
       )
   }
 

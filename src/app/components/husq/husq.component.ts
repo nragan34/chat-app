@@ -20,21 +20,20 @@ export class HusqComponent implements OnInit {
   reply: Array<string | undefined> = [];
 
   theRoute: string;
+
   replyCount: number | undefined;
 
 
   constructor(private husqTimelineService: HusqTimelineService, private userActiveService: UserActiveService, private router: Router, private likesService: LikeService) { 
     this.userActive = this.userActiveService.getActiveUser();
     this.theRoute = router.url;
-    // console.log('router url, ', this.theRoute);
   }
 
   ngOnInit(): void {
     this.husqTimelineService.husqs$.subscribe(() => {
       if (this.husqObj) {
+        // gets the total number of husq replies
         this.replyCount = this.husqTimelineService.getHusqReplies(this.husqObj.id).length;
-
-        // console.log('logging husqObj length.... ',this.replyCount)
       }
     });
   }
@@ -60,6 +59,7 @@ export class HusqComponent implements OnInit {
 
   replyToHusq() {
     if (this.husqObj) {
+      // routes to... /husq/id
       this.router.navigate(['/husq', this.husqObj.id]);
     }
   }
@@ -77,5 +77,14 @@ export class HusqComponent implements OnInit {
       this.likesService.addLike(this.husqObj.id, this.userActive);
     }
   }
+
+  countLikes(): number | undefined {
+    let like;
+    if (this.husqObj) {
+      like = this.likesService.getLikeByHusqId(this.husqObj.id);
+    }
+    return like?.likes.size;
+  }
+
 
 }

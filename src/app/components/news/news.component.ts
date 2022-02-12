@@ -11,17 +11,15 @@ import { NewsConfigService } from 'src/app/services/news-config/news-config.serv
 })
 export class NewsComponent implements OnInit {
 
-  // news$: Subscription
   @Input() newsList: NewsConfig | undefined
 
-  Object = Object
-  newsOptions: {}
+  Object = Object // access news object list
+  newsOptions: {} // empty object
   url: string | undefined
   
   constructor(private newsConfigService: NewsConfigService) {
+    // get news object
     this.newsOptions = newsConfigService.newsOptions;
-
-    // load all news
   }
   
   ngOnInit() {
@@ -29,11 +27,8 @@ export class NewsComponent implements OnInit {
 
   // load specific news content
   subscribeToNewsOutlet(url: string, key: string) {
-    console.log('this is the key.... ', key)
-
     this.newsConfigService.getConfig(url, key)
       .subscribe(newsList => { this.newsList = newsList })
-
   }
 
 }

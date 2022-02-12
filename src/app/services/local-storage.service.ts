@@ -8,8 +8,12 @@ export class LocalStorageService {
   constructor() {}
 
   setItem(key: string, value: any): void {
-    localStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(
+      key,
+      JSON.stringify(value, (key, value) => (value instanceof Set ? [...value] : value))
+    );
   }
+
 
   getItem(key: string): any {
     const item = localStorage.getItem(key);
