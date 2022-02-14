@@ -5,9 +5,6 @@ import { FriendsService } from 'src/app/services/friends.service';
 import { UserActiveService } from 'src/app/services/user-active.service';
 import { UsersService } from 'src/app/services/users.service';
 
-
-
-
 @Component({
   selector: 'app-friend',
   templateUrl: './friend.component.html',
@@ -27,7 +24,6 @@ export class FriendComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 
   trackById(index: number, friend: any): number {
     return friend.id;

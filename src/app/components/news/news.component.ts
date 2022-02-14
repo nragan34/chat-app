@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { NewsConfig } from 'src/app/interfaces/news-config';
+import { News } from 'src/app/interfaces/news';
 import { NewsConfigService } from 'src/app/services/news-config/news-config.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { NewsConfigService } from 'src/app/services/news-config/news-config.serv
 })
 export class NewsComponent implements OnInit {
 
-  @Input() newsList: NewsConfig | undefined
+  @Input() newsList: News | undefined
 
   Object = Object // access news object list
   newsOptions: {} // empty object

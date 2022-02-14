@@ -144,6 +144,9 @@ textarea::placeholder {
 .margin-top-large {
     margin-top: 5%;
 }
+.flex-div {
+    display: flex;
+}
 /* UTILITIES */
 
 /* Main Styles */
@@ -277,11 +280,12 @@ textarea::placeholder {
 .husq-card-content {
     max-width: 100%;
     width: 900px;
-    padding: 1% 5% 3% 5%;
+    padding: 3% 5% 3% 5%;
     margin: 0.5%;
     border-radius: 20px;
     border: #448d4b 0.1px solid;
     box-shadow: 0 5px 5px rgba(57, 200, 30, 0.2), 0 15px 20px rgba(57, 200, 30, 0.3);
+    min-height: 175px;
 }
 .husq-card-content-info {
     padding-top: 3%;
@@ -720,62 +724,62 @@ footer {
 }
 
 @media only screen and (max-width: 1850px) {
-    body {
-        overflow: visible;
-        height: auto !important;
-    }
-    .main-page-container {
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-    }
-    .two-column-container {
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        float: left;
-    }
-    .two-column-container h1 {
-        padding-top: 10%;
-    }
-    .auto-container-right {
-        width: 100% !important;
-    }
-    .auto-container-left {
-        width: 100% !important;
-    }
-    .content-class {
-        height: 100%;
-        width: 100%;
-        overflow-y: visible;
-        max-height: 100%;
-        float: left;
-    }
-    .right-content-container {
-        height: 100%;
-        width: 100%;
-        max-width: 95%;
-        float: left;
-    }
-    .left-content-container {
-        height: 100%;
-        width: 100%;
-        max-width: 95%;
-        float: left;
-    }
-    .news-container {
-        flex-direction: column;
-    }
-    .news-container-img {
-        text-align: center;
-    }
-    .husq-card-content p {
-        max-width: 100%;
-        margin: 1% 0% 1% 0%;
-    }
-    .news-headline {
-        margin: 1% 0% 1% 0%;
-    }
+    // body {
+    //     overflow: visible;
+    //     height: auto !important;
+    // }
+    // .main-page-container {
+    //     flex-direction: column;
+    //     width: 100%;
+    //     height: 100%;
+    // }
+    // .two-column-container {
+    //     flex-direction: column;
+    //     width: 100%;
+    //     height: 100%;
+    //     float: left;
+    // }
+    // .two-column-container h1 {
+    //     padding-top: 10%;
+    // }
+    // .auto-container-right {
+    //     width: 100% !important;
+    // }
+    // .auto-container-left {
+    //     width: 100% !important;
+    // }
+    // .content-class {
+    //     height: 100%;
+    //     width: 100%;
+    //     overflow-y: visible;
+    //     max-height: 100%;
+    //     float: left;
+    // }
+    // .right-content-container {
+    //     height: 100%;
+    //     width: 100%;
+    //     max-width: 95%;
+    //     float: left;
+    // }
+    // .left-content-container {
+    //     height: 100%;
+    //     width: 100%;
+    //     max-width: 95%;
+    //     float: left;
+    // }
+    // .news-container {
+    //     flex-direction: column;
+    // }
+    // .news-container-img {
+    //     text-align: center;
+    // }
+    // .husq-card-content p {
+    //     max-width: 100%;
+    //     margin: 1% 0% 1% 0%;
+    // }
+    // .news-headline {
+    //     margin: 1% 0% 1% 0%;
+    // }
     footer {
         display: none;
     }

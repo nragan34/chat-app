@@ -1,32 +1,60 @@
 <div class="two-column-container">
 
-    <div class="left-content-container auto-container-left">
+
+  <div class="left-content-container auto-container-left">
+
+    <!--Dynamic Title-->
+    <div *ngIf="newsObj">
       <h1>Manage News Subscriptions</h1>
-      <p><a routerLink="/news"> Back To Your News -> </a></p>
+    </div>
+    <div *ngIf="!newsObj">
+      <h1>Subscriptions Empty!</h1>
+    </div>
+
+    <p><a routerLink="/news"> Back To Your News -> </a></p>
+
+    <!--List Subscriptions-->
+    <div *ngFor="let news of newsObj; trackBy: trackById" newsObj="news">
       <div class="husq-card-container news-content" *ngFor="let key of Object.keys(newsOptions)">
         <div class="husq-card-content">
+          <button style="float: right;" (click)="removeFriend()" class="husq-btn-delete">&times;</button>
           <div class="husq-card-profile">
-            <div style="margin: 2% 0% 0% 0%; padding: 0%;" class="husq-card-profile-container">
-              <div class="husq-card-profile-content">
-                <div class="news-headline">
-                  <p><span class="news-span">{{newsOptions[key][0]}}</span></p>
-                  <p>{{newsOptions[key][2]}}</p>
-                  <div style="float: right;" class="husq-card-action-no-flex">
-                    <a (click)="subscribeToNewsOutlet(newsOptions[key][1], key)" target="_blank"> <button>
-                        Subscribe</button></a>
-                  </div>
-                </div>
+            <div class="news-headline">
+              <div>
+                <p><span class="news-span">{{newsOptions[key][0]}}</span></p>
+                <p>{{newsOptions[key][2]}}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
- 
-
-  <div  class="right-content-container auto-container-right-2">
-    <h1>Discover News</h1>
+    
   </div>
+
+
+
+  <div class="right-content-container auto-container-right-2">
+    <h1>Discover News</h1>
+
+    <!-- News Outlets to Subscribe to-->
+    <div class="husq-card-container news-content" *ngFor="let key of Object.keys(newsOptions)">
+      <div class="husq-card-content">
+        <div class="husq-card-profile">
+          <div class="news-headline">
+            <div>
+              <p><span class="news-span">{{newsOptions[key][0]}}</span></p>
+              <p>{{newsOptions[key][2]}}</p>
+            </div>
+            <div style="float: right;" class="husq-card-action-no-flex">
+              <a (click)="subscribeToNews(key)" target="_blank">
+                <button>Subscribe</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </div>

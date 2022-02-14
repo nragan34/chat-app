@@ -1,4 +1,5 @@
-export interface NewsConfig {
+export interface News {
+    push();
     id: string,
     articles: [
         {

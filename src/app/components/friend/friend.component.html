@@ -3,6 +3,7 @@
 
     <div class="husq-card-content">
 
+        <!-- friends Profile Image and Name-->
         <div class="husq-card-profile">
             <div class="husq-card-profile-container">
                 <div class="husq-card-img">
@@ -14,32 +15,29 @@
                 </div>
             </div>
 
+            <!--Remove Friend-->
             <div *ngIf='!isPotential'>
                 <button (click)="removeFriend(friendObj.id)" class="husq-btn-delete">&times;</button>
             </div>
-    
-        </div>
 
+        </div>
 
         <hr>
 
-
+        <!-- Friends Message and Location-->
         <div class="husq-card-content-info">
             <p>{{ friendObj.message }}</p>
             <p class="padding-top-medium">
                 <span>Location: </span>{{ friendObj.location }}
             </p>
-
-            <!-- <p><span>Profile Activated: </span>
-                {{ time.toLocaleDateString() }}
-            </p> -->
         </div>
 
-
+        <!--Add Friend-->
         <div *ngIf='isPotential' style="float: right;" class="husq-card-action-no-flex">
             <button (click)="addUsersFriend()">Add Friend</button>
         </div>
 
+        <!--View Friend Profile-->
         <div *ngIf='!isPotential' style="float: right;" class="husq-card-action-no-flex">
             <button (click)="navigateToUser()">View Profile</button>
         </div>

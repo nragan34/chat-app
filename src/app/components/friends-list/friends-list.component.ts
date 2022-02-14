@@ -16,8 +16,6 @@ export class FriendsListComponent implements OnInit {
   friends: (Users | undefined)[] | undefined;
   potentialFriends: (Users | undefined)[] | undefined;
 
-  userActive: Users | undefined
-
   time: Date = new Date()
 
   constructor(
@@ -36,11 +34,7 @@ export class FriendsListComponent implements OnInit {
           // getUserById
           const friends = userFriendsId.map((friendId) => this.userService.getUserById(friendId));
           // getAllUsers and filter
-          // if activeUserId !== userId and userFriendId is not any
-          // of the usrs id
           const potentialFriends = this.userService.getUsers().filter((user) => activeUserId !== user.id && !userFriendsId.includes(user.id));
-          // return values of 
-          // friends and potentialFriends
           return {
             friends,
             potentialFriends

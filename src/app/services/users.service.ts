@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
 import { UserFriends } from '../interfaces/userFriends';
 import { Users } from '../interfaces/users';
-import { userFriends } from '../seeds/userFriends';
 import { users } from '../seeds/users';
 import { LocalStorageService } from './local-storage.service';
 

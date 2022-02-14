@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsConfig } from 'src/app/interfaces/news-config';
+import { News } from 'src/app/interfaces/news';
 import {  NewsConfigService } from 'src/app/services/news-config/news-config.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class NewsConfigComponent implements OnInit {
 
   error: any;
   headers: string[] = [];
-  config: NewsConfig | undefined
+  config: News | undefined
   
   constructor(private configService: NewsConfigService) { }
 

@@ -9,7 +9,6 @@ import { FormGroupDirective } from '@angular/forms';
 
 const AUTH_DATA = 'friends'
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -35,18 +34,6 @@ export class FriendsService {
     return this._friendsSource.getValue();
   }
 
-  getFriendsIdsByActiveUserId(userId: string | undefined): string[] {
-    return userId
-      ? this.getFriends().reduce<string[]>((acc, cur) => {
-          let friendId;
-          if (cur.pair[0] === userId) friendId = cur.pair[1];
-          if (cur.pair[1] === userId) friendId = cur.pair[0];
-          if (friendId) acc.push(friendId);
-          return acc;
-        }, [])
-      : [];
-  }
-
   removeFriend(userId: string, friendId: string): void {
     const targetFriend = this.getFriends().find(
       (friend) => friend.pair.includes(userId) && friend.pair.includes(friendId)
@@ -56,21 +43,8 @@ export class FriendsService {
     );
   }
 
-
-  // reduce
-  // map
-  // filter
-  // forEach
-  // some
-  // every
-  // includes
-  // map
-  // reduce
-  // sort
-  // proxy
-
   addUserToFriendList(userId: string, activeUserId: string) {
-    if(!this.getFriendsIdsByActiveUserId(userId).includes(activeUserId)) {
+    if (!this.getFriendsIdsByActiveUserId(userId).includes(activeUserId)) {
       this._setFriends([
         ...this.getFriends(),
         {
@@ -92,5 +66,32 @@ export class FriendsService {
       ]);
     }
   }
-  
+
+  getFriendsIdsByActiveUserId(userId: string | undefined): string[] {
+    return userId
+      ? this.getFriends().reduce<string[]>((acc, cur) => {
+        let friendId;
+        if (cur.pair[0] === userId) friendId = cur.pair[1];
+        if (cur.pair[1] === userId) friendId = cur.pair[0];
+        if (friendId) acc.push(friendId);
+        return acc;
+      }, [])
+      : [];
+  }
+
+
+
+
+  // reduce
+  // map
+  // filter
+  // forEach
+  // some
+  // every
+  // includes
+  // map
+  // reduce
+  // sort
+  // proxy
+
 }
