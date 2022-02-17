@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Friend } from '../interfaces/friend';
-import { Users } from '../interfaces/users';
 import { initialFriends } from '../seeds/friends';
 import { LocalStorageService } from './local-storage.service';
 import { v4 as uuidv4 } from "uuid";
-import { FormGroupDirective } from '@angular/forms';
 
 const AUTH_DATA = 'friends'
 

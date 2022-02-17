@@ -49,8 +49,6 @@ export class FriendsListComponent implements OnInit {
       })
   }
 
-
-
   ngOnInit(): void {
   }
 

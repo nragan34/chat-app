@@ -7,14 +7,17 @@
 
   <div class="content-class">
     <h1>Chat Feed</h1>
+    <div class="">
+      <app-weather></app-weather>
+    </div>
     <app-husq *ngFor="let husq of husqs; trackBy: trackById" [husqObj]="husq">
     </app-husq>
-    
+
   </div>
 
   <div class="right-content-container">
-      <h1>Compose Your Chat</h1>
-      <app-compose></app-compose>
+    <h1>Compose Your Chat</h1>
+    <app-compose></app-compose>
   </div>
-  
+
 </div>

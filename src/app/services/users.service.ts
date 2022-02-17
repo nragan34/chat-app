@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
-import { UserFriends } from '../interfaces/userFriends';
 import { Users } from '../interfaces/users';
 import { users } from '../seeds/users';
 import { LocalStorageService } from './local-storage.service';
@@ -14,9 +13,6 @@ export class UsersService {
 
   private readonly _userSource = new BehaviorSubject<Users[]>([])
   readonly users$ = this._userSource.asObservable();
-
-  private readonly _userFriendsSource = new BehaviorSubject<UserFriends[]>([])
-  readonly userFriends$ = this._userFriendsSource.asObservable();
 
   constructor(private localStorageService: LocalStorageService) {
     const user: Users[] = this.localStorageService.getItem('users');

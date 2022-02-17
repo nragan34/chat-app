@@ -1,0 +1,15 @@
+{
+    "/weather": {
+        "target": "https://api.open-meteo.com/v1/forecast",
+        "secure": true
+    },
+    "/api": {
+        "target": "https://dashboard.nbshare.io/api/v1/apps/reddit",
+        "secure": true,
+        "pathRewrite": {
+            "^/api": ""
+        },
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

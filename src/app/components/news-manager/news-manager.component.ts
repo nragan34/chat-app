@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { map, Subscription } from 'rxjs';
-import { News } from 'src/app/interfaces/news';
-import { NewsConfigService } from 'src/app/services/news-config/news-config.service';
+import { NewsSource } from 'src/app/interfaces/newsSource';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { NewsManagerService } from 'src/app/services/news-config/news-manager.service';
 import { UserActiveService } from 'src/app/services/user-active.service';
 
 @Component({
@@ -11,38 +12,33 @@ import { UserActiveService } from 'src/app/services/user-active.service';
 })
 export class NewsManagerComponent implements OnInit {
 
-  news$: Subscription
-  @Input() newsObj: (News | undefined)[] | undefined
-  @Input() discoverNews: (News | undefined)[] | undefined
+  // newsSource$: Subscription
+  newsSourceObj: (NewsSource | undefined)[] | undefined
+  discoverNews: (NewsSource | undefined)[] | undefined
 
-  news: (News | undefined)[] | undefined
-
-  Object = Object // access news object list
-  newsOptions: {} // empty object
   activeUserId: string | undefined
 
-  constructor(private newsConfigService: NewsConfigService, private userActiveService: UserActiveService, private activeUserService: UserActiveService) {
+  constructor(
+    private newsManagerService: NewsManagerService,
+    private userActiveService: UserActiveService,
+    private localStorageService: LocalStorageService
+  ) {
     this.activeUserId = this.userActiveService.getActiveUser();
-    this.newsOptions = newsConfigService.newsOptions;
 
-    this.news$ = this.newsConfigService.news$
-    .pipe (
-
-
-    )
-    .subscribe()
-
+    // get news source from service and subscribe
+    this.newsManagerService.newsSource$.subscribe(newsSource => this.newsSourceObj = newsSource)
   }
 
   ngOnInit(): void {
+    this.newsManagerService.newsSource$.subscribe()
   }
 
   // load specific news content
-  subscribeToNews(key: string): void {
-    if (key && this.activeUserId) {
-      this.newsConfigService.addNews(key, this.activeUserId)
-    }
-  }
+  // subscribeToNews(key: string): void {
+  //   if (key && this.activeUserId) {
+  //     this.newsConfigService.addNews(key, this.activeUserId)
+  //   }
+  // }
 
   // remove news from users subscribed list
   removeNews() {
@@ -56,8 +52,8 @@ export class NewsManagerComponent implements OnInit {
   addUserNews(): void {
   }
 
-  trackById(index: number, news: any): number {
-    return news.id;
+  trackById(index: number, newsSource: any): number {
+    return newsSource.id
   }
 
 }

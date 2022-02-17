@@ -12,21 +12,21 @@ export class NewsComponent implements OnInit {
   @Input() newsList: News | undefined
 
   Object = Object // access news object list
-  newsOptions: {} // empty object
+  // newsOptions: {} // empty object
   url: string | undefined
   
   constructor(private newsConfigService: NewsConfigService) {
     // get news object
-    this.newsOptions = newsConfigService.newsOptions;
+    // this.newsOptions = newsConfigService.newsOptions;
   }
   
   ngOnInit() {
   }
 
   // load specific news content
-  readNewsOutlet(url: string, key: string) {
-    this.newsConfigService.getConfig(url, key)
-      .subscribe(newsList => { this.newsList = newsList })
-  }
+  // readNewsOutlet(url: string, key: string) {
+  //   this.newsConfigService.getConfig(url, key)
+  //     .subscribe(newsList => { this.newsList = newsList })
+  // }
 
 }

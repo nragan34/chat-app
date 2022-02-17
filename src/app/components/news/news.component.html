@@ -10,16 +10,16 @@
   <div class="left-content-container auto-container-left">
     <h1>Your News Subscriptions</h1>
     <p><a routerLink="/manage-news"> Manage Your News Subscriptions -> </a></p>
-    <div class="husq-card-container news-content" *ngFor="let key of Object.keys(newsOptions)">
+    <div class="husq-card-container news-content" >
       <div class="husq-card-content">
         <div class="husq-card-profile">
           <div style="margin: 2% 0% 0% 0%; padding: 0%;" class="husq-card-profile-container">
             <div class="husq-card-profile-content">
               <div class="news-headline">
-                <p><span class="news-span">{{newsOptions[key][0]}}</span></p>
-                <p>{{newsOptions[key][2]}}</p>
+                <p><span class="news-span"></span></p>
+                <p></p>
                 <div style="float: right;" class="husq-card-action-no-flex">
-                  <a (click)="readNewsOutlet(newsOptions[key][1], key)" target="_blank"> 
+                  <a target="_blank"> 
                     <button> Read News</button></a>
                 </div>
               </div>

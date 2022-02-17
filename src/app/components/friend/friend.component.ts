@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Users } from 'src/app/interfaces/users';
 import { FriendsService } from 'src/app/services/friends.service';
 import { UserActiveService } from 'src/app/services/user-active.service';
-import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-friend',
@@ -18,7 +17,11 @@ export class FriendComponent implements OnInit {
 
   activeUserId: string | undefined
 
-  constructor(private friendService: FriendsService, private userActiveService: UserActiveService, private router: Router) {
+  constructor(
+    private friendService: FriendsService, 
+    private userActiveService: UserActiveService, 
+    private router: Router
+    ) {
     this.activeUserId = this.userActiveService.getActiveUser();
   }
 

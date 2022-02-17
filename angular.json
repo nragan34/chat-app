@@ -75,7 +75,8 @@
               "browserTarget": "husq-app:build:production"
             },
             "development": {
-              "browserTarget": "husq-app:build:development"
+              "browserTarget": "husq-app:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

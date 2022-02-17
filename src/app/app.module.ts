@@ -25,6 +25,7 @@ import { NewsManagerComponent } from './components/news-manager/news-manager.com
 import { HusqViewComponent } from './components/husq-view/husq-view.component';
 import { UsernamePipe } from './pipes/username.pipe';
 import { LikeButtonComponent } from './components/like-button/like-button.component';
+import { WeatherComponent } from './components/weather/weather.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { LikeButtonComponent } from './components/like-button/like-button.compon
     NewsManagerComponent,
     HusqViewComponent,
     UsernamePipe,
-    LikeButtonComponent
+    LikeButtonComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,

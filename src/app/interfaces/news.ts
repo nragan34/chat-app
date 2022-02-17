@@ -1,5 +1,4 @@
 export interface News {
-    push();
     id: string,
     articles: [
         {
@@ -15,6 +14,5 @@ export interface News {
             publishedAt: string,
             content: string
         }
-    ],
-    pair: [string, string]
+    ]
 }
