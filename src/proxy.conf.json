@@ -12,7 +12,7 @@
         "changeOrigin": true,
         "logLevel": "debug"
     },
-    "/news": {
+    "/newsapi": {
         "target": "https://newsapi.org/v2/",
         "secure": true
     }

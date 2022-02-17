@@ -22,8 +22,8 @@ const routes: Routes = [
   { path: 'profile/:userId', component: ProfileComponent, pathMatch: 'full'},
   // { path: 'compose', component: ComposeComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'sign-up', component: UserAddComponent, pathMatch: 'full'},
-  { path: 'news', component: NewsComponent, pathMatch: 'full'},
-  { path: 'manage-news', component: NewsManagerComponent, pathMatch: 'full'},
+  { path: 'news/:userId', component: NewsComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+  { path: 'manage-news/:userId', component: NewsManagerComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'auth/logout', component: AuthComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'auth/login', component: AuthComponent, pathMatch: 'full' },
   

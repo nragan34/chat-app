@@ -4,6 +4,17 @@ import { NewsSource } from 'src/app/interfaces/newsSource';
 import { initialNewsSource } from 'src/app/seeds/newsSource';
 import { LocalStorageService } from '../local-storage.service';
 
+/**
+ * news-source-service - 
+ * 
+ * set newsSource to localStorage
+ * 
+ *  getNewsSource() - 
+ *    ::: get all subscribed news sources
+ * 
+ *  getNewsSourceByUserId() - 
+ *    ::: find newsSource by id
+ */
 
 const STORAGE_KEY = 'newsSources'
 

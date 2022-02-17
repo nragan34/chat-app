@@ -13,7 +13,7 @@
             </div>
 
             <div *ngIf="userActive">
-                <li><a [routerLink]="['/news']" routerLinkActive="active">News</a></li>
+                <li><a [routerLink]="['/news', userActive]" routerLinkActive="active">News</a></li>
             </div>
 
             <div *ngIf="userActive">

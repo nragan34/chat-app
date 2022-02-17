@@ -20,7 +20,7 @@ export class NewsManagerService {
   private readonly _managedNewsSource = new BehaviorSubject<NewsManager[]>([]);
   readonly managedNewsSource$ = this._managedNewsSource.asObservable();
 
-  constructor( private localStorageService: LocalStorageService) {
+  constructor(private localStorageService: LocalStorageService) {
     const managedNewsSource = this.localStorageService.getItem(STORAGE_KEY);
     if (managedNewsSource?.length) {
       this._setManagedNewsSource(managedNewsSource)
@@ -35,11 +35,6 @@ export class NewsManagerService {
     this.localStorageService.setItem(STORAGE_KEY, managedNewsSource);
   }
 
-  // setNewsSource(managedNewsSource: NewsManager[]) {
-  //   this._newsSource.next(managedNewsSource);
-  //   this.localStorageService.setItem(STORAGE_KEY, managedNewsSource);
-  // }
-
   getManagedNewsSource(): NewsManager[] {
     return this._managedNewsSource.getValue()
   }
@@ -47,7 +42,7 @@ export class NewsManagerService {
 
   // add newsSource to user
   addUserNews(userId: string, newsSourceId: string): void {
-    if (!this.getNewsSourceByUserId(userId).includes(newsSourceId)) {
+    if (!this.getManagedNewsSourceByUserId(userId).includes(newsSourceId)) {
       this._setManagedNewsSource([
         ...this.getManagedNewsSource(),
         {
@@ -58,8 +53,7 @@ export class NewsManagerService {
     }
   }
 
-  
-  getNewsSourceByUserId(userId: string | undefined): string[] {
+  getManagedNewsSourceByUserId(userId: string | undefined): string[] {
     return userId
       ? this.getManagedNewsSource().reduce<string[]>((acc, cur) => {
         let newsSourceId;
@@ -72,10 +66,10 @@ export class NewsManagerService {
   }
 
   removeNews(userId: string, newsSourceId: string) {
-      const targetNews = this.getManagedNewsSource().find(news => news.pair.includes(userId) && news.pair.includes(newsSourceId));
-      this._setManagedNewsSource(
-        targetNews ? this.getManagedNewsSource().filter(news => news.id !== targetNews.id) : this.getManagedNewsSource()
-      )
+    const targetNews = this.getManagedNewsSource().find(news => news.pair.includes(userId) && news.pair.includes(newsSourceId));
+    this._setManagedNewsSource(
+      targetNews ? this.getManagedNewsSource().filter(news => news.id !== targetNews.id) : this.getManagedNewsSource()
+    )
   }
 
 }
