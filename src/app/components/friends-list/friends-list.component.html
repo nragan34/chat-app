@@ -1,6 +1,5 @@
 <div class="main-page-container">
-
-
+    
     <div class="left-content-container">
         <i id="custom-fa" class="fa fa-comments"></i>
         <app-footer></app-footer>
@@ -17,3 +16,5 @@
         <h1 >Users List</h1>
         <app-friend *ngFor="let friend of potentialFriends; trackBy: trackById" [friendObj]="friend" [isPotential]="true"></app-friend>
     </div>
+
+</div>

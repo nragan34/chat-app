@@ -1,4 +1,4 @@
 export interface NewsManager {
-    id: string;
-    pair: [string, string];
+    id: string; // userId
+    pair: [string, string]; // userId | newsSourceId
 }

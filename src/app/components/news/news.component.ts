@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { News } from 'src/app/interfaces/news';
-import { NewsConfigService } from 'src/app/services/news-config/news-config.service';
+import { NewsConfigService } from 'src/app/services/news/news-config.service';
 
 @Component({
   selector: 'app-news',
@@ -29,4 +29,8 @@ export class NewsComponent implements OnInit {
   //     .subscribe(newsList => { this.newsList = newsList })
   // }
 
+  trackById(index: number, newsSource: any): number {
+    return newsSource.id
+  }
+  
 }

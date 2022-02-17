@@ -11,6 +11,7 @@ const AUTH_DATA = 'friends'
   providedIn: 'root'
 })
 export class FriendsService {
+
   private readonly _friendsSource = new BehaviorSubject<Friend[]>([]);
   readonly friends$ = this._friendsSource.asObservable();
 
@@ -76,8 +77,6 @@ export class FriendsService {
       }, [])
       : [];
   }
-
-
 
 
   // reduce

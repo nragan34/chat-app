@@ -1,0 +1,23 @@
+<!--List of Subscriptions-->
+<div *ngIf="newsSourceObj">
+  <div class="husq-card-container news-content">
+    <div class="husq-card-content">
+      <button *ngIf="!discoverNews" (click)="removeNewsFromSubscription(newsSourceObj.id)" style="float: right;" class="husq-btn-delete">&times;</button>
+      <div class="husq-card-profile">
+        <div class="news-headline">
+          <div>
+            <p><span class="news-span">{{newsSourceObj.name}}</span></p>
+            <hr>
+            <p>{{newsSourceObj.description}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!--\Add News To Subscriptions -->
+      <div *ngIf='discoverNews' style="float: right;" class="husq-card-action-no-flex">
+        <button (click)="addNewsToSubscription()">Subscribe!</button>
+      </div>
+
+    </div>
+  </div>
+</div>

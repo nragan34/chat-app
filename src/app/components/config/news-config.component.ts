@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { News } from 'src/app/interfaces/news';
-import {  NewsConfigService } from 'src/app/services/news-config/news-config.service';
+import {  NewsConfigService } from 'src/app/services/news/news-config.service';
 
 @Component({
   selector: 'app-config',
