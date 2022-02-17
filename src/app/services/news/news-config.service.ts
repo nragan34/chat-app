@@ -6,6 +6,7 @@ import { News } from 'src/app/interfaces/news';
 import { LocalStorageService } from '../local-storage.service';
 import { v4 as uuidv4 } from "uuid";
 import { NewsSource } from 'src/app/interfaces/newsSource';
+import { environment } from 'src/environments/environment';
 
 /**
  * This component is to manage api calls for news sources
@@ -23,8 +24,9 @@ export class NewsConfigService {
   // configUrl = '';
 
   // api stuff
-  baseUrl = 'https://newsapi.org/v2/';
-  apiKey = 'apiKey=b07f2494b86346c6b20a88ebe75babca';
+  // baseUrl = 'https://newsapi.org/v2/';
+  // apiKey = 'apiKey=b07f2494b86346c6b20a88ebe75babca';
+
 
   // news params
   // see how you can use this to get urls
@@ -54,20 +56,13 @@ export class NewsConfigService {
   //     'All articles published by the Wall Street Journal in the last 6 months, sorted by recent first']
   // }
 
-  constructor(private http: HttpClient, private localStorageService: LocalStorageService) {
-    const newsSource = this.localStorageService.getItem(STORAGE_KEY);
-    if (newsSource?.length) {
-      this._setNews(newsSource)
-    } else {
-      console.log(newsSource)
-    }
+  constructor(private http: HttpClient) {
   }
 
 
   // set news article
   private _setNews(newsSource: NewsSource[] | any): void {
     this._newsSource.next(newsSource);
-    this.localStorageService.setItem(STORAGE_KEY, newsSource);
   }
 
 
@@ -124,22 +119,12 @@ export class NewsConfigService {
   // set value to NewsConfig
   // set id
   // use id to call http get
-  getConfig(url: string | undefined, key: string) {
+  getConfig(param: string): Observable<any> {
     // build url 
-    const fullUrl = `${this.baseUrl}` + url + `${this.apiKey}`
-    return this.http.get<NewsSource>(fullUrl)
-      .pipe(
-        retry(3), // retry get request 3 times
-        map(newsSource => {
-          this._setNews([...this.getNews(), {
-            // id: uuidv4(),
-            // articles: newsSource.articles
-          }])
-          return newsSource
-        }),
-        // catch error if get request fails
-        catchError(this.handleError),
-      )
+    const baseUrl = environment.news.baseURL;
+    const apiKey = environment.news.apiKey;
+    const fullUrl = `${baseUrl}` + param + `${apiKey}`
+    return this.http.get(fullUrl);
   }
 
   // get configuration response

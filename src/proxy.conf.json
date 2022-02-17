@@ -11,5 +11,9 @@
         },
         "changeOrigin": true,
         "logLevel": "debug"
+    },
+    "/news": {
+        "target": "https://newsapi.org/v2/",
+        "secure": true
     }
 }
