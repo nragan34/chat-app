@@ -1,15 +1,12 @@
 <div class="main-page-container">
 
   <div class="left-content-container">
-    <i id="custom-fa" class="fa fa-comments"></i>
-    <app-footer></app-footer>
+    <h1>Today's Weather</h1>
+    <app-weather></app-weather>
   </div>
 
   <div class="content-class">
     <h1>Chat Feed</h1>
-    <div class="">
-      <app-weather></app-weather>
-    </div>
     <app-husq *ngFor="let husq of husqs; trackBy: trackById" [husqObj]="husq">
     </app-husq>
 

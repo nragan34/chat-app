@@ -1,10 +1,53 @@
-<section *ngIf="currentWeather">
+<div class="husq-card-container">
+    <div class="husq-card-content">
+        <div class="husq-card-profile">
+            <div class="husq-card-profile-container">
+                <section *ngIf="currentWeather">
 
-    <span>Max Temp: {{ currentWeather?.daily?.temperature_2m_max[0] }} {{ currentWeather?.daily_units?.temperature_2m_max[0] }} </span>
+                    <div *ngIf="weatherImage" style="text-align: center; color: #5d9064;">
+                        <i style="font-size: 100px;" class="wi {{weatherImage}}"></i>
+                    </div>
+
+                    <div *ngIf="currentWeather" style="display: flex;">
+                        <p>
+                            <span>High Temp:</span> <br>
+                            {{ currentWeather?.daily?.temperature_2m_max[0] }} {{
+                            currentWeather?.daily_units?.temperature_2m_max[0] }}
+                        </p>
+
+                        <br>
+
+                        <p>
+                            <span>Low Temp: </span> <br>
+                            {{ currentWeather?.daily?.temperature_2m_min[0] }} {{
+                            currentWeather?.daily_units?.temperature_2m_min[0] }}
+                        </p>
+                    </div>
+
+                    <br>
 
 
-    <span> - Min Temp: {{ currentWeather?.daily?.temperature_2m_min[0] }} {{ currentWeather?.daily_units?.temperature_2m_min[0] }} </span>
+                    <p>
+                        <span>Weather: </span> <br>
+                        {{ weatherCodeTransformed }}
+                    </p>
 
-    <span> - Weather Code: {{ currentWeather?.daily?.weathercode[0] }} </span>
+                    <br>
 
-</section>
+                    <p>
+                        <span>Max Wind Speed: </span> <br>
+                        {{ currentWeather?.daily?.windspeed_10m_max[0] }} MPH
+                    </p>
+
+                    <br>
+
+                    <p>
+                        <span>Max Wind Gust: </span> <br>
+                        {{ currentWeather?.daily?.windgusts_10m_max[0] }} MPH
+                    </p>
+
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

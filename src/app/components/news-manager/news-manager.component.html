@@ -8,7 +8,7 @@
     </div>
 
     <!-- Route to /news:id -->
-    <p><a [routerLink]="['/news', activeUserId]"> Back To Your News Feed -> </a></p>
+    <p><a class="shimmer" [routerLink]="['/news', activeUserId]"> Back To Your News Feed -> </a></p>
 
     <!--List News Channels User is Subscribed to-->
     <app-news-source *ngFor="let newsSource of newsSources; trackBy: trackById" [newsSourceObj]="newsSource">

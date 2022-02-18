@@ -3,14 +3,14 @@
   <!--Left side -->
   <div class="left-content-container auto-container-left">
     <h1>Channels & Topics</h1>
-    <p><a [routerLink]="['/manage-news', activeUserId]"> Manage Your News Channels -> </a></p>
+    <p><a class="shimmer" [routerLink]="['/manage-news', activeUserId]"> Manage Your News Channels -> </a></p>
     <div *ngFor="let news of newsSources" class="husq-card-container news-content">
       <div class="husq-card-content">
         <div class="husq-card-profile">
           <div style="margin: 2% 0% 0% 0%; padding: 0%;" class="husq-card-profile-container">
             <div class="husq-card-profile-content">
               <div class="news-headline">
-                <p><span class="news-span"></span>{{news?.name}}</p>
+                <p><span class="news-span">{{news?.name}}</span></p>
                 <p>{{news?.description}}</p>
                 <div style="float: right;" class="husq-card-action-no-flex">
                   <a target="_blank">

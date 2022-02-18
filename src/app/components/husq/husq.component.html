@@ -20,19 +20,18 @@
         <p style="padding-left: 12%;" class="husq-card-content-info">{{ husqObj.message }}</p>
 
 
-
-
         <div style="float: right; display: flex;" class="husq-card-action-no-flex">
             <div class="flex-div">
                 <app-like-button (likeEvent)="addLike()"></app-like-button>
                 <span *ngIf="countLikes()" class="husq-count">{{ countLikes() }}</span>
             </div>
-            <div class="flex-div">
+            <!-- <div class="flex-div">
                 <app-like-button (likeEvent)="addLike()"></app-like-button>
                 <span *ngIf="countLikes()" class="husq-count">{{ countLikes() }}</span>
-            </div>
+            </div> -->
             <div class="padding-large">
-                <button (click)="viewHusqComment()" *ngIf="replyCount">{{ replyCount }} comment{{replyCount > 1 ? 's' : ''}}</button>
+                <button (click)="viewHusqComment()" *ngIf="replyCount">{{ replyCount }} comment{{replyCount > 1 ? 's' :
+                    ''}}</button>
             </div>
         </div>
 
