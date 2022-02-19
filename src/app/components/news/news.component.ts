@@ -55,6 +55,7 @@ export class NewsComponent implements OnInit {
       .subscribe(news => {
         this.newsSources = news.newsSources;
       })
+      
 
   }
 
@@ -66,9 +67,12 @@ export class NewsComponent implements OnInit {
   }
 
   // load api content
-  readNews(param: string | undefined) {
+  async readNews(param: string | undefined) {
+    console.log('this is a param... ',param)
     if (param) {
-      this.newsConfigService.getNewsConfig(param).subscribe(newsData => this.currentNews = newsData)
+      this.newsConfigService.getNewsConfig(param).subscribe(newsData => 
+        this.currentNews = newsData)
+
     }
   }
 

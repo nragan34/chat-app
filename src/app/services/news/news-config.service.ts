@@ -33,7 +33,8 @@ export class NewsConfigService {
     const baseUrl = environment.newsapi.baseURL;
     const apiKey = environment.newsapi.apiKey;
     // build url 
-    const fullUrl = `${baseUrl}` + param + `${apiKey}`
+    const fullUrl = `${baseUrl}` + `${apiKey}` + param 
+    console.log('logging full url... ', fullUrl)
     return this.http.get(fullUrl)
       .pipe(
         retry(3), // retry request x3
