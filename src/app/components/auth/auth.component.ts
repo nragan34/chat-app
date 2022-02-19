@@ -58,8 +58,8 @@ export class AuthComponent implements OnInit {
     const loggingOutUser = this.localStorageService.getItem(this.AUTH_DATA);
     if (loggingOutUser) {
       this.localStorageService.removeItem(this.AUTH_DATA);
+      this.router.navigate(['/auth/logout']);
       location.reload();
-      this.router.navigate(['/']);
     } else {
       console.log('ERROR removing logging out user: \n', loggingOutUser);
     }
