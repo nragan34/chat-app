@@ -31,21 +31,22 @@
       <h1>News Feed</h1>
     </div>
 
-    <div *ngFor="let item of currentNews?.articles" class="husq-card-container news-content">
+    <div *ngIf="currentNews">
+    <div *ngFor="let item of currentNews.data" class="husq-card-container news-content">
       <div class="husq-card-content">
         <div class="husq-card-profile">
           <div style="margin: 2% 0% 0% 0%; padding: 0%;" class="husq-card-profile-container">
             <div class="husq-card-profile-content">
 
-              <div *ngIf="currentNews">
+              <div >
                 <div class="news-container">
                   <div class="news-container-img">
                     <img style="width: 250px; height: 200px; filter: brightness(60%); object-fit: cover;"
-                      src="{{item.urlToImage}}">
+                      src="{{item.image_url}}">
                   </div>
                   <div class="news-headline">
                     <p><span class="news-span">{{item.title}}</span></p>
-                    <p>Source: {{item.source.name}}</p>
+                    <p>Source: </p>
                   </div>
                 </div>
 
@@ -62,6 +63,7 @@
         </div>
       </div>
     </div>
+  </div>
 
   </div>
 </div>
