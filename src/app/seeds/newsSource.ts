@@ -42,7 +42,45 @@ export const initialNewsSource: NewsSource[] = [
         name: 'The Atlantic',
         param: 'theatlantic',
         description: 'the atlantic news articles'
-    }
+    },
+    {
+        id: '8',
+        name: 'Apartment Therapy',
+        param: 'apartmenttherapy',
+        description: 'apartment therapy news articles'
+    },
+    {
+        id: '9',
+        name: 'Android Police',
+        param: 'androidpolice',
+        description: 'android police news articles'
+    },
+    {
+        id: '10',
+        name: 'AVC',
+        param: 'avc',
+        description: 'avc news articles'
+    },
+    {
+        id: '11',
+        name: 'AWS',
+        param: 'aws.amazon',
+        description: 'aws news articles'
+    },
+    {
+        id: '12',
+        name: 'Android Guys',
+        param: 'androidguys',
+        description: 'android guys news articles'
+    },
+    {
+        id: '13',
+        name: 'Azure - Microsoft',
+        param: 'azure.microsoft',
+        description: 'azure news articles'
+    },
+
+
     // {
     //     id: '2',
     //     name: 'Tesla News',
