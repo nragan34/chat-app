@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   LOGIN_URL: 'http://localhost:4200',
   IS_LOGGEDIN_URL: 'http://localhost:4200/timeline',
   weather: {
