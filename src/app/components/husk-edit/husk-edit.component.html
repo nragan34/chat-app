@@ -28,7 +28,7 @@
                                     <div>
                                         <label for="age">Age:</label>
                                         <br>
-                                        <input type="text" id="age" formControlName="age">
+                                        <input data-test="age-input" type="text" id="age" formControlName="age">
                                         <br>
                                         <div *ngIf="editForm.invalid  && (age?.dirty || age?.touched)">
                                             <span *ngIf="age?.errors?.['required']"> Age is required</span>
@@ -107,7 +107,7 @@
 
                                     <div>
                                         <!-- [disabled]="editForm.invalid" -->
-                                        <button type="submit" [disabled]="editForm.invalid" >Submit</button>
+                                        <button data-test="update-profile-button" type="submit" [disabled]="editForm.invalid" >Submit</button>
                                     </div>
                                 </form>
 

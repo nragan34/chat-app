@@ -13,7 +13,7 @@
             </div>
 
             <div *ngIf="husqObj.id === userActive">
-                <button (click)="removeHusq()" class="husq-btn-delete">&times;</button>
+                <button data-test="remove-husq-button" (click)="removeHusq()" class="husq-btn-delete">&times;</button>
             </div>
         </div>
 

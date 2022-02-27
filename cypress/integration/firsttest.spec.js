@@ -149,10 +149,9 @@ Restart Linux Console and it should work
  */
 
 describe('My first test', () => {
-    before(() => {
+    beforeEach(() => {
         // Visit Localhost
-        cy.visit('localhost:4200')
-
+        cy.visit('localhost:4200/')
         // Login as user #2
         cy.fixture('login').then((login) => {
             cy.get('#email')
@@ -160,16 +159,16 @@ describe('My first test', () => {
             cy.get('#password')
                 .type(login.password)
 
-            cy.get('#loginButton').click()
+            cy.get('[data-test="login-button"]').click()
         })
     })
 
 
     // tip: add data-tests to stuff that needs testing - data-test="new-todo"
 
-
     // Create a chat
     it('will create a new chat', () => {
+        cy.visit('localhost:4200/')
         cy.get('.right-content-container textarea')
             .type('testing text area')
         cy.get('.right-content-container button').click();
@@ -177,13 +176,53 @@ describe('My first test', () => {
 
     // delete husq
     it('will delete husq', () => {
-        cy.get('.husq-btn-delete').click()
+        cy.get('[data-test="remove-husq-button"]').click()
     })
 
-    // create husq
-    it('will create husq'), () => {
-        
-    }
+    // update user profile
+    it('update user profile age to 30 and confirm update', () => {
+        // Visit Localhost
+        cy.visit('http://localhost:4200/edit/2')
+        // update age
+        cy.get('[data-test="age-input"]').clear().type('30');
+        // submit update
+        cy.get('[data-test="update-profile-button"]').click()
+        // Visit Localhsot profile
+        cy.visit('http://localhost:4200/edit/2')
+        // check age is 30
+        cy.get('[data-test="age-input"]').should('have.value', '30')
+    })
+
+    // check user profile age value
+    it('check user profile age is 42', () => {
+        cy.visit('http://localhost:4200/edit/2')
+        cy.get('[data-test="age-input"]').should('have.value', '42')
+    })
+
+    it('get windows location', () => {
+        cy.location().should((location) => {
+            expect(location.href).to.eq('http://localhost:4200/');
+        })
+    })
+
+    it('get the current url', () => {
+        cy.url().should('eq', 'http://localhost:4200/')
+    })
+
+
+
+    // it('should exist accessToken in localStorage', () => {
+    //     cy.getLocalStorage().then(
+    //         window => window.localStorage.getItem('users')
+    //             // .should(() => {
+    //             //     expect(localStorage.getItem('likes')).to.equal('[{"id":"1","husqId":"2","likes":["1","3"]}]')
+    //             // })
+    //         )
+    //   });
+
+    //   let storedLikes = window.localStorage.getItem('likes');
+    //   cy.log('logging storedLikes, ', storedLikes);
+    //   storedLikes.to.equal('[{"id":"1","husqId":"2","likes":["1","3"]}]');
 
     // news stuff with localhost
 
