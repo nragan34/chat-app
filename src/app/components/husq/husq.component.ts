@@ -23,7 +23,6 @@ export class HusqComponent implements OnInit {
 
   replyCount: number | undefined;
 
-
   constructor(private husqTimelineService: HusqTimelineService, private userActiveService: UserActiveService, private router: Router, private likesService: LikeService) { 
     this.userActive = this.userActiveService.getActiveUser();
     this.theRoute = router.url;

@@ -9,10 +9,10 @@
                 <label for="title">
                   Compose Your Chat
                 </label>
-                <textarea [(ngModel)]="message" placeholder="What's on your mind?"></textarea>
+                <textarea id="composeChat" [(ngModel)]="message" placeholder="What's on your mind?"></textarea>
               </div>
               <div class="husq-card-action-no-flex">
-                <button (click)="addHusq()" [disabled]="!message || message.length > 240">
+                <button id="composeChatButton" (click)="addHusq()" [disabled]="!message || message.length > 240">
                   Add Chat
                 </button>
                 <span>{{ message.length }} / 240</span>

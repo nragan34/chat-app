@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Users } from 'src/app/interfaces/users';
 import { UsersService } from 'src/app/services/users.service';
 import { map, Subscription } from 'rxjs';

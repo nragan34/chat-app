@@ -17,7 +17,7 @@ export class UserListComponent implements OnInit {
   // users: Users[] = users
 
 
-  constructor(private usersService: UsersService, private friendsService: FriendsService) {
+  constructor() {
 
     //// GOAL:::::  if user in friendsList remove user from user list ////
 

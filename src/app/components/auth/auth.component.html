@@ -14,25 +14,26 @@
                   <h2 style="text-align: center;">Login</h2>
 
                   <div style="text-align: center;">
-                    <input style="font-family: FontAwesome;" type="text" id="email" formControlName="email" placeholder="&#xf007;   Type your email">
+                    <input id="email" style="font-family: FontAwesome;" type="text" id="email" formControlName="email" placeholder="&#xf007;   Type your email">
                   </div>
                   <div *ngIf="loginForm.invalid  && (email?.dirty || email?.touched)">
                     <span style="text-align: left !important; padding-left: 8%;" *ngIf="email?.errors?.['required']">Email is required</span>
                   </div>
 
                   <div style="text-align: center;">
-                  <input style="font-family: FontAwesome;" type="text" id="password" formControlName="password" placeholder="&#xf023;   Type your password">
+                  <input id="password" style="font-family: FontAwesome;" type="text" id="password" formControlName="password" placeholder="&#xf023;   Type your password">
                 </div>
                   <div *ngIf="loginForm.invalid  && (password?.dirty || password?.touched)">
                     <span style="text-align: left !important; padding-left: 8%;" *ngIf="password?.errors?.['required']">Password is required</span>
                   </div>
 
                   <div style="text-align: right !important; padding-right: 10%;" >
-                    <p style="color: white; font-weight: lighter; font-size: 1.2em;">Don't have an accout? <span [routerLink]="['/sign-up']"><u>Sign Up</u></span></p>
+                    <p style="color: white; font-weight: lighter; font-size: 1.2em;">Don't have an accout? <span routerLink="/sign-up"><u>Sign Up</u></span></p>
                   </div>
 
                   <div style="text-align: center;" class="husq-card-action-no-flex">
                     <button data-test="login-button" style="width: 90%;" type="submit" [disabled]="!loginForm.valid" >Login</button>
+                    
                   </div>
 
                 </form>

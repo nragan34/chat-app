@@ -1,7 +1,30 @@
 
 /**
- * Run Cypress in WSL :::::: Headless with - Xvfb :::::
+ ----------------------------------------
+How to run Unit Testing in WSL2:
+ ----------------------------------------
  * 
+
+Two things you will need to do.
+(a) make sure your spec files don't contain errors. 
+If they do you may run into this error: Incomplete: No specs found, , randomized with seed 42905
+
+(b) create a tmp directory on your windows side here:
+C:\tmp
+
+(c) you may need to set your CHROMOE_BIN variable to chrome on the windows side:
+
+You should be able to run your unit tests now. If not, you may need to install dependencies. 
+----------------------------------------
+
+
+
+/**
+----------------------------------------
+How to Run Cypress in WSL2 :::::: Headless with - Xvfb :::::
+----------------------------------------
+ * 
+
 Xvfb (short for X virtual framebuffer) is an in-memory display server for UNIX-like OS's
 It enables you to run graphical applications without a display, while also having the
 ability to take screenshots
@@ -19,23 +42,44 @@ sudo apt-get -y install imagemagick x11-apps
 Make sure that Xvfb starts every time the box/vm is booted::::::::::::::::::
 Xvfb -ac :99 -screen 0 1280x1024x16 & export DISPLAY=:99
 
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+
+
 Run cypress in chrome headless with the following command::::::::::::::::::
+start development server: ng serve
 npx cypress run --browser chrome
 
  */
 
-///////////////////////////////////
+
 
 /**
- * Run tests :::::: headed with - VcXsrv :::::::::
- * 
- * 
+ ----------------------------------------
+ How to Run Cypress tests in WSL2 :::::: headed with - VcXsrv :::::::::
+ ----------------------------------------
+
+helpful tutorial - https://shouv.medium.com/how-to-run-cypress-on-wsl2-989b83795fb6
+ 
+On the Windows Side:
+---------------------------------------
+Download VcXsrv and install. You can set the settings to your preference (Multiple windows and Start no client is recommended), but on the page that lets you enable extra settings, disable access control. This is required as WSL2 has its own IP address, which changes often.
+----------------------------------------
+
+
+On the Linux side:
 ----------------------------------------
  required display settings:::::
  export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-----------------------------------------
+
+ confirm this changed your display settings::::
+ echo $DISPLAY
+
+ optionally add the export line to your .bashrc or .zshrc file. Adding to this file will set the DISPLAY varaible to what you need
+ everytime a new terminal is initialized
 
 ---------------------------------------- 
+What do these linux commands do??
+
 Grep:::: searches for lines matching a regex pattern and prints those matching lines to the standard output
 Basic syntax - grep [OPTIONS] PATTERN [FILE...]
 (a) Scans files and quicly search for matching patterns
@@ -51,7 +95,9 @@ Basic syntax - awk [options] script file
 ------------------------------------------
 
 ----------------------------------------
- * Start your VcXsrv server using the XLaunch shortcut
+How do you run all of this stuff??
+
+ * Start your VcXsrv server using the XLaunch shortcut on the Windows side
  * 
  * Start development server in WSL:
  * ng serve
@@ -63,6 +109,7 @@ Basic syntax - awk [options] script file
 
 ----------------------------------------
  Optional dbus settings you can try:::::
+
 // dbus is needed for inter-process communications. 
 // By default it uses unix sockets (that are not implemented in WSL). So, we may try to replace with tcp
 // But first it need to be installed (which was done in Step 1 above, with sudo apt install dbus-x11) and configured.
@@ -96,11 +143,10 @@ add:<listen>tcp:host=localhost,bind=0.0.0.0,port=0</listen>
 <auth>ANONYMOUS</auth> 
 
 Restart Linux Console and it should work
+
 ----------------------------------------
 
  */
-
-// The reason why you are now logged out may be because your app uses a cookie to store authentication token.
 
 describe('My first test', () => {
     beforeEach(() => {
@@ -162,14 +208,6 @@ describe('My first test', () => {
     it('get the current url', () => {
         cy.url().should('eq', 'http://localhost:4200/')
     })
-
-
-
-
-
-
-
-
 
 
 

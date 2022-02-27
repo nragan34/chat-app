@@ -1,7 +1,9 @@
 {
     "/weather": {
         "target": "https://api.open-meteo.com/v1/forecast",
-        "secure": true
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug"
     },
     "/api": {
         "target": "https://dashboard.nbshare.io/api/v1/apps/reddit",
@@ -14,6 +16,8 @@
     },
     "/newsapi": {
         "target": "https://newsapi.org/v2/",
-        "secure": true
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug"
     }
 }

@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NewsManagerService } from 'src/app/services/news/news-manager.service';
+import { UserActiveService } from 'src/app/services/user-active.service';
 
 import { NewsSourceComponent } from './news-source.component';
 
@@ -8,6 +10,7 @@ describe('NewsSourceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [NewsManagerService, UserActiveService],
       declarations: [ NewsSourceComponent ]
     })
     .compileComponents();

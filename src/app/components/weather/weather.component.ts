@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
 import { WeatherService } from 'src/app/services/weather.service';
 
 @Component({
