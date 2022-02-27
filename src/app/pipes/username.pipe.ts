@@ -14,5 +14,4 @@ export class UsernamePipe implements PipeTransform {
     return this.usersService.getUserById(userId)?.name;
 
   }
-
 }

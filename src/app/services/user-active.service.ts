@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Users } from '../interfaces/users';
 import { LocalStorageService } from './local-storage.service';
-import { UsersService } from './users.service';
 
 
 const AUTH_DATA = 'AUTH_DATA'

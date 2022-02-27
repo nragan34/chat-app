@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Subscription } from 'rxjs';
-import { Husq, HusqWithName } from 'src/app/interfaces/husq';
-import { Users } from 'src/app/interfaces/users';
+import { HusqWithName } from 'src/app/interfaces/husq';
 import { FriendsService } from 'src/app/services/friends.service';
 import { HusqTimelineService } from 'src/app/services/husq-timeline.service';
 import { UserActiveService } from 'src/app/services/user-active.service';
@@ -20,7 +19,6 @@ export class HusqListComponent implements OnInit, OnDestroy {
   constructor(
     private husqTimelineService: HusqTimelineService, 
     private userActiveService: UserActiveService, 
-    private userService: UsersService,
     private friendService: FriendsService
     ) {
     const activeUserId = this.userActiveService.getActiveUser();

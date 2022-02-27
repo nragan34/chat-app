@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Users } from '../interfaces/users';
-import { AuthService } from '../services/auth.service';
 import { UserActiveService } from '../services/user-active.service';
-import { UsersService } from '../services/users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +17,7 @@ export class AuthGuard implements CanActivate {
   activeUser: Users | undefined
 
   constructor(private router: Router, private userActiveService: UserActiveService) {
-
   }
-
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

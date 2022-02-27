@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { Users } from 'src/app/interfaces/users';
 import { users } from 'src/app/seeds/users';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserActiveService } from 'src/app/services/user-active.service';
 import { UsersService } from 'src/app/services/users.service';
 import * as uuid from 'uuid';
 
@@ -23,7 +22,7 @@ export class UserAddComponent implements OnInit {
 
   profile: Users | undefined
   
-  constructor(private usersService: UsersService, private activeRouter: ActivatedRoute, private router: Router, private authService: AuthService) { 
+  constructor(private usersService: UsersService, private router: Router, private authService: AuthService) { 
     this.users$ = this.usersService.users$.subscribe
     (users => {
       this.users = users

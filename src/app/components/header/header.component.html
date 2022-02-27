@@ -2,26 +2,26 @@
     <!-- NAVIGATION MENU -->
     <ul class="nav-links">
         <!-- NAVIGATION MENUS -->
-        <div class="menu">
+        <div *ngIf="userActiveId" class="menu">
 
-            <div *ngIf="userActive">
-                <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Chat</a></li>
+            <div>
+                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Chat</a>
             </div>
 
-            <div *ngIf="userActive">
-                <li><a [routerLink]="['/friends', userActive]" routerLinkActive="active">Friends</a></li>
+            <div >
+                <a [routerLink]="['/friends', userActiveId]" routerLinkActive="active" >Friends</a>
             </div>
 
-            <div *ngIf="userActive">
-                <li><a [routerLink]="['/news', userActive]" routerLinkActive="active">News</a></li>
+            <div >
+                <a [routerLink]="['/news', userActiveId]" routerLinkActive="active" >News</a>
             </div>
 
-            <div *ngIf="userActive">
-                <li><a [routerLink]="['/profile', userActive]" routerLinkActive="active">Profile</a></li>
+            <div>
+                <a [routerLink]="['/profile', userActiveId]" routerLinkActive="active" >Profile</a>
             </div>
 
-            <div *ngIf="userActive">
-                <li><a [routerLink]="['/auth/logout']" routerLinkActive="active">Logout</a></li>
+            <div >
+                <a [routerLink]="['/auth/logout']" routerLinkActive="active" >Logout</a>
             </div>
         </div>
 
@@ -29,10 +29,13 @@
     </ul>
 
     <!-- NAVIGATION MENU -->
-    <ul  *ngIf="!userActive" class="nav-links">
-        <div style="display: flex; margin-right: 0 !important; " *ngIf="!userActive">
+    <ul  *ngIf="!userActiveId" class="nav-links">
+        <div style="display: flex; margin-right: 0 !important; " *ngIf="!userActiveId">
             <li style="margin-right: 2em;"><a [routerLink]="['/auth/login']" routerLinkActive="active">Login</a></li>
             <li><a [routerLink]="['/sign-up']" routerLinkActive="active">Sign Up</a></li>
         </div>
     </ul>
 </nav>
+
+
+<router-outlet></router-outlet>

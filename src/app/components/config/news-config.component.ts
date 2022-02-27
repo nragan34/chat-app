@@ -13,7 +13,7 @@ export class NewsConfigComponent implements OnInit {
   headers: string[] = [];
   config: News | undefined
   
-  constructor(private configService: NewsConfigService) { }
+  constructor() { }
 
   // clear() {
   //   this.config = undefined;

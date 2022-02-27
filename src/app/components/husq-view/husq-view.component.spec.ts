@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HusqTimelineService } from 'src/app/services/husq-timeline.service';
+import { UsersService } from 'src/app/services/users.service';
 
 import { HusqViewComponent } from './husq-view.component';
 
@@ -8,6 +11,8 @@ describe('HusqViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      providers: [HusqTimelineService, UsersService],
       declarations: [ HusqViewComponent ]
     })
     .compileComponents();

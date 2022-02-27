@@ -27,6 +27,7 @@ import { UsernamePipe } from './pipes/username.pipe';
 import { LikeButtonComponent } from './components/like-button/like-button.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { NewsSourceComponent } from './components/news-source/news-source.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 @NgModule({
   declarations: [
